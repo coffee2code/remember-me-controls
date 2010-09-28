@@ -2,11 +2,11 @@
 /**
  * @package Remember_Me_Controls
  * @author Scott Reilly
- * @version 1.0
+ * @version 1.0.1
  */
 /*
 Plugin Name: Remember Me Controls
-Version: 1.0
+Version: 1.0.1
 Plugin URI: http://coffee2code.com/wp-plugins/remember-me-controls/
 Author: Scott Reilly
 Author URI: http://coffee2code.com
@@ -50,7 +50,7 @@ class c2c_RememberMeControls extends C2C_Plugin_016 {
 	 * @return void
 	 */
 	function c2c_RememberMeControls() {
-		$this->C2C_Plugin_016( '1.0', 'remember-me-controls', 'c2c', __FILE__, array() );
+		$this->C2C_Plugin_016( '1.0.1', 'remember-me-controls', 'c2c', __FILE__, array() );
 	}
 
 	/**
@@ -82,7 +82,7 @@ class c2c_RememberMeControls extends C2C_Plugin_016 {
 	 * @return void
 	 */
 	function register_filters() {
-		add_action( 'auth_cookie_expiration', array( &$this, 'auth_cookie_expiration' ) );
+		add_action( 'auth_cookie_expiration', array( &$this, 'auth_cookie_expiration' ), 10, 3 );
 		add_action( 'login_head', array( &$this, 'login_head' ) );
 		add_action( $this->get_hook( 'post_display_option' ), array( &$this, 'maybe_add_hr' ) );
 	}
@@ -175,8 +175,8 @@ JS;
 		$options = $this->get_options();
 		if ( $options['disable_remember_me'] ) // Regardless of checkbutton state, if 'remember me' is disabled, use the non-remember-me duration
 			$expiration = 172800;
-		elseif ( $remember )
-			$expiration = intval( $options['remember_me_duration'] );
+		elseif ( $remember && ( (int) $options['remember_me_duration'] > 2 ) )
+			$expiration = (int) $options['remember_me_duration'];
 		return $expiration;
 	}
 

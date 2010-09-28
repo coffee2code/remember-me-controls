@@ -4,8 +4,8 @@ Donate link: http://coffee2code.com/donate
 Tags: login, remember, remember me, cookie, session, coffee2code
 Requires at least: 2.8
 Tested up to: 3.0.1
-Stable tag: 1.0
-Version: 1.0
+Stable tag: 1.0.1
+Version: 1.0.1
 
 Have "Remember Me" checked by default on logins, configure how long a login is remembered, or disable the "Remember Me" feature altogether.
 
@@ -41,11 +41,18 @@ By default, if you log in without "Remember Me" checked, WordPress keeps you log
 
 == Changelog ==
 
+= 1.0.1 =
+* Fix bug where having "Remember Me" checked but having no remember me duration configured resulted in login error
+* Fix bug where incorrect number of arguments were requested from the 'auth_cookie_expiration' action
+
 = 1.0 =
 * Initial release
 
 
 == Upgrade Notice ==
+
+= 1.0.1 =
+Recommended bugfix release.
 
 = 1.0 =
 Initial public release!
