@@ -2,8 +2,8 @@
 Contributors: coffee2code
 Donate link: http://coffee2code.com/donate
 Tags: login, remember, remember me, cookie, session, coffee2code
-Requires at least: 2.8
-Tested up to: 3.2
+Requires at least: 3.0
+Tested up to: 3.2.1
 Stable tag: 1.1
 Version: 1.1
 
@@ -53,6 +53,7 @@ By default, if you log in without "Remember Me" checked, WordPress keeps you log
 * Add __construct(), activation(), uninstall()
 * Explicitly declare all class functions public
 * Note compatibility through WP 3.2+
+* Drop compatibility with versions of WP older than 3.0
 * Minor code formatting changes (spacing)
 * Minor readme.txt formatting changes
 * Fix plugin homepage and author links in description in readme.txt
@@ -67,6 +68,9 @@ By default, if you log in without "Remember Me" checked, WordPress keeps you log
 
 
 == Upgrade Notice ==
+
+= 1.1 =
+Recommended upgrade! Fixed bug relating to value conversion from hours to seconds; fix for proper activation; noted compatibility through WP 3.2; dropped compatibility with versions of WP 3.0; deprecated use of global updated plugin framework; and more.
 
 = 1.0.1 =
 Recommended bugfix release.

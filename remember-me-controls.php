@@ -20,6 +20,8 @@ Compatible with WordPress 2.8+, 2.9+, 3.0+, 3.1+, 3.2+.
 =>> Or visit: http://wordpress.org/extend/plugins/remember-me-controls/
 
 TODO:
+	* Update screenshot for WP 3.2
+	* Update .pot
 	* Drop pre-WP3.1 support and inject JS via (pseudo):
 	  add_filter( 'login_footer', 'xxx' );
 	  function xxx() {
