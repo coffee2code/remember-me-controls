@@ -3,11 +3,12 @@ Contributors: coffee2code
 Donate link: http://coffee2code.com/donate
 Tags: login, remember, remember me, cookie, session, coffee2code
 Requires at least: 2.8
-Tested up to: 3.0.1
-Stable tag: 1.0.1
-Version: 1.0.1
+Tested up to: 3.2
+Stable tag: 1.1
+Version: 1.1
 
 Have "Remember Me" checked by default on logins, configure how long a login is remembered, or disable the "Remember Me" feature altogether.
+
 
 == Description ==
 
@@ -19,10 +20,12 @@ This plugin provides three primary controls over the behavior of the "Remember M
 * Customize the duration of the "Remember Me" : Customize how long WordPress will remember a login session when "Remember Me" is checked.
 * Disable "Remember Me" : Completely disable the feature, preventing the checkbox from appearing and restricting all login sessions to one day.
 
+Links: [Plugin Homepage](http://coffee2code.com/wp-plugins/remember-me-controls/) | [Author Homepage](http://coffee2code.com)
+
 
 == Installation ==
 
-1. Download the file http://coffee2code.com/wp-plugins/remember-me-controls.zip and unzip it into your /wp-content/plugins/ directory (or install via the built-in WordPress plugin installer).
+1. Unzip `remember-me-controls.zip` inside the `/wp-content/plugins/` directory (or install via the built-in WordPress plugin installer)
 1. Activate the plugin through the 'Plugins' admin menu in WordPress
 1. Go to "Settings" -> "Remember Me" and configure the settings
 
@@ -40,6 +43,20 @@ By default, if you log in without "Remember Me" checked, WordPress keeps you log
 
 
 == Changelog ==
+
+= 1.1 =
+* Fix bug with missing remember_me_duration setting conversion from hours to seconds
+* Update plugin framework to version v023
+* Save a static version of itself in class variable $instance
+* Deprecate use of global variable $c2c_remember_me_controls to store instance
+* Fix to properly register activation and uninstall hooks
+* Add __construct(), activation(), uninstall()
+* Explicitly declare all class functions public
+* Note compatibility through WP 3.2+
+* Minor code formatting changes (spacing)
+* Minor readme.txt formatting changes
+* Fix plugin homepage and author links in description in readme.txt
+* Update copyright date (2011)
 
 = 1.0.1 =
 * Fix bug where having "Remember Me" checked but having no remember me duration configured resulted in login error
