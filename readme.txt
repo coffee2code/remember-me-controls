@@ -3,9 +3,9 @@ Contributors: coffee2code
 Donate link: http://coffee2code.com/donate
 Tags: login, remember, remember me, cookie, session, coffee2code
 Requires at least: 3.1
-Tested up to: 3.3
-Stable tag: 1.2
-Version: 1.2
+Tested up to: 3.5
+Stable tag: 1.3
+Version: 1.3
 
 Have "Remember Me" checked by default on logins, configure how long a login is remembered, or disable the "Remember Me" feature altogether.
 
@@ -52,6 +52,20 @@ You can't (and probably shouldn't). With a session length of less than an hour y
 
 
 == Changelog ==
+
+= 1.3 =
+* Use YEAR_IN_SECONDS and HOUR_IN_SECONDS constants instead of doing the time calculation
+* Add backwards compatibility for *_IN_SECONDS constants added to WP 3.5
+* Update plugin framework to 035
+* Discontinue use of explicit pass-by-reference for objects
+* Regenerate .pot
+* Re-license as GPLv2 or later (from X11)
+* Add 'License' and 'License URI' header tags to readme.txt and plugin file
+* Note compatibility through WP 3.5+
+* Update copyright date (2013)
+* Remove ending PHP close tag
+* Create repo's WP.org assets directory
+* Move screenshots into repo's assets directory
 
 = 1.2 =
 * Add setting 'remember_me_forever' to allow user to forego having to make up a large number

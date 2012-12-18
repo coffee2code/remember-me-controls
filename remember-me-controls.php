@@ -2,19 +2,21 @@
 /**
  * @package Remember_Me_Controls
  * @author Scott Reilly
- * @version 1.2
+ * @version 1.3
  */
 /*
 Plugin Name: Remember Me Controls
-Version: 1.2
+Version: 1.3
 Plugin URI: http://coffee2code.com/wp-plugins/remember-me-controls/
 Author: Scott Reilly
-Author URI: http://coffee2code.com
+Author URI: http://coffee2code.com/
 Text Domain: remember-me-controls
 Domain Path: /lang/
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Description: Have "Remember Me" checked by default on logins, configure how long a login is remembered, or disable the "Remember Me" feature altogether.
 
-Compatible with WordPress 3.1+, 3.2+, 3.3+.
+Compatible with WordPress 3.1+ through 3.5+.
 
 =>> Read the accompanying readme.txt file for instructions and documentation.
 =>> Also, visit the plugin's homepage for additional information and updates.
@@ -22,22 +24,26 @@ Compatible with WordPress 3.1+, 3.2+, 3.3+.
 */
 
 /*
-Copyright (c) 2009-2012 by Scott Reilly (aka coffee2code)
+	Copyright (c) 2009-2013 by Scott Reilly (aka coffee2code)
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation
-files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy,
-modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the
-Software is furnished to do so, subject to the following conditions:
+	This program is free software; you can redistribute it and/or
+	modify it under the terms of the GNU General Public License
+	as published by the Free Software Foundation; either version 2
+	of the License, or (at your option) any later version.
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
-IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+	You should have received a copy of the GNU General Public License
+	along with this program; if not, write to the Free Software
+	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+defined( 'ABSPATH' ) or die();
 
+global $wp_version;
 if ( ! version_compare( $wp_version, '3.0.999', '>' ) ) :
 
 	add_action( 'admin_notices', create_function( '', "echo '<div class=\"error\"><p>" .
@@ -46,9 +52,16 @@ if ( ! version_compare( $wp_version, '3.0.999', '>' ) ) :
 
 elseif ( ! class_exists( 'c2c_RememberMeControls' ) ) :
 
+// Pre WP 3.5 compatibility
+if ( ! defined( 'MINUTE_IN_SECONDS' ) ) define( 'MINUTE_IN_SECONDS', 60 );
+if ( ! defined( 'HOUR_IN_SECONDS'   ) ) define( 'HOUR_IN_SECONDS',   60 * MINUTE_IN_SECONDS );
+if ( ! defined( 'DAY_IN_SECONDS'    ) ) define( 'DAY_IN_SECONDS',    24 * HOUR_IN_SECONDS   );
+if ( ! defined( 'WEEK_IN_SECONDS'   ) ) define( 'WEEK_IN_SECONDS',    7 * DAY_IN_SECONDS    );
+if ( ! defined( 'YEAR_IN_SECONDS'   ) ) define( 'YEAR_IN_SECONDS',  365 * DAY_IN_SECONDS    );
+
 require_once( 'c2c-plugin.php' );
 
-class c2c_RememberMeControls extends C2C_Plugin_031 {
+class c2c_RememberMeControls extends C2C_Plugin_035 {
 
 	public static $instance;
 
@@ -66,7 +79,7 @@ class c2c_RememberMeControls extends C2C_Plugin_031 {
 		if ( ! is_null( self::$instance ) )
 			return;
 
-		parent::__construct( '1.2', 'remember-me-controls', 'c2c', __FILE__, array() );
+		parent::__construct( '1.3', 'remember-me-controls', 'c2c', __FILE__, array() );
 		register_activation_hook( __FILE__, array( __CLASS__, 'activation' ) );
 		self::$instance = $this;
 	}
@@ -131,10 +144,10 @@ class c2c_RememberMeControls extends C2C_Plugin_031 {
 	 * @return void
 	 */
 	public function register_filters() {
-		add_action( 'auth_cookie_expiration', array( &$this, 'auth_cookie_expiration' ), 10, 3 );
-		add_action( 'login_head',             array( &$this, 'add_css' ) );
-		add_filter( 'login_footer',           array( &$this, 'add_js' ) );
-		add_action( $this->get_hook( 'post_display_option' ), array( &$this, 'maybe_add_hr' ) );
+		add_action( 'auth_cookie_expiration', array( $this, 'auth_cookie_expiration' ), 10, 3 );
+		add_action( 'login_head',             array( $this, 'add_css' ) );
+		add_filter( 'login_footer',           array( $this, 'add_js' ) );
+		add_action( $this->get_hook( 'post_display_option' ), array( $this, 'maybe_add_hr' ) );
 	}
 
 	/**
@@ -160,6 +173,7 @@ class c2c_RememberMeControls extends C2C_Plugin_031 {
 	 */
 	public function add_css() {
 		$options = $this->get_options();
+
 		if ( $options['disable_remember_me'] )
 			echo '<style type="text/css">.forgetmenot { display:none; }</style>' . "\n";
 	}
@@ -171,6 +185,7 @@ class c2c_RememberMeControls extends C2C_Plugin_031 {
 	 */
 	public function add_js() {
 		$options = $this->get_options();
+
 		if ( $options['auto_remember_me'] && ! $options['disable_remember_me'] ) {
 			echo <<<JS
 		<script type="text/javascript">
@@ -196,13 +211,13 @@ JS;
 	 */
 	public function auth_cookie_expiration( $expiration, $user_id, $remember ) {
 		$options = $this->get_options();
-		$max_expiration = 100 * 365 * 24 * 60 * 60; // 100 years
+		$max_expiration = 100 * YEAR_IN_SECONDS; // 100 years
 		if ( $options['disable_remember_me'] ) // Regardless of checkbutton state, if 'remember me' is disabled, use the non-remember-me duration
 			$expiration = 172800; // 48 hours
 		elseif ( $remember && $options['remember_me_forever'] )
 			$expiration = $max_expiration;
 		elseif ( $remember && ( (int) $options['remember_me_duration'] >= 1 ) )
-			$expiration = (int) $options['remember_me_duration'] * 60 * 60;
+			$expiration = (int) $options['remember_me_duration'] * HOUR_IN_SECONDS;
 
 		// In reality, we just need to prevent the user from specifying an expiration that would
 		// exceed the year 9999. But a fixed max expiration is simpler and quite reasonable.
@@ -228,5 +243,3 @@ JS;
 new c2c_RememberMeControls();
 
 endif; // end if !class_exists()
-
-?>
