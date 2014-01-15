@@ -1,18 +1,21 @@
 === Remember Me Controls ===
 Contributors: coffee2code
-Donate link: http://coffee2code.com/donate
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6ARCFJ9TX3522
 Tags: login, remember, remember me, cookie, session, coffee2code
-Requires at least: 3.1
-Tested up to: 3.5
-Stable tag: 1.3
-Version: 1.3
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Requires at least: 3.6
+Tested up to: 3.8
+Stable tag: 1.4
 
 Have "Remember Me" checked by default on logins, configure how long a login is remembered, or disable the "Remember Me" feature altogether.
 
 
 == Description ==
 
-Take control of the "Remember Me" feature for WordPress.  For those unfamiliar, "Remember Me" is a checkbox present when logging into WordPress.  If checked, WordPress will remember the login session for 14 days.  If unchecked, the login session will be remembered for only 2 days.  Once a login session expires, WordPress will require you to log in again if you wish to continue using the admin section of the site.
+Take control of the "Remember Me" feature for WordPress by having it enabled by default, customize how long users are remember, or disable this built-in feature by default.
+
+For those unfamiliar, "Remember Me" is a checkbox present when logging into WordPress. If checked, WordPress will remember the login session for 14 days. If unchecked, the login session will be remembered for only 2 days. Once a login session expires, WordPress will require you to log in again if you wish to continue using the admin section of the site.
 
 This plugin provides three primary controls over the behavior of the "Remember Me" feature:
 
@@ -22,7 +25,7 @@ This plugin provides three primary controls over the behavior of the "Remember M
 
 NOTE: WordPress remembers who you are based on cookies stored in your web browser. If you use a different web browser, clear your cookies, use a browser on a different machine, or uninstall/reinstall your browser then you will have to log in again since WordPress will not be able to locate the cookies needed to identify you.
 
-Links: [Plugin Homepage](http://coffee2code.com/wp-plugins/remember-me-controls/) | [Plugin Directory Page](http://wordpress.org/extend/plugins/remember-me-controls/) | [Author Homepage](http://coffee2code.com)
+Links: [Plugin Homepage](http://coffee2code.com/wp-plugins/remember-me-controls/) | [Plugin Directory Page](http://wordpress.org/plugins/remember-me-controls/) | [Author Homepage](http://coffee2code.com)
 
 
 == Installation ==
@@ -52,6 +55,31 @@ You can't (and probably shouldn't). With a session length of less than an hour y
 
 
 == Changelog ==
+
+= 1.4 (2014-01-15) =
+* Add 'About' section to help panel
+* Move descriptive text from top of settings page into 'About' section of help panel
+* Remove a bunch of pre-WP3.5 compatibility code
+* Update plugin framework to 037
+* Better singleton implementation:
+    * Add `get_instance()` static method for returning/creating singleton instance
+    * Make static variable 'instance' private
+    * Make constructor protected
+    * Make class final
+    * Additional related changes in plugin framework (protected constructor, erroring `__clone()` and `__wakeup()`)
+* Add checks to prevent execution of code if file is directly accessed
+* Use explicit path for require_once()
+* Discontinue use of PHP4-style constructor
+* Discontinue use of explicit pass-by-reference for objects
+* Minor documentation improvements
+* Minor code reformatting (spacing, bracing)
+* Note compatibility through WP 3.8+
+* Drop compatibility with version of WP older than 3.6
+* Update copyright date (2014)
+* Regenerate .pot
+* Change donate link
+* Update screenshots
+* Add banner
 
 = 1.3 =
 * Use YEAR_IN_SECONDS and HOUR_IN_SECONDS constants instead of doing the time calculation
@@ -111,6 +139,12 @@ You can't (and probably shouldn't). With a session length of less than an hour y
 
 
 == Upgrade Notice ==
+
+= 1.4 =
+Recommended update: updated plugin framework; compatibility now WP 3.6-3.8+
+
+= 1.3 =
+Minor update. Highlights: updated plugin framework; noted compatibility through WP 3.5+; and more.
 
 = 1.2 =
 Recommended update. Highlights: added new setting to remember logins forever; misc improvements and minor bug fixes; updated plugin framework; compatibility is now for WP 3.1 - 3.3+.

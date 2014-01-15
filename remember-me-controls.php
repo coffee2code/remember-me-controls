@@ -2,11 +2,11 @@
 /**
  * @package Remember_Me_Controls
  * @author Scott Reilly
- * @version 1.3
+ * @version 1.4
  */
 /*
 Plugin Name: Remember Me Controls
-Version: 1.3
+Version: 1.4
 Plugin URI: http://coffee2code.com/wp-plugins/remember-me-controls/
 Author: Scott Reilly
 Author URI: http://coffee2code.com/
@@ -16,15 +16,18 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Description: Have "Remember Me" checked by default on logins, configure how long a login is remembered, or disable the "Remember Me" feature altogether.
 
-Compatible with WordPress 3.1+ through 3.5+.
+Compatible with WordPress 3.6+ through 3.8+.
 
 =>> Read the accompanying readme.txt file for instructions and documentation.
 =>> Also, visit the plugin's homepage for additional information and updates.
-=>> Or visit: http://wordpress.org/extend/plugins/remember-me-controls/
+=>> Or visit: http://wordpress.org/plugins/remember-me-controls/
+
+TODO:
+	* Add constants to facilitate use of plugin in network mode (+ filter to allow custom overrides)
 */
 
 /*
-	Copyright (c) 2009-2013 by Scott Reilly (aka coffee2code)
+	Copyright (c) 2009-2014 by Scott Reilly (aka coffee2code)
 
 	This program is free software; you can redistribute it and/or
 	modify it under the terms of the GNU General Public License
@@ -33,7 +36,7 @@ Compatible with WordPress 3.1+ through 3.5+.
 
 	This program is distributed in the hope that it will be useful,
 	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 	GNU General Public License for more details.
 
 	You should have received a copy of the GNU General Public License
@@ -43,45 +46,37 @@ Compatible with WordPress 3.1+ through 3.5+.
 
 defined( 'ABSPATH' ) or die();
 
-global $wp_version;
-if ( ! version_compare( $wp_version, '3.0.999', '>' ) ) :
+if ( ! class_exists( 'c2c_RememberMeControls' ) ) :
 
-	add_action( 'admin_notices', create_function( '', "echo '<div class=\"error\"><p>" .
-		__( 'The plugin Remember Me Controls requires at least WordPress 3.1 to function. Please upgrade your WordPress or deactivate the plugin.', 'remember-me-controls' ) ."</p></div>';" )
-	);
+require_once( dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'c2c-plugin.php' );
 
-elseif ( ! class_exists( 'c2c_RememberMeControls' ) ) :
+class c2c_RememberMeControls extends C2C_Plugin_037 {
 
-// Pre WP 3.5 compatibility
-if ( ! defined( 'MINUTE_IN_SECONDS' ) ) define( 'MINUTE_IN_SECONDS', 60 );
-if ( ! defined( 'HOUR_IN_SECONDS'   ) ) define( 'HOUR_IN_SECONDS',   60 * MINUTE_IN_SECONDS );
-if ( ! defined( 'DAY_IN_SECONDS'    ) ) define( 'DAY_IN_SECONDS',    24 * HOUR_IN_SECONDS   );
-if ( ! defined( 'WEEK_IN_SECONDS'   ) ) define( 'WEEK_IN_SECONDS',    7 * DAY_IN_SECONDS    );
-if ( ! defined( 'YEAR_IN_SECONDS'   ) ) define( 'YEAR_IN_SECONDS',  365 * DAY_IN_SECONDS    );
+	/**
+	 * @var c2c_RememberMeControls The one true instance
+	 */
+	private static $instance;
 
-require_once( 'c2c-plugin.php' );
+	/**
+	 * Get singleton instance.
+	 *
+	 * @since 1.4
+	 */
+	public static function get_instance() {
+		if ( ! isset( self::$instance ) )
+			self::$instance = new self();
 
-class c2c_RememberMeControls extends C2C_Plugin_035 {
-
-	public static $instance;
+		return self::$instance;
+	}
 
 	/**
 	 * Constructor
-	 *
-	 * @return void
 	 */
-	public function __construct() {
-		$this->c2c_RememberMeControls();
-	}
-
-	public function c2c_RememberMeControls() {
-		// Be a singleton
-		if ( ! is_null( self::$instance ) )
-			return;
-
-		parent::__construct( '1.3', 'remember-me-controls', 'c2c', __FILE__, array() );
+	protected function __construct() {
+		parent::__construct( '1.4', 'remember-me-controls', 'c2c', __FILE__, array() );
 		register_activation_hook( __FILE__, array( __CLASS__, 'activation' ) );
-		self::$instance = $this;
+
+		return self::$instance = $this;
 	}
 
 	/**
@@ -129,7 +124,7 @@ class c2c_RememberMeControls extends C2C_Plugin_035 {
 			'remember_me_duration' => array(
 					'input' => 'shorttext', 'default' => '', 'datatype' => 'int',
 					'label' => __( 'Remember Me duration', $this->textdomain ),
-					'help' => __( 'The number of <strong>hours</strong> a login with "Remember Me" checked will last.  If not provided, then the WordPress default of 336 (i.e. two weeks) will be used. Do not include any commas.<br />NOTE: This value is ignored if "Remember forever?" is checked above.', $this->textdomain ) ),
+					'help' => __( 'The number of <strong>hours</strong> a login with "Remember Me" checked will last. If not provided, then the WordPress default of 336 (i.e. two weeks) will be used. Do not include any commas.<br />NOTE: This value is ignored if "Remember forever?" is checked above.', $this->textdomain ) ),
 			'disable_remember_me' => array(
 					'input' => 'checkbox', 'default' => false,
 					'label' => __( 'Disable the "Remember Me" feature?', $this->textdomain ),
@@ -144,26 +139,44 @@ class c2c_RememberMeControls extends C2C_Plugin_035 {
 	 * @return void
 	 */
 	public function register_filters() {
-		add_action( 'auth_cookie_expiration', array( $this, 'auth_cookie_expiration' ), 10, 3 );
-		add_action( 'login_head',             array( $this, 'add_css' ) );
-		add_filter( 'login_footer',           array( $this, 'add_js' ) );
+		add_action( 'auth_cookie_expiration',                 array( $this, 'auth_cookie_expiration' ), 10, 3 );
+		add_action( 'login_head',                             array( $this, 'add_css' ) );
+		add_filter( 'login_footer',                           array( $this, 'add_js' ) );
 		add_action( $this->get_hook( 'post_display_option' ), array( $this, 'maybe_add_hr' ) );
 	}
 
 	/**
 	 * Outputs the text above the setting form
 	 *
+	 * @param string $localized_heading_text (optional) Localized page heading text.
 	 * @return void (Text will be echoed.)
 	 */
-	public function options_page_description() {
+	public function options_page_description( $localized_heading_text = '' ) {
 		parent::options_page_description( __( 'Remember Me Controls Settings', $this->textdomain ) );
-		echo '<p>' . __( 'Take control of the "Remember Me" feature for WordPress.  For those unfamiliar, "Remember Me" is a checkbox present when logging into WordPress.  If checked, WordPress will remember the login session for 14 days.  If unchecked, the login session will be remembered for only 2 days.  Once a login session expires, WordPress will require you to log in again if you wish to continue using the admin section of the site.', $this->textdomain ) . '</p>';
-		echo '<p>' . __( 'This plugin provides three primary controls over the behavior of the "Remember Me" feature:', $this->textdomain ) . '</p>';
-		echo '<ul class="c2c-plugin-list">';
-		echo '<li>' . __( 'Automatically check "Remember Me" : Have the "Remember Me" checkbox automatically checked when the login form is loaded (it isn\'t checked by default).', $this->textdomain ) . '</li>';
-		echo '<li>' . __( 'Customize the duration of the "Remember Me" : Customize how long WordPress will remember a login session when "Remember Me" is checked.', $this->textdomain ) . '</li>';
-		echo '<li>' . __( 'Disable "Remember Me" : Completely disable the feature, preventing the checkbox from appearing and restricting all login sessions to one day.', $this->textdomain ) . '</li>';
-		echo '</ul>';
+	}
+
+	/**
+	 * Configures help tabs content.
+	 *
+	 * @since 1.4
+	 *
+	 * @return void
+	 */
+	public function help_tabs_content( $screen ) {
+		$screen->add_help_tab( array(
+			'id'      => $this->id_base . '-' . 'about',
+			'title'   => __( 'About', $this->textdomain ),
+			'content' =>
+				'<p>' . __( 'Take control of the "Remember Me" feature for WordPress. For those unfamiliar, "Remember Me" is a checkbox present when logging into WordPress. If checked, WordPress will remember the login session for 14 days. If unchecked, the login session will be remembered for only 2 days. Once a login session expires, WordPress will require you to log in again if you wish to continue using the admin section of the site.', $this->textdomain ) . '</p>' .
+				'<p>' . __( 'This plugin provides three primary controls over the behavior of the "Remember Me" feature:', $this->textdomain ) . '</p>' .
+				'<ul class="c2c-plugin-list">' .
+				'<li>' . __( 'Automatically check "Remember Me" : Have the "Remember Me" checkbox automatically checked when the login form is loaded (it isn\'t checked by default).', $this->textdomain ) . '</li>' .
+				'<li>' . __( 'Customize the duration of the "Remember Me" : Customize how long WordPress will remember a login session when "Remember Me" is checked.', $this->textdomain ) . '</li>' .
+				'<li>' . __( 'Disable "Remember Me" : Completely disable the feature, preventing the checkbox from appearing and restricting all login sessions to one day.', $this->textdomain ) . '</li>' .
+				'</ul>',
+		) );
+
+		parent::help_tabs_content( $screen );
 	}
 
 	/**
@@ -212,17 +225,19 @@ JS;
 	public function auth_cookie_expiration( $expiration, $user_id, $remember ) {
 		$options = $this->get_options();
 		$max_expiration = 100 * YEAR_IN_SECONDS; // 100 years
-		if ( $options['disable_remember_me'] ) // Regardless of checkbutton state, if 'remember me' is disabled, use the non-remember-me duration
-			$expiration = 172800; // 48 hours
-		elseif ( $remember && $options['remember_me_forever'] )
+		if ( $options['disable_remember_me'] ) { // Regardless of checkbutton state, if 'remember me' is disabled, use the non-remember-me duration
+			$expiration = 48 * HOUR_IN_SECONDS; // 48 hours
+		} elseif ( $remember && $options['remember_me_forever'] ) {
 			$expiration = $max_expiration;
-		elseif ( $remember && ( (int) $options['remember_me_duration'] >= 1 ) )
+		} elseif ( $remember && ( (int) $options['remember_me_duration'] >= 1 ) ) {
 			$expiration = (int) $options['remember_me_duration'] * HOUR_IN_SECONDS;
+		}
 
 		// In reality, we just need to prevent the user from specifying an expiration that would
 		// exceed the year 9999. But a fixed max expiration is simpler and quite reasonable.
-		if ( $expiration > $max_expiration )
+		if ( $expiration > $max_expiration ) {
 			$expiration = $max_expiration;
+		}
 
 		return $expiration;
 	}
@@ -234,12 +249,12 @@ JS;
 	 * @return void (Text may possibly be echoed.)
 	 */
 	public function maybe_add_hr( $opt ) {
-		if ( 'remember_me_duration' == $opt )
+		if ( 'remember_me_duration' == $opt ) {
 			echo "</tr><tr><td colspan='2'><div class='hr'>&nbsp;</div></td>\n";
+		}
 	}
 } // end class
 
-// To access the object instance, use: c2c_RememberMeControls::$instance
-new c2c_RememberMeControls();
+c2c_RememberMeControls::get_instance();
 
 endif; // end if !class_exists()
