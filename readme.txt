@@ -5,8 +5,8 @@ Tags: login, remember, remember me, cookie, session, coffee2code
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 3.6
-Tested up to: 3.8
-Stable tag: 1.4
+Tested up to: 4.1
+Stable tag: 1.5
 
 Have "Remember Me" checked by default on logins, configure how long a login is remembered, or disable the "Remember Me" feature altogether.
 
@@ -19,13 +19,13 @@ For those unfamiliar, "Remember Me" is a checkbox present when logging into Word
 
 This plugin provides three primary controls over the behavior of the "Remember Me" feature:
 
-* Automatically check "Remember Me" : Have the "Remember Me" checkbox automatically checked when the login form is loaded (it isn't checked by default).
-* Customize the duration of the "Remember Me" : Customize how long WordPress will remember a login session when "Remember Me" is checked.
-* Disable "Remember Me" : Completely disable the feature, preventing the checkbox from appearing and restricting all login sessions to one day.
+* Automatically check "Remember Me" : The ability to have the "Remember Me" checkbox automatically checked when the login form is loaded (it isn't checked by default).
+* Customize the duration of the "Remember Me" : The ability to customize how long WordPress will remember a login session when "Remember Me" is checked.
+* Disable "Remember Me" : The ability to completely disable the feature, preventing the checkbox from appearing and restricting all login sessions to one day.
 
 NOTE: WordPress remembers who you are based on cookies stored in your web browser. If you use a different web browser, clear your cookies, use a browser on a different machine, or uninstall/reinstall your browser then you will have to log in again since WordPress will not be able to locate the cookies needed to identify you.
 
-Links: [Plugin Homepage](http://coffee2code.com/wp-plugins/remember-me-controls/) | [Plugin Directory Page](http://wordpress.org/plugins/remember-me-controls/) | [Author Homepage](http://coffee2code.com)
+Links: [Plugin Homepage](http://coffee2code.com/wp-plugins/remember-me-controls/) | [Plugin Directory Page](https://wordpress.org/plugins/remember-me-controls/) | [Author Homepage](http://coffee2code.com)
 
 
 == Installation ==
@@ -55,6 +55,19 @@ You can't (and probably shouldn't). With a session length of less than an hour y
 
 
 == Changelog ==
+
+= 1.5 (2015-02-22) =
+* Add unit tests
+* Update plugin framework to 039
+* Explicitly declare `activation()` and `uninstall()` static
+* Reformat plugin header
+* Minor code reformatting (spacing, bracing)
+* Change documentation links to wp.org to be https
+* Minor documentation spacing changes throughout
+* Note compatibility through WP 4.1+
+* Update copyright date (2015)
+* Add plugin icon
+* Regenerate .pot
 
 = 1.4 (2014-01-15) =
 * Add 'About' section to help panel
@@ -139,6 +152,9 @@ You can't (and probably shouldn't). With a session length of less than an hour y
 
 
 == Upgrade Notice ==
+
+= 1.5 =
+Minor update: add unit tests; updated plugin framework to 039; noted compatibility through WP 4.1+; updated copyright date (2015); added plugin icon
 
 = 1.4 =
 Recommended update: updated plugin framework; compatibility now WP 3.6-3.8+

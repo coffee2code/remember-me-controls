@@ -1,33 +1,34 @@
 <?php
 /**
+ * Plugin Name: Remember Me Controls
+ * Version:     1.5
+ * Plugin URI:  http://coffee2code.com/wp-plugins/remember-me-controls/
+ * Author:      Scott Reilly
+ * Author URI:  http://coffee2code.com/
+ * Text Domain: remember-me-controls
+ * Domain Path: /lang/
+ * License:     GPLv2 or later
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ * Description: Have "Remember Me" checked by default on logins, configure how long a login is remembered, or disable the "Remember Me" feature altogether.
+ *
+ * Compatible with WordPress 3.6+ through 4.1+.
+ *
+ * =>> Read the accompanying readme.txt file for instructions and documentation.
+ * =>> Also, visit the plugin's homepage for additional information and updates.
+ * =>> Or visit: https://wordpress.org/plugins/remember-me-controls/
+ *
  * @package Remember_Me_Controls
  * @author Scott Reilly
- * @version 1.4
+ * @version 1.5
  */
-/*
-Plugin Name: Remember Me Controls
-Version: 1.4
-Plugin URI: http://coffee2code.com/wp-plugins/remember-me-controls/
-Author: Scott Reilly
-Author URI: http://coffee2code.com/
-Text Domain: remember-me-controls
-Domain Path: /lang/
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Description: Have "Remember Me" checked by default on logins, configure how long a login is remembered, or disable the "Remember Me" feature altogether.
-
-Compatible with WordPress 3.6+ through 3.8+.
-
-=>> Read the accompanying readme.txt file for instructions and documentation.
-=>> Also, visit the plugin's homepage for additional information and updates.
-=>> Or visit: http://wordpress.org/plugins/remember-me-controls/
-
-TODO:
-	* Add constants to facilitate use of plugin in network mode (+ filter to allow custom overrides)
-*/
 
 /*
-	Copyright (c) 2009-2014 by Scott Reilly (aka coffee2code)
+ * TODO:
+ * - Add constants to facilitate use of plugin in network mode (+ filter to allow custom overrides)
+ */
+
+/*
+	Copyright (c) 2009-2015 by Scott Reilly (aka coffee2code)
 
 	This program is free software; you can redistribute it and/or
 	modify it under the terms of the GNU General Public License
@@ -50,10 +51,12 @@ if ( ! class_exists( 'c2c_RememberMeControls' ) ) :
 
 require_once( dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'c2c-plugin.php' );
 
-class c2c_RememberMeControls extends C2C_Plugin_037 {
+class c2c_RememberMeControls extends C2C_Plugin_039 {
 
 	/**
-	 * @var c2c_RememberMeControls The one true instance
+	 *  The one true instance.
+	 *
+	 * @var c2c_RememberMeControls
 	 */
 	private static $instance;
 
@@ -63,17 +66,18 @@ class c2c_RememberMeControls extends C2C_Plugin_037 {
 	 * @since 1.4
 	 */
 	public static function get_instance() {
-		if ( ! isset( self::$instance ) )
+		if ( ! isset( self::$instance ) ) {
 			self::$instance = new self();
+		}
 
 		return self::$instance;
 	}
 
 	/**
-	 * Constructor
+	 * Constructor.
 	 */
 	protected function __construct() {
-		parent::__construct( '1.4', 'remember-me-controls', 'c2c', __FILE__, array() );
+		parent::__construct( '1.5', 'remember-me-controls', 'c2c', __FILE__, array() );
 		register_activation_hook( __FILE__, array( __CLASS__, 'activation' ) );
 
 		return self::$instance = $this;
@@ -83,30 +87,22 @@ class c2c_RememberMeControls extends C2C_Plugin_037 {
 	 * Handles activation tasks, such as registering the uninstall hook.
 	 *
 	 * @since 1.1
-	 *
-	 * @return void
 	 */
-	public function activation() {
+	public static function activation() {
 		register_uninstall_hook( __FILE__, array( __CLASS__, 'uninstall' ) );
 	}
 
 	/**
 	 * Handles uninstallation tasks, such as deleting plugin options.
 	 *
-	 * This can be overridden.
-	 *
 	 * @since 1.1
-	 *
-	 * @return void
 	 */
-	public function uninstall() {
+	public static function uninstall() {
 		delete_option( 'c2c_remember_me_controls' );
 	}
 
 	/**
 	 * Initializes the plugin's configuration and localizable text variables.
-	 *
-	 * @return void
 	 */
 	public function load_config() {
 		$this->name      = __( 'Remember Me Controls', $this->textdomain );
@@ -116,27 +112,25 @@ class c2c_RememberMeControls extends C2C_Plugin_037 {
 			'auto_remember_me' => array(
 					'input' => 'checkbox', 'default' => false,
 					'label' => __( 'Have the "Remember Me" checkbox automatically checked?', $this->textdomain ),
-					'help' => __( 'If checked, then the "Remember Me" checkbox will automatically be checked when visiting the login form.', $this->textdomain ) ),
+					'help'  => __( 'If checked, then the "Remember Me" checkbox will automatically be checked when visiting the login form.', $this->textdomain ) ),
 			'remember_me_forever' => array(
 					'input' => 'checkbox', 'default' => false,
 					'label' => __( 'Remember forever*?', $this->textdomain ),
-					'help' => __( 'Should user be remembered forever if "Remember Me" is checked? If so, then the "Remember Me duration" value below is ignored.<br /><small style="font-style:italic;">(*Not quite forever; actually it\'s 100 years.)</small>', $this->textdomain ) ),
+					'help'  => __( 'Should user be remembered forever if "Remember Me" is checked? If so, then the "Remember Me duration" value below is ignored.<br /><small style="font-style:italic;">(*Not quite forever; actually it\'s 100 years.)</small>', $this->textdomain ) ),
 			'remember_me_duration' => array(
 					'input' => 'shorttext', 'default' => '', 'datatype' => 'int',
 					'label' => __( 'Remember Me duration', $this->textdomain ),
-					'help' => __( 'The number of <strong>hours</strong> a login with "Remember Me" checked will last. If not provided, then the WordPress default of 336 (i.e. two weeks) will be used. Do not include any commas.<br />NOTE: This value is ignored if "Remember forever?" is checked above.', $this->textdomain ) ),
+					'help'  => __( 'The number of <strong>hours</strong> a login with "Remember Me" checked will last. If not provided, then the WordPress default of 336 (i.e. two weeks) will be used. Do not include any commas.<br />NOTE: This value is ignored if "Remember forever?" is checked above.', $this->textdomain ) ),
 			'disable_remember_me' => array(
 					'input' => 'checkbox', 'default' => false,
 					'label' => __( 'Disable the "Remember Me" feature?', $this->textdomain ),
-					'help' => __( 'If checked, then the "Remember Me" checkbox will not appear on login and the login session will last no longer than 24 hours.', $this->textdomain ) )
+					'help'  => __( 'If checked, then the "Remember Me" checkbox will not appear on login and the login session will last no longer than 24 hours.', $this->textdomain ) )
 		);
 	}
 
 	/**
 	 * Override the plugin framework's register_filters() to register actions
 	 * and filters.
-	 *
-	 * @return void
 	 */
 	public function register_filters() {
 		add_action( 'auth_cookie_expiration',                 array( $this, 'auth_cookie_expiration' ), 10, 3 );
@@ -146,10 +140,9 @@ class c2c_RememberMeControls extends C2C_Plugin_037 {
 	}
 
 	/**
-	 * Outputs the text above the setting form
+	 * Outputs the text above the setting form.
 	 *
-	 * @param string $localized_heading_text (optional) Localized page heading text.
-	 * @return void (Text will be echoed.)
+	 * @param string $localized_heading_text Optional. Localized page heading text.
 	 */
 	public function options_page_description( $localized_heading_text = '' ) {
 		parent::options_page_description( __( 'Remember Me Controls Settings', $this->textdomain ) );
@@ -159,8 +152,6 @@ class c2c_RememberMeControls extends C2C_Plugin_037 {
 	 * Configures help tabs content.
 	 *
 	 * @since 1.4
-	 *
-	 * @return void
 	 */
 	public function help_tabs_content( $screen ) {
 		$screen->add_help_tab( array(
@@ -180,21 +171,18 @@ class c2c_RememberMeControls extends C2C_Plugin_037 {
 	}
 
 	/**
-	 * Outputs CSS within style tags
-	 *
-	 * @return void
+	 * Outputs CSS within style tags.
 	 */
 	public function add_css() {
 		$options = $this->get_options();
 
-		if ( $options['disable_remember_me'] )
+		if ( $options['disable_remember_me'] ) {
 			echo '<style type="text/css">.forgetmenot { display:none; }</style>' . "\n";
+		}
 	}
 
 	/**
-	 * Outputs JavaScript within script tags
-	 *
-	 * @return void
+	 * Outputs JavaScript within script tags.
 	 */
 	public function add_js() {
 		$options = $this->get_options();
@@ -217,10 +205,9 @@ JS;
 	 *
 	 * Minimum number of hours for the remember_me_duration is 2.
 	 *
-	 * @param int $expiration The time interval, in seconds, before auth_cookie expiration
-	 * @param int $user_id User ID
-	 * @param bool $remember If the remember_me_duration should be used instead of the default
-	 * @return void
+	 * @param int  $expiration The time interval, in seconds, before auth_cookie expiration.
+	 * @param int  $user_id    User ID.
+	 * @param bool $remember   If the remember_me_duration should be used instead of the default.
 	 */
 	public function auth_cookie_expiration( $expiration, $user_id, $remember ) {
 		$options = $this->get_options();
@@ -243,10 +230,9 @@ JS;
 	}
 
 	/**
-	 * Output a hr (or rather, the equivalent of such) after a particular option
+	 * Output a hr (or rather, the equivalent of such) after a particular option.
 	 *
-	 * @param string $opt The option name
-	 * @return void (Text may possibly be echoed.)
+	 * @param string $opt The option name.
 	 */
 	public function maybe_add_hr( $opt ) {
 		if ( 'remember_me_duration' == $opt ) {
