@@ -56,6 +56,9 @@ You can't (and probably shouldn't). With a session length of less than an hour y
 
 == Changelog ==
 
+= () =
+* Change: Update copyright date (2018)
+
 = 1.6 (2016-03-23) =
 Highlights:
 * This release largely consists of minor behind-the-scenes changes.
