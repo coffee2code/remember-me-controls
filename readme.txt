@@ -25,7 +25,7 @@ This plugin provides three primary controls over the behavior of the "Remember M
 
 NOTE: WordPress remembers who you are based on cookies stored in your web browser. If you use a different web browser, clear your cookies, use a browser on a different machine, or uninstall/reinstall your browser then you will have to log in again since WordPress will not be able to locate the cookies needed to identify you.
 
-Links: [Plugin Homepage](http://coffee2code.com/wp-plugins/remember-me-controls/) | [Plugin Directory Page](https://wordpress.org/plugins/remember-me-controls/) | [Author Homepage](http://coffee2code.com)
+Links: [Plugin Homepage](http://coffee2code.com/wp-plugins/remember-me-controls/) | [Plugin Directory Page](https://wordpress.org/plugins/remember-me-controls/) | [GitHub](https://github.com/coffee2code/remember-me-controls/) | [Author Homepage](http://coffee2code.com)
 
 
 == Installation ==
@@ -57,6 +57,7 @@ You can't (and probably shouldn't). With a session length of less than an hour y
 == Changelog ==
 
 = () =
+* Change: Add GitHub link to readme
 * Change: Note compatibility through WP 4.9+
 * Change: Drop compatibility with versions of WP older than 4.7
 * Change: Update copyright date (2018)
