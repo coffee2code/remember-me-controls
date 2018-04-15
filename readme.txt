@@ -4,8 +4,8 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: login, remember, remember me, cookie, session, coffee2code
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Requires at least: 4.1
-Tested up to: 4.4
+Requires at least: 4.7
+Tested up to: 4.9
 Stable tag: 1.6
 
 Have "Remember Me" checked by default on the login page and configure how long a login is remembered. Or disable the feature altogether.
@@ -57,6 +57,8 @@ You can't (and probably shouldn't). With a session length of less than an hour y
 == Changelog ==
 
 = () =
+* Change: Note compatibility through WP 4.9+
+* Change: Drop compatibility with versions of WP older than 4.7
 * Change: Update copyright date (2018)
 
 = 1.6 (2016-03-23) =
