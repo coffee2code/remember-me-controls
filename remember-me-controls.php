@@ -53,6 +53,13 @@ require_once( dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'c2c-plugin.php' );
 final class c2c_RememberMeControls extends c2c_RememberMeControls_Plugin_047 {
 
 	/**
+	 * Name of plugin's setting.
+	 *
+	 * @var string
+	 */
+	const SETTING_NAME = 'c2c_remember_me_controls';
+
+	/**
 	 *  The one true instance.
 	 *
 	 * @var c2c_RememberMeControls
@@ -98,7 +105,7 @@ final class c2c_RememberMeControls extends c2c_RememberMeControls_Plugin_047 {
 	 * @since 1.1
 	 */
 	public static function uninstall() {
-		delete_option( 'c2c_remember_me_controls' );
+		delete_option( self::SETTING_NAME );
 	}
 
 	/**
