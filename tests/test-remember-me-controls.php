@@ -163,14 +163,18 @@ class Remember_Me_Controls_Test extends WP_UnitTestCase {
 	}
 
 	public function test_uninstall_deletes_option() {
-		$option = 'c2c_remember_me_controls';
-		c2c_RememberMeControls::get_instance()->get_options();
+		$option_name = c2c_RememberMeControls::SETTING_NAME;
+		$options     = c2c_RememberMeControls::get_instance()->get_options();
 
-		$this->assertNotFalse( get_option( $option ) );
+		// Explicitly set an option to ensure options get saved to the database.
+		$this->set_option( array( 'auto_remember_me' => '1' ) );
+
+		$this->assertNotEmpty( $options );
+		$this->assertNotFalse( get_option( $option_name ) );
 
 		c2c_RememberMeControls::uninstall();
 
-		$this->assertFalse( get_option( $option ) );
+		$this->assertFalse( get_option( $option_name ) );
 	}
 
 }
