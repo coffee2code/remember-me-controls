@@ -80,6 +80,9 @@ You can't (and probably shouldn't). With a session length of less than an hour y
     * 042:
     * Update `disable_update_check()` to check for HTTP and HTTPS for plugin update check API URL
     * Translate "Donate" in footer message
+* Change: Unit tests:
+    * Default `WP_TESTS_DIR` to `/tmp/wordpress-tests-lib` rather than erroring out if not defined via environment variable
+    * Enable more error output for unit tests
 * Change: Add GitHub link to readme
 * Change: Note compatibility through WP 4.9+
 * Change: Drop compatibility with versions of WP older than 4.7
