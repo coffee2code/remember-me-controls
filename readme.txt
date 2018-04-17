@@ -65,6 +65,7 @@ Yes.
 == Changelog ==
 
 = () =
+* New: Change login form defaults according to plugin settings
 * Change: Update plugin framework to 047
     * 047:
     * Don't save default setting values to database on install

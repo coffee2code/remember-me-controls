@@ -154,6 +154,65 @@ class Remember_Me_Controls_Test extends WP_UnitTestCase {
 		$this->assertEquals( 2 * DAY_IN_SECONDS, c2c_RememberMeControls::get_instance()->auth_cookie_expiration( 456, 1, true ) );
 	}
 
+	/*
+	 * login_form_defaults()
+	 */
+
+	public function test_login_form_defaults_unaffected_by_default() {
+		$defaults = array(
+			'remember'       => true,
+			'value_remember' => false,
+		);
+
+		$this->assertEquals( $defaults, apply_filters( 'login_form_defaults', $defaults ) );
+	}
+
+	public function test_login_form_defaults_with_disable_remember_me() {
+		$defaults = array(
+			'remember'       => true,
+			'value_remember' => false,
+		);
+
+		$this->set_option( array( 'disable_remember_me' => true ) );
+
+		$new_defaults = apply_filters( 'login_form_defaults', $defaults );
+
+		$this->assertFalse( $new_defaults['remember'] );
+		$this->assertFalse( $new_defaults['value_remember'] );
+	}
+
+	public function test_login_form_defaults_with_auto_remember_me() {
+		$defaults = array(
+			'remember'       => true,
+			'value_remember' => false,
+		);
+
+		$this->set_option( array( 'auto_remember_me' => true ) );
+
+		$new_defaults = apply_filters( 'login_form_defaults', $defaults );
+
+		$this->assertTrue( $new_defaults['remember'] );
+		$this->assertTrue( $new_defaults['value_remember'] );
+	}
+
+	public function test_login_form_defaults_with_both() {
+		$defaults = array(
+			'remember'       => true,
+			'value_remember' => false,
+		);
+
+		$this->set_option( array( 'auto_remember_me' => true, 'disable_remember_me' => true ) );
+
+		$new_defaults = apply_filters( 'login_form_defaults', $defaults );
+
+		$this->assertFalse( $new_defaults['remember'] );
+		$this->assertFalse( $new_defaults['value_remember'] );
+	}
+
+	/*
+	 * Setting handling
+	 */
+
 	public function test_does_not_immediately_store_default_settings_in_db() {
 		$option_name = c2c_RememberMeControls::SETTING_NAME;
 		// Get the options just to see if they may get saved.

@@ -153,6 +153,7 @@ final class c2c_RememberMeControls extends c2c_RememberMeControls_Plugin_047 {
 		add_action( 'login_head',                             array( $this, 'add_css' ) );
 		add_filter( 'login_footer',                           array( $this, 'add_js' ) );
 		add_action( $this->get_hook( 'post_display_option' ), array( $this, 'maybe_add_hr' ) );
+		add_filter( 'login_form_defaults',                    array( $this, 'login_form_defaults' ) );
 	}
 
 	/**
@@ -255,6 +256,33 @@ JS;
 		if ( 'remember_me_duration' == $opt ) {
 			echo "</tr><tr><td colspan='2'><div class='hr'>&nbsp;</div></td>\n";
 		}
+	}
+
+	/**
+	 * Changes default login form default configuration.
+	 *
+	 * WordPress doesn't currently allow for the final config options to be
+	 * overridden, so this may not have much practical applicability for
+	 * guaranteeing conformance to plugin's settings by third-party login forms.
+	 *
+	 * @since 1.7
+	 *
+	 * @param array $defaults Default configuration options.
+	 * @return array
+	 */
+	public function login_form_defaults( $defaults ) {
+		$options = $this->get_options();
+
+		if ( $options['auto_remember_me'] ) {
+			$defaults['value_remember'] = true;
+		}
+
+		if ( $options['disable_remember_me'] ) {
+			$defaults['remember']       = false;
+			$defaults['value_remember'] = false;
+		}
+
+		return $defaults;
 	}
 
 } // end class
