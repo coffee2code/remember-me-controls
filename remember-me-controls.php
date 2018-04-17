@@ -247,7 +247,7 @@ JS;
 	}
 
 	/**
-	 * Output a hr (or rather, the equivalent of such) after a particular option.
+	 * Outputs a horizontal rule (or rather, the equivalent of such) after a particular option.
 	 *
 	 * @param string $opt The option name.
 	 */
