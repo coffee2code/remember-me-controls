@@ -90,6 +90,7 @@ Yes.
     * Update `disable_update_check()` to check for HTTP and HTTPS for plugin update check API URL
     * Translate "Donate" in footer message
 * Change: Store setting name in class constant
+* New: Add README.md
 * New: Add FAQ indicating that the plugin is GDPR-compliant
 * Change: Unit tests:
     * Add and improve unit tests
