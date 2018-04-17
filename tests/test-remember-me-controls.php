@@ -4,9 +4,13 @@ defined( 'ABSPATH' ) or die();
 
 class Remember_Me_Controls_Test extends WP_UnitTestCase {
 
+	public static function setUpBeforeClass() {
+		c2c_RememberMeControls::get_instance()->install();
+	}
+
 	public function setUp() {
 		parent::setUp();
-		c2c_RememberMeControls::get_instance()->install();
+		c2c_RememberMeControls::get_instance()->reset_options();
 	}
 
 	public function tearDown() {
