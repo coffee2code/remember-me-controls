@@ -50,6 +50,10 @@ You can't (and probably shouldn't). With a session length of less than an hour y
 
 Yes. This plugin does not collect, store, or disseminate any information from any users or site visitors.
 
+= Does this plugin include unit tests? =
+
+Yes.
+
 
 == Screenshots ==
 
