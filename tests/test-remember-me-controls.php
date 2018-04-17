@@ -154,6 +154,14 @@ class Remember_Me_Controls_Test extends WP_UnitTestCase {
 		$this->assertEquals( 2 * DAY_IN_SECONDS, c2c_RememberMeControls::get_instance()->auth_cookie_expiration( 456, 1, true ) );
 	}
 
+	public function test_does_not_immediately_store_default_settings_in_db() {
+		$option_name = c2c_RememberMeControls::SETTING_NAME;
+		// Get the options just to see if they may get saved.
+		$options     = c2c_RememberMeControls::get_instance()->get_options();
+
+		$this->assertFalse( get_option( $option_name ) );
+	}
+
 	public function test_uninstall_deletes_option() {
 		$option = 'c2c_remember_me_controls';
 		c2c_RememberMeControls::get_instance()->get_options();

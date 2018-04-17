@@ -91,6 +91,7 @@ Yes.
 * Change: Store setting name in class constant
 * New: Add FAQ indicating that the plugin is GDPR-compliant
 * Change: Unit tests:
+    * Add and improve unit tests
     * Default `WP_TESTS_DIR` to `/tmp/wordpress-tests-lib` rather than erroring out if not defined via environment variable
     * Enable more error output for unit tests
 * Change: Add GitHub link to readme
