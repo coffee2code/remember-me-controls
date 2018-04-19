@@ -65,6 +65,7 @@ Yes.
 == Changelog ==
 
 = () =
+* New: Add support for BuddyPress Login widget
 * New: Add support for Sidebar Login plugin (https://wordpress.org/plugins/sidebar-login/)
 * New: Add support for Login Widget With Shortcode plugin (https://wordpress.org/plugins/login-sidebar-widget/)
 * New: Change login form defaults according to plugin settings

@@ -155,6 +155,10 @@ final class c2c_RememberMeControls extends c2c_RememberMeControls_Plugin_047 {
 		add_action( $this->get_hook( 'post_display_option' ), array( $this, 'maybe_add_hr' ) );
 		add_filter( 'login_form_defaults',                    array( $this, 'login_form_defaults' ) );
 
+		// Compat for BuddyPress Login Widget.
+		add_action( 'bp_before_login_widget_loggedout',       array( $this, 'add_css' ) );
+		add_action( 'bp_after_login_widget_loggedout',        array( $this, 'add_js' ) );
+
 		// Compat for Login Widget With Shortcode plugin.
 		add_filter( 'pre_option_login_afo_rem',               '__return_empty_string' );
 
