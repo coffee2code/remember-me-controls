@@ -70,7 +70,7 @@ class Remember_Me_Controls_Test extends WP_UnitTestCase {
 	}
 
 	public function test_get_version() {
-		$this->assertEquals( '1.6', c2c_RememberMeControls::get_instance()->version() );
+		$this->assertEquals( '1.7', c2c_RememberMeControls::get_instance()->version() );
 	}
 
 	public function test_instance_object_is_returned() {

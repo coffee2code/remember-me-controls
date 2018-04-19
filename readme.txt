@@ -6,7 +6,7 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 4.7
 Tested up to: 4.9
-Stable tag: 1.6
+Stable tag: 1.7
 
 Have "Remember Me" checked by default on the login page and configure how long a login is remembered. Or disable the feature altogether.
 
@@ -64,7 +64,7 @@ Yes.
 
 == Changelog ==
 
-= () =
+= 1.7 (2018-04-19) =
 * New: Add support for BuddyPress Login widget
 * New: Add support for Sidebar Login plugin (https://wordpress.org/plugins/sidebar-login/)
 * New: Add support for Login Widget With Shortcode plugin (https://wordpress.org/plugins/login-sidebar-widget/)
@@ -228,6 +228,9 @@ Details:
 
 
 == Upgrade Notice ==
+
+= 1.7 =
+Recommended update: added support for BuddyPress Login widget, Sidebar Login plugin, and Login Widget With Shortcode plugin; updated plugin framework to version 047; compatibility is now with WP 4.7-4.9+; updated copyright date (2018).
 
 = 1.6 =
 Minor update: improved support for localization; verified compatibility through WP 4.4; removed compatibility with WP earlier than 4.1; updated copyright date (2016)
