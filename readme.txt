@@ -65,6 +65,7 @@ Yes.
 == Changelog ==
 
 = () =
+* New: Add support for Sidebar Login plugin (https://wordpress.org/plugins/sidebar-login/)
 * New: Change login form defaults according to plugin settings
 * Change: Update plugin framework to 047
     * 047:

@@ -154,6 +154,11 @@ final class c2c_RememberMeControls extends c2c_RememberMeControls_Plugin_047 {
 		add_filter( 'login_footer',                           array( $this, 'add_js' ) );
 		add_action( $this->get_hook( 'post_display_option' ), array( $this, 'maybe_add_hr' ) );
 		add_filter( 'login_form_defaults',                    array( $this, 'login_form_defaults' ) );
+
+		// Compat for Sidebar Login plugin.
+		add_filter( 'sidebar_login_widget_form_args',         array( $this, 'compat_for_sidebar_login' ) );
+		add_action( 'wp_ajax_sidebar_login_process',          array( $this, 'compat_for_sidebar_login_ajax_handler' ), 1 );
+		add_action( 'wp_ajax_nopriv_sidebar_login_process',   array( $this, 'compat_for_sidebar_login_ajax_handler' ), 1 );
 	}
 
 	/**
@@ -283,6 +288,32 @@ JS;
 		}
 
 		return $defaults;
+	}
+
+	/**
+	 * Modifies setting for widget provided by Sidebar Login plugin.
+	 *
+	 * @since 1.7
+	 *
+	 * @param array $args Form arguments for Sidebar Login widget.
+	 * @return array
+	 */
+	public function compat_for_sidebar_login( $args ) {
+		return $this->login_form_defaults( $args );
+	}
+
+	/**
+	 * Overrides AJAX handling for Sidebar Login plugin to prevent the remember me
+	 * value from being saved if the feature is disabled by this plugin.
+	 *
+	 * @since 1.7
+	 */
+	public function compat_for_sidebar_login_ajax_handler() {
+		$options = $this->get_options();
+
+		if ( $options['disable_remember_me'] ) {
+			unset( $_POST['remember'] );
+		}
 	}
 
 } // end class

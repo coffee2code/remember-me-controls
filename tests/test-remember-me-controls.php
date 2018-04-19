@@ -158,16 +158,16 @@ class Remember_Me_Controls_Test extends WP_UnitTestCase {
 	 * login_form_defaults()
 	 */
 
-	public function test_login_form_defaults_unaffected_by_default() {
+	public function test_login_form_defaults_unaffected_by_default( $filter = 'login_form_defaults' ) {
 		$defaults = array(
 			'remember'       => true,
 			'value_remember' => false,
 		);
 
-		$this->assertEquals( $defaults, apply_filters( 'login_form_defaults', $defaults ) );
+		$this->assertEquals( $defaults, apply_filters( $filter, $defaults ) );
 	}
 
-	public function test_login_form_defaults_with_disable_remember_me() {
+	public function test_login_form_defaults_with_disable_remember_me( $filter = 'login_form_defaults' ) {
 		$defaults = array(
 			'remember'       => true,
 			'value_remember' => false,
@@ -175,13 +175,13 @@ class Remember_Me_Controls_Test extends WP_UnitTestCase {
 
 		$this->set_option( array( 'disable_remember_me' => true ) );
 
-		$new_defaults = apply_filters( 'login_form_defaults', $defaults );
+		$new_defaults = apply_filters( $filter, $defaults );
 
 		$this->assertFalse( $new_defaults['remember'] );
 		$this->assertFalse( $new_defaults['value_remember'] );
 	}
 
-	public function test_login_form_defaults_with_auto_remember_me() {
+	public function test_login_form_defaults_with_auto_remember_me( $filter = 'login_form_defaults' ) {
 		$defaults = array(
 			'remember'       => true,
 			'value_remember' => false,
@@ -189,13 +189,13 @@ class Remember_Me_Controls_Test extends WP_UnitTestCase {
 
 		$this->set_option( array( 'auto_remember_me' => true ) );
 
-		$new_defaults = apply_filters( 'login_form_defaults', $defaults );
+		$new_defaults = apply_filters( $filter, $defaults );
 
 		$this->assertTrue( $new_defaults['remember'] );
 		$this->assertTrue( $new_defaults['value_remember'] );
 	}
 
-	public function test_login_form_defaults_with_both() {
+	public function test_login_form_defaults_with_both( $filter = 'login_form_defaults' ) {
 		$defaults = array(
 			'remember'       => true,
 			'value_remember' => false,
@@ -203,10 +203,39 @@ class Remember_Me_Controls_Test extends WP_UnitTestCase {
 
 		$this->set_option( array( 'auto_remember_me' => true, 'disable_remember_me' => true ) );
 
-		$new_defaults = apply_filters( 'login_form_defaults', $defaults );
+		$new_defaults = apply_filters( $filter, $defaults );
 
 		$this->assertFalse( $new_defaults['remember'] );
 		$this->assertFalse( $new_defaults['value_remember'] );
+	}
+
+	/*
+	 * Compatibility with Sidebar Login plugin.
+	 */
+
+	public function test_sidebar_login_widget_form_args() {
+		$this->test_login_form_defaults_unaffected_by_default( 'sidebar_login_widget_form_args' );
+		c2c_RememberMeControls::get_instance()->reset_options();
+		$this->test_login_form_defaults_with_disable_remember_me( 'sidebar_login_widget_form_args' );
+		c2c_RememberMeControls::get_instance()->reset_options();
+		$this->test_login_form_defaults_with_auto_remember_me( 'sidebar_login_widget_form_args' );
+		c2c_RememberMeControls::get_instance()->reset_options();
+		$this->test_login_form_defaults_with_both( 'sidebar_login_widget_form_args' );
+	}
+
+	public function test_compat_for_sidebar_login_ajax_handler_by_default() {
+		$_POST['remember'] = true;
+		do_action( 'wp_ajax_sidebar_login_process' );
+
+		$this->assertTrue( $_POST['remember'] );
+	}
+
+	public function test_compat_for_sidebar_login_ajax_handler() {
+		$this->set_option( array( 'disable_remember_me' => true ) );
+		$_POST['remember'] = true;
+		do_action( 'wp_ajax_sidebar_login_process' );
+
+		$this->assertNull( $_POST['remember'] );
 	}
 
 	/*
