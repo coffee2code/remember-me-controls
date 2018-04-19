@@ -239,6 +239,17 @@ class Remember_Me_Controls_Test extends WP_UnitTestCase {
 	}
 
 	/*
+	 * Compatibility with Login Widget With Shortcode plugin
+	 */
+
+	public function test_compat_for_login_widget_with_shortcode() {
+		$option = 'login_afo_rem';
+		update_option( $option, 'Yes' );
+
+		$this->assertNotEquals( 'Yes', get_option( $option ) );
+	}
+
+	/*
 	 * Setting handling
 	 */
 

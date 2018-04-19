@@ -155,6 +155,9 @@ final class c2c_RememberMeControls extends c2c_RememberMeControls_Plugin_047 {
 		add_action( $this->get_hook( 'post_display_option' ), array( $this, 'maybe_add_hr' ) );
 		add_filter( 'login_form_defaults',                    array( $this, 'login_form_defaults' ) );
 
+		// Compat for Login Widget With Shortcode plugin.
+		add_filter( 'pre_option_login_afo_rem',               '__return_empty_string' );
+
 		// Compat for Sidebar Login plugin.
 		add_filter( 'sidebar_login_widget_form_args',         array( $this, 'compat_for_sidebar_login' ) );
 		add_action( 'wp_ajax_sidebar_login_process',          array( $this, 'compat_for_sidebar_login_ajax_handler' ), 1 );
