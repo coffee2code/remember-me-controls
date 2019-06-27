@@ -235,7 +235,7 @@ class Remember_Me_Controls_Test extends WP_UnitTestCase {
 		$_POST['remember'] = true;
 		do_action( 'wp_ajax_sidebar_login_process' );
 
-		$this->assertNull( $_POST['remember'] );
+		$this->assertFalse( isset( $_POST['remember'] ) );
 	}
 
 	/*
