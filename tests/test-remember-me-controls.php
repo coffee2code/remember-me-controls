@@ -77,6 +77,10 @@ class Remember_Me_Controls_Test extends WP_UnitTestCase {
 		$this->assertTrue( is_a( c2c_RememberMeControls::get_instance(), 'c2c_RememberMeControls' ) );
 	}
 
+	public function test_hooks_plugins_loaded() {
+		$this->assertEquals( 10, has_action( 'plugins_loaded', array( 'c2c_RememberMeControls', 'get_instance' ) ) );
+	}
+
 	public function test_hooks_action_auth_cookie_expiration() {
 		$this->assertNotFalse( has_action( 'auth_cookie_expiration', array( c2c_RememberMeControls::get_instance(), 'auth_cookie_expiration' ), 10, 3 ) );
 	}

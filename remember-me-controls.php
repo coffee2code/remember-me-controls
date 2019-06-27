@@ -325,6 +325,6 @@ JS;
 
 } // end class
 
-c2c_RememberMeControls::get_instance();
+add_action( 'plugins_loaded', array( 'c2c_RememberMeControls', 'get_instance' ) );
 
 endif; // end if !class_exists()
