@@ -12,7 +12,7 @@ A plugin for WordPress that allows having "Remember Me" checked by default on th
 
 ## Additional Documentation
 
-See [readme.txt](https://github.com/coffee2code/remember-me-controls/blob/master/readme.txt) for additional usage information.
+See [readme.txt](https://github.com/coffee2code/remember-me-controls/blob/master/readme.txt) for additional usage information. See [CHANGELOG.md](CHANGELOG.md) for the list of changes for each release.
 
 
 ## Support
