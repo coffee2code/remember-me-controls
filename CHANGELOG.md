@@ -20,6 +20,7 @@
     * Fix: Fix broken unit test
 * Change: Add link to plugin's page in Plugin Directory to README.md
 * Change: Update copyright date (2019)
+* Change: Split paragraph in README.md's "Support" section into two
 
 
 ## 1.7 _(2018-04-19)_
