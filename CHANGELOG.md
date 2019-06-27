@@ -2,6 +2,8 @@
 
 ## _(in-progress)_
 * New: Add CHANGELOG.md file and move all but most recent changelog entries into it
+* Change: Update copyright date (2019)
+
 
 ## 1.7 _(2018-04-19)_
 * New: Add support for BuddyPress Login widget
