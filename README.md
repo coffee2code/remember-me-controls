@@ -2,6 +2,8 @@
 
 A plugin for WordPress that allows having "Remember Me" checked by default on the login form and for configuring how long a login is remembered. Or disable the feature altogether.
 
+This plugin is available in the WordPress Plugin Directory: https://wordpress.org/plugins/remember-me-controls/
+
 
 ## Installation
 

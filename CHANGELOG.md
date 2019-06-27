@@ -2,6 +2,7 @@
 
 ## _(in-progress)_
 * New: Add CHANGELOG.md file and move all but most recent changelog entries into it
+* Change: Add link to plugin's page in Plugin Directory to README.md
 * Change: Update copyright date (2019)
 
 
