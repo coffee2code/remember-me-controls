@@ -46,7 +46,7 @@ class Remember_Me_Controls_Test extends WP_UnitTestCase {
 		$obj = c2c_RememberMeControls::get_instance();
 		$defaults = $obj->get_options();
 		$settings = wp_parse_args( (array) $settings, $defaults );
-		$obj->update_option( $settings );
+		$obj->update_option( $settings, true );
 	}
 
 

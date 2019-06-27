@@ -16,6 +16,7 @@
 * New: Add CHANGELOG.md file and move all but most recent changelog entries into it
 * Unit tests:
     * Change: Update unit test install script and bootstrap to use latest WP unit test repo
+    * Change: Ensure settings get reset before assigning newly set values
     * Fix: Fix broken unit test
 * Change: Add link to plugin's page in Plugin Directory to README.md
 * Change: Update copyright date (2019)
