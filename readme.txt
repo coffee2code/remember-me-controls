@@ -6,7 +6,7 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 4.7
 Tested up to: 5.2
-Stable tag: 1.7
+Stable tag: 1.8
 
 Have "Remember Me" checked by default on the login page and configure how long a login is remembered. Or disable the feature altogether.
 
@@ -64,6 +64,37 @@ Yes.
 
 == Changelog ==
 
+= 1.8 (2019-06-28) =
+Highlights:
+
+* This release is a minor update that verifies compatibility through WordPress 5.2+ and makes minor behind-the-scenes improvements.
+
+Details:
+
+* Change: Initialize plugin on `plugins_loaded` action instead of on load
+* Change: Update plugin framework to 049
+* 049:
+* Correct last arg in call to `add_settings_field()` to be an array
+* Wrap help text for settings in `label` instead of `p`
+* Only use `label` for help text for checkboxes, otherwise use `p`
+* Ensure a `textarea` displays as a block to prevent orphaning of subsequent help text
+* Note compatibility through WP 5.1+
+* Update copyright date (2019)
+* 048:
+* When resetting options, delete the option rather than setting it with default values
+* Prevent double "Settings reset" admin notice upon settings reset
+* New: Add CHANGELOG.md file and move all but most recent changelog entries into it
+* Unit tests:
+    * Change: Update unit test install script and bootstrap to use latest WP unit test repo
+    * Change: Ensure settings get reset before assigning newly set values
+    * Fix: Fix broken unit test
+* Change: Note compatibility through WP 5.2+
+* Change: Add link to plugin's page in Plugin Directory to README.md
+* Change: Add README.md link to plugin's page in Plugin Directory
+* Change: Update copyright date (2019)
+* Change: Update License URI to be HTTPS
+* Change: Split paragraph in README.md's "Support" section into two
+
 = 1.7 (2018-04-19) =
 * New: Add support for BuddyPress Login widget
 * New: Add support for Sidebar Login plugin (https://wordpress.org/plugins/sidebar-login/)
@@ -107,9 +138,11 @@ Yes.
 
 = 1.6 (2016-03-23) =
 Highlights:
+
 * This release largely consists of minor behind-the-scenes changes.
 
 Details:
+
 * Change: Update plugin framework to 041:
     * Change class name to c2c_RememberMeControls_Plugin_041 to be plugin-specific.
     * Set textdomain using a string instead of a variable.
@@ -136,6 +169,9 @@ _Full changelog is available in [CHANGELOG.md](https://github.com/coffee2code/re
 
 
 == Upgrade Notice ==
+
+= 1.8 =
+Minor update: tweaked plugin initialization, updated plugin framework to version 049, noted compatibility through WP 5.2+, created CHANGELOG.md to store historical changelog outside of readme.txt, and updated copyright date (2019)
 
 = 1.7 =
 Recommended update: added support for BuddyPress Login widget, Sidebar Login plugin, and Login Widget With Shortcode plugin; updated plugin framework to version 047; compatibility is now with WP 4.7-4.9+; updated copyright date (2018).

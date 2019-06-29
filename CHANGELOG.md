@@ -1,6 +1,13 @@
 # Changelog
 
-## _(in-progress)_
+## 1.8 _(2019-06-28)_
+
+### Highlights:
+
+This release is a minor update that verifies compatibility through WordPress 5.2+ and makes minor behind-the-scenes improvements.
+
+### Details:
+
 * Change: Initialize plugin on `plugins_loaded` action instead of on load
 * Change: Update plugin framework to 049
     * 049:
@@ -24,7 +31,6 @@
 * Change: Update copyright date (2019)
 * Change: Update License URI to be HTTPS
 * Change: Split paragraph in README.md's "Support" section into two
-
 
 ## 1.7 _(2018-04-19)_
 * New: Add support for BuddyPress Login widget
