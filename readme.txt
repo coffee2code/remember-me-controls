@@ -6,7 +6,7 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 4.7
 Tested up to: 5.3
-Stable tag: 1.8
+Stable tag: 1.8.1
 
 Have "Remember Me" checked by default on the login page and configure how long a login is remembered. Or disable the feature altogether.
 
@@ -63,6 +63,11 @@ Yes.
 
 
 == Changelog ==
+
+= 1.8.1 (2020-01-01) =
+* Change: Note compatibility through WP 5.3+
+* Change: Update copyright date (2020)
+* Change: Tweak changelog formatting for v1.8 release
 
 = 1.8 (2019-06-28) =
 Highlights:
@@ -135,39 +140,13 @@ Details:
 * Change: Update copyright date (2018)
 * Change: Update installation instruction to prefer built-in installer over .zip file
 
-= 1.6 (2016-03-23) =
-Highlights:
-
-* This release largely consists of minor behind-the-scenes changes.
-
-Details:
-
-* Change: Update plugin framework to 041:
-    * Change class name to c2c_RememberMeControls_Plugin_041 to be plugin-specific.
-    * Set textdomain using a string instead of a variable.
-    * Don't load textdomain from file.
-    * Change admin page header from 'h2' to 'h1' tag.
-    * Add `c2c_plugin_version()`.
-    * Formatting improvements to inline docs.
-* Change: Add support for language packs:
-    * Set textdomain using a string instead of a variable.
-    * Remove .pot file and /lang subdirectory.
-* Change: Express WP default cookie expiration duration as 2 days instead of 48 hours.
-* Change: Declare class as final.
-* Change: Explicitly declare methods in unit tests as public or protected.
-* Change: Minor code reformatting.
-* Change: Minor tweak to description.
-* Change: Minor improvements to inline docs and test docs.
-* New: Add LICENSE file.
-* New: Create empty index.php to prevent files from being listed if web server has enabled directory listings.
-* Change: Note compatibility through WP 4.4+.
-* Change: Remove support for versions of WordPress older than 4.1.
-* Change: Update copyright date (2016).
-
 _Full changelog is available in [CHANGELOG.md](https://github.com/coffee2code/remember-me-controls/blob/master/CHANGELOG.md)._
 
 
 == Upgrade Notice ==
+
+= 1.8.1 =
+Trivial update: noted compatibility through WP 5.3+ and updated copyright date (2020)
 
 = 1.8 =
 Minor update: tweaked plugin initialization, updated plugin framework to version 049, noted compatibility through WP 5.2+, created CHANGELOG.md to store historical changelog outside of readme.txt, and updated copyright date (2019)
