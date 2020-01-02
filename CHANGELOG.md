@@ -3,6 +3,7 @@
 ## _(in-progress)_
 * Change: Note compatibility through WP 5.3+
 * Change: Update copyright date (2020)
+* Change: Tweak changelog formatting for v1.8 release
 
 ## 1.8 _(2019-06-28)_
 
