@@ -1,5 +1,8 @@
 # Changelog
 
+## _(in-progress)_
+* Change: Note compatibility through WP 5.4+
+
 ## 1.8.1 _(2020-01-01)_
 * Change: Note compatibility through WP 5.3+
 * Change: Update copyright date (2020)
