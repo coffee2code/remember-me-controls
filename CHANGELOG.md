@@ -2,6 +2,7 @@
 
 ## _(in-progress)_
 * Change: Note compatibility through WP 5.4+
+* Change: Drop compatibility with versions of WP older than 4.9
 * Change: Update links to coffee2code.com to be HTTPS
 
 ## 1.8.1 _(2020-01-01)_
