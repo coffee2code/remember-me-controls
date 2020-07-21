@@ -28,6 +28,22 @@ class Remember_Me_Controls_Test extends WP_UnitTestCase {
 	//
 
 
+	public static function get_default_hooks() {
+		return array(
+			array( 'action', 'auth_cookie_expiration',               'auth_cookie_expiration' ),
+			array( 'action', 'login_head',                           'add_css' ),
+			array( 'filter', 'login_footer',                         'add_js' ),
+			array( 'filter', 'login_form_defaults',                  'login_form_defaults' ),
+			array( 'action', 'bp_before_login_widget_loggedout',     'add_css' ),
+			array( 'action', 'bp_after_login_widget_loggedout',      'add_js' ),
+			array( 'filter', 'pre_option_login_afo_rem',             '__return_empty_string' ),
+			array( 'filter', 'sidebar_login_widget_form_args',       'compat_for_sidebar_login' ),
+			array( 'action', 'wp_ajax_sidebar_login_process',        'compat_for_sidebar_login_ajax_handler', 1 ),
+			array( 'action', 'wp_ajax_nopriv_sidebar_login_process', 'compat_for_sidebar_login_ajax_handler', 1 ),
+		);
+	}
+
+
 	//
 	//
 	// HELPER FUNCTIONS
@@ -78,16 +94,19 @@ class Remember_Me_Controls_Test extends WP_UnitTestCase {
 		$this->assertEquals( 'c2c_remember_me_controls', c2c_RememberMeControls::SETTING_NAME );
 	}
 
-	public function test_hooks_action_auth_cookie_expiration() {
-		$this->assertNotFalse( has_action( 'auth_cookie_expiration', array( c2c_RememberMeControls::get_instance(), 'auth_cookie_expiration' ), 10, 3 ) );
-	}
+	/**
+	 * @dataProvider get_default_hooks
+	 */
+	public function test_default_hooks( $hook_type, $hook, $function, $priority = 10 ) {
+		$callback = 0 === strpos( $function, '__' ) ? $function : array( c2c_RememberMeControls::get_instance(), $function );
 
-	public function test_hooks_action_login_head() {
-		$this->assertNotFalse( has_action( 'login_head', array( c2c_RememberMeControls::get_instance(), 'add_css' ) ) );
-	}
-
-	public function test_hooks_filter_login_footer() {
-		$this->assertNotFalse( has_filter( 'login_footer', array( c2c_RememberMeControls::get_instance(), 'add_js' ) ) );
+		$prio = $hook_type === 'action' ?
+			has_action( $hook, $callback ) :
+			has_filter( $hook, $callback );
+		$this->assertNotFalse( $prio );
+		if ( $priority ) {
+			$this->assertEquals( $priority, $prio );
+		}
 	}
 
 	public function test_option_default_for_auto_remember_me() {

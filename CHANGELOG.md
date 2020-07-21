@@ -12,7 +12,9 @@
 * Change: Drop compatibility with versions of WP older than 4.9
 * Change: Update links to coffee2code.com to be HTTPS
 * Unit tests:
+    * New: Add `get_default_hooks()` as a helper method for getting the default hooks
     * New: Add test for setting name
+    * New: Add test for hook registering
     * Change: Remove unnecessary unregistering of hooks in `tearDown()`
     * Change: Use HTTPS for link to WP SVN repository in bin script for configuring unit tests
 
