@@ -18,13 +18,6 @@ class Remember_Me_Controls_Test extends WP_UnitTestCase {
 
 		// Reset options
 		c2c_RememberMeControls::get_instance()->reset_options();
-
-		remove_filter( 'c2c_linkify_text',                array( $this, 'add_text_to_linkify' ) );
-		remove_filter( 'c2c_linkify_text_replace_once',   '__return_true' );
-		remove_filter( 'c2c_linkify_text_case_sensitive', '__return_true' );
-		remove_filter( 'c2c_linkify_text_comments',       '__return_true' );
-		remove_filter( 'c2c_linkify_text_filters',        array( $this, 'add_custom_filter' ) );
-		remove_filter( 'c2c_linkify_text_linked_text',    array( $this, 'add_title_attribute_to_linkified_text' ), 10, 3 );
 	}
 
 
