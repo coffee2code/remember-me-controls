@@ -62,6 +62,17 @@ class Remember_Me_Controls_Test extends WP_UnitTestCase {
 		$this->obj->update_option( $settings, true );
 	}
 
+	protected function get_javascript() {
+		return <<<JS
+		<script type="text/javascript">
+			var checkbox = document.getElementById('rememberme');
+			if ( null != checkbox )
+				checkbox.checked = true;
+		</script>
+
+JS;
+	}
+
 
 	//
 	//
@@ -128,6 +139,55 @@ class Remember_Me_Controls_Test extends WP_UnitTestCase {
 	public function test_option_default_for_disable_remember_me() {
 		$this->assertFalse( $this->obj->get_options()['disable_remember_me'] );
 	}
+
+	/*
+	 * add_css()
+	 */
+
+	public function test_add_css_if_remember_me_disabled() {
+		$this->set_option( array( 'disable_remember_me' => true ) );
+		$expected = '<style type="text/css">.forgetmenot { display:none; }</style>' . "\n";
+
+		$this->expectOutputRegex( '~^' . preg_quote( $expected ) . '$~', $this->obj->add_css() );
+	}
+
+	public function test_add_css_if_remember_me_not_disabled() {
+		$this->set_option( array( 'disable_remember_me' => false ) );
+
+		$this->expectOutputRegex( '~^$~', $this->obj->add_css() );
+	}
+
+	/*
+	 * add_js()
+	 */
+
+	public function test_add_js_if_auto_remember_me_but_not_disable_remember_me() {
+		$this->set_option( array( 'auto_remember_me' => true, 'disable_remember_me' => false ) );
+
+		$this->expectOutputRegex( '~^' . preg_quote( $this->get_javascript() ) . '$~', $this->obj->add_js() );
+	}
+
+	public function test_add_js_if_not_auto_remember_me_but_disable_remember_me() {
+		$this->set_option( array( 'auto_remember_me' => false, 'disable_remember_me' => true ) );
+
+		$this->expectOutputRegex( '~^$~', $this->obj->add_js() );
+	}
+
+	public function test_add_js_if_not_auto_remember_me_and_not_disable_remember_me() {
+		$this->set_option( array( 'auto_remember_me' => false, 'disable_remember_me' => false ) );
+
+		$this->expectOutputRegex( '~^$~', $this->obj->add_js() );
+	}
+
+	public function test_add_js_if_auto_remember_me_and_disable_remember_me() {
+		$this->set_option( array( 'auto_remember_me' => true, 'disable_remember_me' => true ) );
+
+		$this->expectOutputRegex( '~^$~', $this->obj->add_js() );
+	}
+
+	/*
+	 * auth_cookie_expiration()
+	 */
 
 	public function test_auth_cookie_expiration_is_unaffected_if_plugin_not_configured() {
 		$this->assertEquals( 456, $this->obj->auth_cookie_expiration( 456, 1, false ) );

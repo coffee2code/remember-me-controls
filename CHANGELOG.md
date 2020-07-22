@@ -13,6 +13,7 @@
 * Change: Update links to coffee2code.com to be HTTPS
 * Unit tests:
     * New: Add `get_default_hooks()` as a helper method for getting the default hooks
+    * New: Add tests for `add_css()`, `add_js()`
     * New: Add test for setting name
     * New: Add test for hook registering
     * Change: Store plugin instance in test object to simplify referencing it
