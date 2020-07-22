@@ -15,7 +15,6 @@ class Remember_Me_Controls_Test extends WP_UnitTestCase {
 
 		$this->obj = c2c_RememberMeControls::get_instance();
 
-		$this->obj->reset_options();
 	}
 
 	public function tearDown() {

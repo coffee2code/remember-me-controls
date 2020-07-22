@@ -18,6 +18,7 @@
     * New: Add test for hook registering
     * Change: Store plugin instance in test object to simplify referencing it
     * Change: Remove unnecessary unregistering of hooks in `tearDown()`
+    * Change: Remove duplicative `reset_options()` call
     * Change: Use HTTPS for link to WP SVN repository in bin script for configuring unit tests
 
 ## 1.8.1 _(2020-01-01)_
