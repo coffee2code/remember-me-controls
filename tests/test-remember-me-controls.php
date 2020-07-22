@@ -141,6 +141,17 @@ JS;
 	}
 
 	/*
+	 * options_page_description()
+	 */
+
+	public function test_options_page_description() {
+		$expected = '<h1>Remember Me Controls Settings</h1>' . "\n";
+		$expected .= '<p class="see-help">See the "Help" link to the top-right of the page for more help.</p>' . "\n";
+
+		$this->expectOutputRegex( '~^' . preg_quote( $expected ) . '$~', $this->obj->options_page_description() );
+	}
+
+	/*
 	 * add_css()
 	 */
 
