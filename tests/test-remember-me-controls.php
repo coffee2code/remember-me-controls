@@ -239,6 +239,20 @@ JS;
 	}
 
 	/*
+	 * maybe_add_hr()
+	 */
+
+	public function test_maybe_add_hr_for_remember_me_duration() {
+		$expected = "</tr><tr><td colspan='2'><div class='hr'>&nbsp;</div></td>\n";
+
+		$this->expectOutputRegex( '~^' . preg_quote( $expected ) . '$~', $this->obj->maybe_add_hr( 'remember_me_duration' ) );
+	}
+
+	public function test_maybe_add_hr_for_something_other_than_remember_me_duration() {
+		$this->expectOutputRegex( '~^$~', $this->obj->maybe_add_hr( 'disable_remember_me' ) );
+	}
+
+	/*
 	 * login_form_defaults()
 	 */
 
