@@ -152,6 +152,31 @@ JS;
 	}
 
 	/*
+	 * help_tabs_content()
+	 */
+
+	// Note that this does not test the full text content of the tab.
+	public function test_help_tabs_content() {
+		set_current_screen( 'edit' );
+		$screen = get_current_screen();
+		$tab = 'remember-me-controls-about';
+		// Must match the start of the content at the very least.
+		$expected_content = '<p>Take control of the "Remember Me" feature for WordPress. For those';
+
+		$this->obj->help_tabs_content( $screen );
+		$help_tab = $screen->get_help_tab( $tab );
+
+		$this->assertEquals( $tab, $help_tab['id'] );
+		$this->assertEquals( 'About', $help_tab['title'] );
+		$this->assertFalse( $help_tab['callback'] );
+		$this->assertEquals( 10, $help_tab['priority'] );
+		$this->assertEquals( 1, preg_match( '~^' . preg_quote( $expected_content ) . '~', $help_tab['content'] ) );
+
+		$tabs = $screen->get_help_tabs();
+		$this->assertArrayHasKey( $tab, $tabs );
+	}
+
+	/*
 	 * add_css()
 	 */
 
