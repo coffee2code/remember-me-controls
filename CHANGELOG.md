@@ -11,7 +11,7 @@
     * Note compatibility through WP 5.4+
     * Drop compatibility with version of WP older than 4.9
 * Change: Tweak text on help tab
-* Change: Add an FAQ entry and amend another
+* Change: Add a couple FAQ entries and amend another
 * Change: Tweak verbiage of various documentation
 * Change: Note compatibility through WP 5.4+
 * Change: Drop compatibility with versions of WP older than 4.9

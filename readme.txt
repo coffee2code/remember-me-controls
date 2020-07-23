@@ -25,6 +25,16 @@ This plugin provides three primary controls over the behavior of the "Remember M
 
 NOTE: WordPress remembers who you are based on cookies stored in your web browser. If you use a different web browser, clear your cookies, use a browser on a different machine, or uninstall/reinstall (and possibly even just restarting) your browser then you will have to log in again since WordPress will not be able to locate the cookies needed to identify you.
 
+= Compatibility =
+
+Other than the plugins listed below, compatibility has not been tested or attempted for any other third-party plugins that provide their own login widgets or login handling.
+
+Special handling has been added to provide compatibility with the following plugins:
+
+* [BuddyPress](https://wordpress.org/plugins/buddypress/) (in particular, its "Log in" widget)
+* [Sidebar Login](https://wordpress.org/plugins/sidebar-login/)
+* [Login Widget With Shortcode](https://wordpress.org/plugins/login-sidebar-widget/)
+
 Links: [Plugin Homepage](https://coffee2code.com/wp-plugins/remember-me-controls/) | [Plugin Directory Page](https://wordpress.org/plugins/remember-me-controls/) | [GitHub](https://github.com/coffee2code/remember-me-controls/) | [Author Homepage](https://coffee2code.com)
 
 
@@ -49,6 +59,14 @@ WordPress remembers who you are based on cookies stored in your web browser. If 
 = How can I set the session duration to less than an hour? =
 
 You can't (and probably shouldn't). With a session length of less than an hour you risk timing out users too quickly.
+
+= What plugins is this plugin compatible with? =
+
+Special handling has been added to provide compatibility with the following plugins:
+
+* [BuddyPress](https://wordpress.org/plugins/buddypress/) (in particular, its "Log in" widget)
+* [Sidebar Login](https://wordpress.org/plugins/sidebar-login/)
+* [Login Widget With Shortcode](https://wordpress.org/plugins/login-sidebar-widget/)
 
 = Is this plugin GDPR-compliant? =
 
