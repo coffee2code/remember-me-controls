@@ -262,7 +262,7 @@ JS;
 	 * @param string $opt The option name.
 	 */
 	public function maybe_add_hr( $opt ) {
-		if ( 'remember_me_duration' == $opt ) {
+		if ( 'remember_me_duration' === $opt ) {
 			echo "</tr><tr><td colspan='2'><div class='hr'>&nbsp;</div></td>\n";
 		}
 	}
