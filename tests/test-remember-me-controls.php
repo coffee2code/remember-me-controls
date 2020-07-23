@@ -15,6 +15,7 @@ class Remember_Me_Controls_Test extends WP_UnitTestCase {
 
 		$this->obj = c2c_RememberMeControls::get_instance();
 
+		add_theme_support( 'html5', array( 'script', 'style' ) );
 	}
 
 	public function tearDown() {
@@ -181,6 +182,14 @@ JS;
 
 	public function test_add_css_if_remember_me_disabled() {
 		$this->set_option( array( 'disable_remember_me' => true ) );
+		$expected = '<style>.forgetmenot { display:none; }</style>' . "\n";
+
+		$this->expectOutputRegex( '~^' . preg_quote( $expected ) . '$~', $this->obj->add_css() );
+	}
+
+	public function test_add_css_if_remember_me_disabled_no_html5_support() {
+		remove_theme_support( 'html5', 'style' );
+		$this->set_option( array( 'disable_remember_me' => true ) );
 		$expected = '<style type="text/css">.forgetmenot { display:none; }</style>' . "\n";
 
 		$this->expectOutputRegex( '~^' . preg_quote( $expected ) . '$~', $this->obj->add_css() );
@@ -197,6 +206,13 @@ JS;
 	 */
 
 	public function test_add_js_if_auto_remember_me_but_not_disable_remember_me() {
+		$this->set_option( array( 'auto_remember_me' => true, 'disable_remember_me' => false ) );
+
+		$this->expectOutputRegex( '~^' . preg_quote( str_replace( ' type="text/javascript"', '', $this->get_javascript() ) ) . '$~', $this->obj->add_js() );
+	}
+
+	public function test_add_js_if_auto_remember_me_but_not_disable_remember_me_no_html5_support() {
+		remove_theme_support( 'html5', 'script' );
 		$this->set_option( array( 'auto_remember_me' => true, 'disable_remember_me' => false ) );
 
 		$this->expectOutputRegex( '~^' . preg_quote( $this->get_javascript() ) . '$~', $this->obj->add_js() );

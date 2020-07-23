@@ -199,9 +199,10 @@ final class c2c_RememberMeControls extends c2c_RememberMeControls_Plugin_050 {
 	 */
 	public function add_css() {
 		$options = $this->get_options();
+		$type_attr = current_theme_supports( 'html5', 'style' ) ? '' : ' type="text/css"';
 
 		if ( $options['disable_remember_me'] ) {
-			echo '<style type="text/css">.forgetmenot { display:none; }</style>' . "\n";
+			echo '<style' . $type_attr . '>.forgetmenot { display:none; }</style>' . "\n";
 		}
 	}
 
@@ -210,10 +211,11 @@ final class c2c_RememberMeControls extends c2c_RememberMeControls_Plugin_050 {
 	 */
 	public function add_js() {
 		$options = $this->get_options();
+		$type_attr = current_theme_supports( 'html5', 'script' ) ? '' : ' type="text/javascript"';
 
 		if ( $options['auto_remember_me'] && ! $options['disable_remember_me'] ) {
 			echo <<<JS
-		<script type="text/javascript">
+		<script{$type_attr}>
 			var checkbox = document.getElementById('rememberme');
 			if ( null != checkbox )
 				checkbox.checked = true;
