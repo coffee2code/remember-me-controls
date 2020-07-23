@@ -191,7 +191,7 @@ final class c2c_RememberMeControls extends c2c_RememberMeControls_Plugin_050 {
 				'<p>' . __( 'This plugin provides three primary controls over the behavior of the "Remember Me" feature:', 'remember-me-controls' ) . '</p>' .
 				'<ul class="c2c-plugin-list">' .
 				'<li>' . __( 'Automatically check "Remember Me" : Have the "Remember Me" checkbox automatically checked when the login form is loaded (it isn\'t checked by default).', 'remember-me-controls' ) . '</li>' .
-				'<li>' . __( 'Customize the duration of the "Remember Me" : Customize how long WordPress will remember a login session when "Remember Me" is checked. Either forever or a customizable number of hours.', 'remember-me-controls' ) . '</li>' .
+				'<li>' . __( 'Customize the duration of the "Remember Me" : Customize how long WordPress will remember a login session when "Remember Me" is checked, either forever or a customizable number of hours.', 'remember-me-controls' ) . '</li>' .
 				'<li>' . __( 'Disable "Remember Me" : Completely disable the feature, preventing the checkbox from appearing and restricting all login sessions to one day.', 'remember-me-controls' ) . '</li>' .
 				'</ul>',
 		) );

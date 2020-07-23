@@ -13,17 +13,17 @@ Have "Remember Me" checked by default on the login page and configure how long a
 
 == Description ==
 
-Take control of the "Remember Me" feature for WordPress by having it enabled by default, customize how long users are remember, or disable this built-in feature by default.
+Take control of the "Remember Me" login feature for WordPress by having it enabled by default, customize how long users are remembered, or disable this built-in feature by default.
 
 For those unfamiliar, "Remember Me" is a checkbox present when logging into WordPress. If checked, WordPress will remember the login session for 14 days. If unchecked, the login session will be remembered for only 2 days. Once a login session expires, WordPress will require you to log in again if you wish to continue using the admin section of the site.
 
 This plugin provides three primary controls over the behavior of the "Remember Me" feature:
 
 * Automatically check "Remember Me" : The ability to have the "Remember Me" checkbox automatically checked when the login form is loaded (it isn't checked by default).
-* Customize the duration of the "Remember Me" : The ability to customize how long WordPress will remember a login session when "Remember Me" is checked.
+* Customize the duration of the "Remember Me" : The ability to customize how long WordPress will remember a login session when "Remember Me" is checked, either forever or a customizable number of hours.
 * Disable "Remember Me" : The ability to completely disable the feature, preventing the checkbox from appearing and restricting all login sessions to one day.
 
-NOTE: WordPress remembers who you are based on cookies stored in your web browser. If you use a different web browser, clear your cookies, use a browser on a different machine, or uninstall/reinstall your browser then you will have to log in again since WordPress will not be able to locate the cookies needed to identify you.
+NOTE: WordPress remembers who you are based on cookies stored in your web browser. If you use a different web browser, clear your cookies, use a browser on a different machine, or uninstall/reinstall (and possibly even just restarting) your browser then you will have to log in again since WordPress will not be able to locate the cookies needed to identify you.
 
 Links: [Plugin Homepage](https://coffee2code.com/wp-plugins/remember-me-controls/) | [Plugin Directory Page](https://wordpress.org/plugins/remember-me-controls/) | [GitHub](https://github.com/coffee2code/remember-me-controls/) | [Author Homepage](https://coffee2code.com)
 
