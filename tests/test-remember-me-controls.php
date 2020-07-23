@@ -158,13 +158,13 @@ JS;
 	 * help_tabs_content()
 	 */
 
-	// Note that this does not test the full text content of the tab.
+	// Note that this does not test the full text content of the tab, just the start.
 	public function test_help_tabs_content() {
 		set_current_screen( 'edit' );
 		$screen = get_current_screen();
 		$tab = 'remember-me-controls-about';
 		// Must match the start of the content at the very least.
-		$expected_content = '<p>Take control of the "Remember Me" feature for WordPress. For those';
+		$expected_content = '<p>Take control of the "Remember Me" login feature for WordPress by customizing its behavior or disabling it altogether.';
 
 		$this->obj->help_tabs_content( $screen );
 		$help_tab = $screen->get_help_tab( $tab );

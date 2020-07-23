@@ -186,11 +186,12 @@ final class c2c_RememberMeControls extends c2c_RememberMeControls_Plugin_050 {
 			'id'      => $this->id_base . '-' . 'about',
 			'title'   => __( 'About', 'remember-me-controls' ),
 			'content' =>
-				'<p>' . __( 'Take control of the "Remember Me" feature for WordPress. For those unfamiliar, "Remember Me" is a checkbox present when logging into WordPress. If checked, WordPress will remember the login session for 14 days. If unchecked, the login session will be remembered for only 2 days. Once a login session expires, WordPress will require you to log in again if you wish to continue using the admin section of the site.', 'remember-me-controls' ) . '</p>' .
+				'<p>' . __( 'Take control of the "Remember Me" login feature for WordPress by customizing its behavior or disabling it altogether.', 'remember-me-controls' ) . '</p>' .
+				'<p>' . __( 'For those unfamiliar, "Remember Me" is a checkbox present when logging into WordPress. If checked, by default WordPress will remember the login session for 14 days. If unchecked, the login session will be remembered for only 2 days. Once a login session expires, WordPress will require you to log in again if you wish to continue using the admin section of the site.', 'remember-me-controls' ) . '</p>' .
 				'<p>' . __( 'This plugin provides three primary controls over the behavior of the "Remember Me" feature:', 'remember-me-controls' ) . '</p>' .
 				'<ul class="c2c-plugin-list">' .
 				'<li>' . __( 'Automatically check "Remember Me" : Have the "Remember Me" checkbox automatically checked when the login form is loaded (it isn\'t checked by default).', 'remember-me-controls' ) . '</li>' .
-				'<li>' . __( 'Customize the duration of the "Remember Me" : Customize how long WordPress will remember a login session when "Remember Me" is checked.', 'remember-me-controls' ) . '</li>' .
+				'<li>' . __( 'Customize the duration of the "Remember Me" : Customize how long WordPress will remember a login session when "Remember Me" is checked. Either forever or a customizable number of hours.', 'remember-me-controls' ) . '</li>' .
 				'<li>' . __( 'Disable "Remember Me" : Completely disable the feature, preventing the checkbox from appearing and restricting all login sessions to one day.', 'remember-me-controls' ) . '</li>' .
 				'</ul>',
 		) );
