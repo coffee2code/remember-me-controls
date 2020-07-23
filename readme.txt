@@ -60,6 +60,10 @@ WordPress remembers who you are based on cookies stored in your web browser. If 
 
 You can't (and probably shouldn't). With a session length of less than an hour you risk timing out users too quickly.
 
+= Do changes to the remember me duration take effect for all current login sessions? =
+
+No. The duration for which a login cookie is valid is defined within the cookie when it gets created (which is when you log in). Changing the setting for the remember me duration will only affect cookies created thereafter. You can log out and then log back in if you want the newly configured remember me duration to apply to your session.
+
 = What plugins is this plugin compatible with? =
 
 Special handling has been added to provide compatibility with the following plugins:
