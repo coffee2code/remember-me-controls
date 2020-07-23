@@ -3,6 +3,7 @@
 ## _(in-progress)_
 * New: Add HTML5 compliance by omitting `type` attribute to 'script' and 'style' tags when the theme supports 'html5'
 * New: Add TODO.md and move existing TODO list from top of main plugin file into it
+* Change; Add help text to the top of the settings page
 * Change: Update plugin framework to 050
     * Allow a hash entry to literally have '0' as a value without being entirely omitted when saved
     * Output donation markup using `printf()` rather than using string concatenation
