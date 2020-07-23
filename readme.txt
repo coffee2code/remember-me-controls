@@ -40,7 +40,11 @@ Links: [Plugin Homepage](https://coffee2code.com/wp-plugins/remember-me-controls
 
 = How long does WordPress usually keep me logged in? =
 
-By default, if you log in without "Remember Me" checked, WordPress keeps you logged in for up to 2 days. If you check "Remember Me", WordPress keeps you logged in for up to 14 days.
+By default, if you log in without "Remember Me" checked, WordPress keeps you logged in for up to 2 days. If you check "Remember Me" (without this plugin active), WordPress keeps you logged in for up to 14 days.
+
+= Why am I being asked to log in again even though I've configured the plugin to remember me forever (or an otherwise long enough duration that hasn't been met yet)? =
+
+WordPress remembers who you are based on cookies stored in your web browser. If you use a different web browser, clear your cookies, use a browser on a different machine, or uninstall/reinstall (and possibly even just restarting) your browser then you will have to log in again since WordPress will not be able to locate the cookies needed to identify you.
 
 = How can I set the session duration to less than an hour? =
 
