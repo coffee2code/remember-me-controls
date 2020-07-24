@@ -126,14 +126,16 @@ final class c2c_RememberMeControls extends c2c_RememberMeControls_Plugin_050 {
 					'<sup style="color:red;">*</sup>'
 				),
 				'help'     => __( 'Should user be remembered forever if "Remember Me" is checked? If so, then the "Remember Me duration" value below is ignored.', 'remember-me-controls' )
-					. sprintf( '<br><em><sup style="color:red;">*</sup>%s</em>', __( 'Not quite forever; actually it\'s 100 years.', 'remember-me-controls' ) ),
+					. sprintf( '<br><em><sup style="color:red;">*</sup>%s</em>', __( 'Not quite forever; actually it\'s 100 years.', 'remember-me-controls' ) )
+					. sprintf( '<br><em>%s</em>', __( 'NOTE: A change of this value only takes effect on subsequent logins.', 'remember-me-controls' ) ),
 			),
 			'remember_me_duration' => array(
 				'input'    => 'shorttext',
 				'default'  => '',
 				'datatype' => 'int',
 				'label'    => __( 'Remember Me duration', 'remember-me-controls' ),
-				'help'     => __( 'The number of <strong>hours</strong> a login with "Remember Me" checked will last. If not provided, then the WordPress default of 336 (i.e. two weeks) will be used. Do not include any commas.<br />NOTE: This value is ignored if "Remember forever?" is checked above.', 'remember-me-controls' ),
+				'help'     => __( 'The number of <strong>hours</strong> a login with "Remember Me" checked will last. If not provided, then the WordPress default of 336 (i.e. two weeks) will be used. Do not include any commas. This value is ignored if "Remember forever?" is checked above.', 'remember-me-controls' )
+					. sprintf( '<br><em>%s</em>', __( 'NOTE: A change of this value only takes effect on subsequent logins.', 'remember-me-controls' ) ),
 			),
 			'disable_remember_me' => array(
 				'input'    => 'checkbox',
