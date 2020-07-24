@@ -228,9 +228,10 @@ final class c2c_RememberMeControls extends c2c_RememberMeControls_Plugin_050 {
 		if ( $options['auto_remember_me'] && ! $options['disable_remember_me'] ) {
 			echo <<<JS
 		<script{$type_attr}>
-			var checkbox = document.getElementById('rememberme');
-			if ( null != checkbox )
-				checkbox.checked = true;
+			const rememberme_checkbox = document.getElementById('rememberme');
+			if ( null !== rememberme_checkbox ) {
+				rememberme_checkbox.checked = true;
+			}
 		</script>
 
 JS;

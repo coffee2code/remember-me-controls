@@ -65,9 +65,10 @@ class Remember_Me_Controls_Test extends WP_UnitTestCase {
 	protected function get_javascript() {
 		return <<<JS
 		<script type="text/javascript">
-			var checkbox = document.getElementById('rememberme');
-			if ( null != checkbox )
-				checkbox.checked = true;
+			const rememberme_checkbox = document.getElementById('rememberme');
+			if ( null !== rememberme_checkbox ) {
+				rememberme_checkbox.checked = true;
+			}
 		</script>
 
 JS;
