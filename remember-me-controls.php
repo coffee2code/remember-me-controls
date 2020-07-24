@@ -120,8 +120,13 @@ final class c2c_RememberMeControls extends c2c_RememberMeControls_Plugin_050 {
 			'remember_me_forever' => array(
 				'input'    => 'checkbox',
 				'default'  => false,
-				'label'    => __( 'Remember forever*?', 'remember-me-controls' ),
-				'help'     => __( 'Should user be remembered forever if "Remember Me" is checked? If so, then the "Remember Me duration" value below is ignored.<br /><small style="font-style:italic;">(*Not quite forever; actually it\'s 100 years.)</small>', 'remember-me-controls' ),
+				'label'    => sprintf(
+					/* translators: %s: Markup for a character indicating a footnote. */
+					__( 'Remember forever%s?', 'remember-me-controls' ),
+					'<sup style="color:red;">*</sup>'
+				),
+				'help'     => __( 'Should user be remembered forever if "Remember Me" is checked? If so, then the "Remember Me duration" value below is ignored.', 'remember-me-controls' )
+					. sprintf( '<br><em><sup style="color:red;">*</sup>%s</em>', __( 'Not quite forever; actually it\'s 100 years.', 'remember-me-controls' ) ),
 			),
 			'remember_me_duration' => array(
 				'input'    => 'shorttext',
