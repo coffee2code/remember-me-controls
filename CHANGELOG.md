@@ -12,6 +12,7 @@
     * Drop compatibility with version of WP older than 4.9
 * Change: Tweak text on help tab
 * Change: Add a few new FAQ entries and amend another
+* Change: Include another example scenario in which login cookies could be invalidated
 * Change: Tweak verbiage of various documentation
 * Change: Note compatibility through WP 5.4+
 * Change: Drop compatibility with versions of WP older than 4.9
