@@ -38,6 +38,7 @@ class Remember_Me_Controls_Test extends WP_UnitTestCase {
 			array( 'action', 'auth_cookie_expiration',               'auth_cookie_expiration' ),
 			array( 'action', 'login_head',                           'add_css' ),
 			array( 'filter', 'login_footer',                         'add_js' ),
+			array( 'action', 'remember_me_controls__post_display_option', 'maybe_add_hr' ),
 			array( 'filter', 'login_form_defaults',                  'login_form_defaults' ),
 			array( 'action', 'bp_before_login_widget_loggedout',     'add_css' ),
 			array( 'action', 'bp_after_login_widget_loggedout',      'add_js' ),
