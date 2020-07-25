@@ -141,7 +141,8 @@ final class c2c_RememberMeControls extends c2c_RememberMeControls_Plugin_050 {
 				'input'    => 'checkbox',
 				'default'  => false,
 				'label'    => __( 'Disable the "Remember Me" feature?', 'remember-me-controls' ),
-				'help'     => __( 'If checked, then the "Remember Me" checkbox will not appear on login and the login session will last no longer than 24 hours.', 'remember-me-controls' ),
+				'help'     => __( 'If checked, then the "Remember Me" checkbox will not appear on login and the login session will last no longer than 24 hours.', 'remember-me-controls' )
+					. sprintf( '<br><em>%s</em>', __( 'NOTE: Existing login sessions will still abide by the login duration configured at the start of the session (when the user logged in) until the next login.', 'remember-me-controls' ) ),
 			),
 		);
 	}
