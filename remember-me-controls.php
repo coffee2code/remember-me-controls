@@ -156,7 +156,6 @@ final class c2c_RememberMeControls extends c2c_RememberMeControls_Plugin_050 {
 		add_action( 'login_head',                             array( $this, 'add_css' ) );
 		add_filter( 'login_footer',                           array( $this, 'add_js' ) );
 		add_action( $this->get_hook( 'post_display_option' ), array( $this, 'maybe_add_hr' ) );
-		add_filter( $this->get_hook( 'before_update_option' ), array( $this, 'sanitize_remember_me_duration' ) );
 		add_filter( 'login_form_defaults',                    array( $this, 'login_form_defaults' ) );
 
 		// Compat for BuddyPress Login Widget.
@@ -280,24 +279,6 @@ JS;
 		if ( 'remember_me_duration' === $opt ) {
 			echo "</tr><tr><td colspan='2'><div class='hr'>&nbsp;</div></td>\n";
 		}
-	}
-
-	/**
-	 * Sanitizes the value for the remember_me_duration setting.
-	 *
-	 * Basically it removes any commas.
-	 *
-	 * @since 1.9
-	 *
-	 * @param  array $options The options array prior to saving.
-	 * @return array
-	 */
-	public function sanitize_remember_me_duration( $options ) {
-		if ( ! empty( $options['remember_me_duration'] ) ) {
-			$options['remember_me_duration'] = str_replace( ',', '', $options['remember_me_duration'] );
-		}
-
-		return $options;
 	}
 
 	/**

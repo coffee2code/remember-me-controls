@@ -39,7 +39,6 @@ class Remember_Me_Controls_Test extends WP_UnitTestCase {
 			array( 'action', 'login_head',                           'add_css' ),
 			array( 'filter', 'login_footer',                         'add_js' ),
 			array( 'action', 'remember_me_controls__post_display_option', 'maybe_add_hr' ),
-			array( 'filter', 'remember_me_controls__before_update_option', 'sanitize_remember_me_duration' ),
 			array( 'filter', 'login_form_defaults',                  'login_form_defaults' ),
 			array( 'action', 'bp_before_login_widget_loggedout',     'add_css' ),
 			array( 'action', 'bp_after_login_widget_loggedout',      'add_js' ),
@@ -307,21 +306,6 @@ JS;
 
 	public function test_maybe_add_hr_for_something_other_than_remember_me_duration() {
 		$this->expectOutputRegex( '~^$~', $this->obj->maybe_add_hr( 'disable_remember_me' ) );
-	}
-
-	/*
-	 * sanitize_remember_me_duration()
-	 */
-
-	public function test_sanitize_remember_me_duration() {
-		$this->assertEquals(
-			array( 'remember_me_duration' => '1200005', 'auto_remember_me' => true ),
-			$this->obj->sanitize_remember_me_duration( array( 'remember_me_duration' => '1,200,005', 'auto_remember_me' => true ) )
-		);
-	}
-
-	public function test_sanitize_remember_me_duration_not_containing_remember_me_duration() {
-		$this->assertEquals( array( 'something' => '1,200' ), $this->obj->sanitize_remember_me_duration( array( 'something' => '1,200' ) ) );
 	}
 
 	/*
