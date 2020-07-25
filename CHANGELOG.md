@@ -8,7 +8,14 @@
 * Change: Update JavaScript coding syntax
 * Change; Add help text to the top of the settings page
 * Change: Use a superscript for footnote asterisk and extract markup from translatable string
-* Change: Update plugin framework to 050
+* Change: Update plugin framework to 051
+    * 051:
+    * Allow setting integer input value to include commas
+    * Use `number_format_i18n()` to format integer value within input field
+    * Update link to coffee2code.com to be HTTPS
+    * Update `readme_url()` to refer to plugin's readme.txt on plugins.svn.wordpress.org
+    * Remove defunct line of code
+    * 050:
     * Allow a hash entry to literally have '0' as a value without being entirely omitted when saved
     * Output donation markup using `printf()` rather than using string concatenation
     * Update copyright date (2020)
