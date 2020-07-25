@@ -3,7 +3,7 @@
 ## _(in-progress)_
 * New: Add HTML5 compliance by omitting `type` attribute to 'script' and 'style' tags when the theme supports 'html5'
 * New: Add help text to settings whose value change won't take effect until subsequent logins regarding as much
-* New: Add TODO.md and move existing TODO list from top of main plugin file into it
+* New: Add TODO.md and move existing TODO list from top of main plugin file into it (and add items to it)
 * Change: Allow use of commas in user-submitted value for `remember_me_duration` setting
 * Change: Update JavaScript coding syntax
 * Change; Add help text to the top of the settings page
