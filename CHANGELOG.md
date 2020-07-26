@@ -1,6 +1,13 @@
 # Changelog
 
-## _(in-progress)_
+## 1.9 _(2020-07-25)_
+
+### Highlights:
+
+This minor release adds support for using commas when setting the remember me duration, adds HTML5 compliance when supported by the theme, improves settings help text and other documentation, updates its plugin framework, adds a TODO.md file, updates a few URLs to be HTTPS, expands unit testing, updates compatibility to be WP 4.9 through 5.4+, and other minor behind-the-scenes tweaks.
+
+### Details:
+
 * New: Add HTML5 compliance by omitting `type` attribute to 'script' and 'style' tags when the theme supports 'html5'
 * New: Add help text to settings whose value change won't take effect until subsequent logins regarding as much
 * New: Add TODO.md and move existing TODO list from top of main plugin file into it (and add items to it)

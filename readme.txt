@@ -6,7 +6,7 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 4.9
 Tested up to: 5.4
-Stable tag: 1.8.1
+Stable tag: 1.9
 
 Have "Remember Me" checked by default on the login page and configure how long a login is remembered. Or disable the feature altogether.
 
@@ -90,6 +90,52 @@ Yes.
 
 == Changelog ==
 
+= 1.9 (2020-07-20) =
+
+Highlights:
+
+* This minor release adds support for using commas when setting the remember me duration, adds HTML5 compliance when supported by the theme, improves settings help text and other documentation, updates its plugin framework, adds a TODO.md file, updates a few URLs to be HTTPS, expands unit testing, updates compatibility to be WP 4.9 through 5.4+, and other minor behind-the-scenes tweaks.
+
+Details:
+
+* New: Add HTML5 compliance by omitting `type` attribute to 'script' and 'style' tags when the theme supports 'html5'
+* New: Add help text to settings whose value change won't take effect until subsequent logins regarding as much
+* New: Add TODO.md and move existing TODO list from top of main plugin file into it (and add items to it)
+* Change: Allow use of commas in user-submitted value for `remember_me_duration` setting
+* Change: Update JavaScript coding syntax
+* Change; Add help text to the top of the settings page
+* Change: Use a superscript for footnote asterisk and extract markup from translatable string
+* Change: Update plugin framework to 051
+    * 051:
+    * Allow setting integer input value to include commas
+    * Use `number_format_i18n()` to format integer value within input field
+    * Update link to coffee2code.com to be HTTPS
+    * Update `readme_url()` to refer to plugin's readme.txt on plugins.svn.wordpress.org
+    * Remove defunct line of code
+    * 050:
+    * Allow a hash entry to literally have '0' as a value without being entirely omitted when saved
+    * Output donation markup using `printf()` rather than using string concatenation
+    * Update copyright date (2020)
+    * Note compatibility through WP 5.4+
+    * Drop compatibility with version of WP older than 4.9
+* Change: Tweak text on help tab
+* Change: Add a few new FAQ entries and amend another
+* Change: Include another example scenario in which login cookies could be invalidated
+* Change: Tweak verbiage of various documentation
+* Change: Note compatibility through WP 5.4+
+* Change: Drop compatibility with versions of WP older than 4.9
+* Change: Update links to coffee2code.com to be HTTPS
+* Unit tests:
+    * New: Add `get_default_hooks()` as a helper method for getting the default hooks
+    * New: Add tests for `add_css()`, `add_js()`, `help_tabs_content()`, `maybe_add_hr()`, `options_page_description()`
+    * New: Add test for setting name
+    * New: Add test for hook registering
+    * Change: Store plugin instance in test object to simplify referencing it
+    * Change: Remove unnecessary unregistering of hooks in `tearDown()`
+    * Change: Remove duplicative `reset_options()` call
+    * Change: Use HTTPS for link to WP SVN repository in bin script for configuring unit tests
+* Change: Updated screenshot
+
 = 1.8.1 (2020-01-01) =
 * Change: Note compatibility through WP 5.3+
 * Change: Update copyright date (2020)
@@ -125,51 +171,13 @@ Details:
 * Change: Update License URI to be HTTPS
 * Change: Split paragraph in README.md's "Support" section into two
 
-= 1.7 (2018-04-19) =
-* New: Add support for BuddyPress Login widget
-* New: Add support for Sidebar Login plugin (https://wordpress.org/plugins/sidebar-login/)
-* New: Add support for Login Widget With Shortcode plugin (https://wordpress.org/plugins/login-sidebar-widget/)
-* New: Change login form defaults according to plugin settings
-* Change: Update plugin framework to 047
-    * 047:
-    * Don't save default setting values to database on install
-    * Change "Cheatin', huh?" error messages to "Something went wrong.", consistent with WP core
-    * Note compatibility through WP 4.9+
-    * Drop compatibility with version of WP older than 4.7
-    * 046:
-    * Fix `reset_options()` to reference instance variable `$options`
-    * Note compatibility through WP 4.7+
-    * Update copyright date (2017)
-    * 045:
-    * Ensure `reset_options()` resets values saved in the database
-    * 044:
-    * Add `reset_caches()` to clear caches and memoized data. Use it in `reset_options()` and `verify_config()`
-    * Add `verify_options()` with logic extracted from `verify_config()` for initializing default option attributes
-    * Add  `add_option()` to add a new option to the plugin's configuration
-    * Add filter 'sanitized_option_names' to allow modifying the list of whitelisted option names
-    * Change: Refactor `get_option_names()`
-    * 043:
-    * Disregard invalid lines supplied as part of hash option value
-    * 042:
-    * Update `disable_update_check()` to check for HTTP and HTTPS for plugin update check API URL
-    * Translate "Donate" in footer message
-* Change: Store setting name in class constant
-* New: Add README.md
-* New: Add FAQ indicating that the plugin is GDPR-compliant
-* Change: Unit tests:
-    * Add and improve unit tests
-    * Default `WP_TESTS_DIR` to `/tmp/wordpress-tests-lib` rather than erroring out if not defined via environment variable
-    * Enable more error output for unit tests
-* Change: Add GitHub link to readme
-* Change: Note compatibility through WP 4.9+
-* Change: Drop compatibility with versions of WP older than 4.7
-* Change: Update copyright date (2018)
-* Change: Update installation instruction to prefer built-in installer over .zip file
-
 _Full changelog is available in [CHANGELOG.md](https://github.com/coffee2code/remember-me-controls/blob/master/CHANGELOG.md)._
 
 
 == Upgrade Notice ==
+
+= 1.9 =
+Minor update: allowed commas in numerical input, improved documentation, added HTML5 compliance when supported by the theme, updated plugin framework, added TODO.md file, updated a few URLs to be HTTPS, expanded unit testing, updated compatibility to be WP 4.9 through 5.4+, and minor behind-the-scenes tweaks.
 
 = 1.8.1 =
 Trivial update: noted compatibility through WP 5.3+ and updated copyright date (2020)
