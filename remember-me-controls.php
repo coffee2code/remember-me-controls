@@ -10,7 +10,7 @@
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Description: Have "Remember Me" checked by default on the login page and configure how long a login is remembered. Or disable the feature altogether.
  *
- * Compatible with WordPress 4.9+ through 5.4+.
+ * Compatible with WordPress 4.9+ through 5.6+.
  *
  * =>> Read the accompanying readme.txt file for instructions and documentation.
  * =>> Also, visit the plugin's homepage for additional information and updates.
