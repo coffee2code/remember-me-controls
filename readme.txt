@@ -56,6 +56,8 @@ By default, if you log in without "Remember Me" checked, WordPress keeps you log
 
 WordPress remembers who you are based on cookies stored in your web browser. If you use a different web browser, clear your cookies, use a browser on a different machine, the site owner invalidates all existing login sessions, or you uninstall/reinstall (and possibly even just restart) your browser then you will have to log in again since WordPress will not be able to locate the cookies needed to identify you.
 
+Also, if you changed the remember me duration but hadn't logged out after having done so, that particular login session would still be affected by the default (or previously configured) duration.
+
 = How can I set the session duration to less than an hour? =
 
 You can't (and probably shouldn't). With a session length of less than an hour you risk timing out users too quickly.

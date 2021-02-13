@@ -1,6 +1,7 @@
 # Changelog
 
 ## _(in-progres)_
+* Change: Enhance a FAQ answer to make clear that an existing login session will not be affected by an update to the remember me duration (must log in again)
 * Change: Note compatibility through WP 5.6+
 * Change: Update copyright date (2021)
 
