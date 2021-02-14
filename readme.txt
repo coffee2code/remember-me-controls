@@ -6,7 +6,7 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 4.9
 Tested up to: 5.6
-Stable tag: 1.9
+Stable tag: 1.9.1
 
 Have "Remember Me" checked by default on the login page and configure how long a login is remembered. Or disable the feature altogether.
 
@@ -92,6 +92,12 @@ Yes.
 
 == Changelog ==
 
+= 1.9.1 (2021-02-13) =
+* Fix: Add missing textdomain. Props @kittmedia.
+* Change: Enhance a FAQ answer to make clear that an existing login session will not be affected by an update to the remember me duration (must log in again)
+* Change: Note compatibility through WP 5.6+
+* Change: Update copyright date (2021)
+
 = 1.9 (2020-07-20) =
 
 Highlights:
@@ -143,40 +149,13 @@ Details:
 * Change: Update copyright date (2020)
 * Change: Tweak changelog formatting for v1.8 release
 
-= 1.8 (2019-06-28) =
-Highlights:
-
-* This release is a minor update that verifies compatibility through WordPress 5.2+ and makes minor behind-the-scenes improvements.
-
-Details:
-
-* Change: Initialize plugin on `plugins_loaded` action instead of on load
-* Change: Update plugin framework to 049
-    * 049:
-    * Correct last arg in call to `add_settings_field()` to be an array
-    * Wrap help text for settings in `label` instead of `p`
-    * Only use `label` for help text for checkboxes, otherwise use `p`
-    * Ensure a `textarea` displays as a block to prevent orphaning of subsequent help text
-    * Note compatibility through WP 5.1+
-    * Update copyright date (2019)
-    * 048:
-    * When resetting options, delete the option rather than setting it with default values
-    * Prevent double "Settings reset" admin notice upon settings reset
-* New: Add CHANGELOG.md file and move all but most recent changelog entries into it
-* Unit tests:
-    * Change: Update unit test install script and bootstrap to use latest WP unit test repo
-    * Change: Ensure settings get reset before assigning newly set values
-    * Fix: Fix broken unit test
-* Change: Note compatibility through WP 5.2+
-* Change: Add link to plugin's page in Plugin Directory to README.md
-* Change: Update copyright date (2019)
-* Change: Update License URI to be HTTPS
-* Change: Split paragraph in README.md's "Support" section into two
-
 _Full changelog is available in [CHANGELOG.md](https://github.com/coffee2code/remember-me-controls/blob/master/CHANGELOG.md)._
 
 
 == Upgrade Notice ==
+
+= 1.9.1 =
+Trivial update: added missing translation textdomain, noted compatibility through WP 5.6+, and updated copyright date (2021)
 
 = 1.9 =
 Minor update: allowed commas in numerical input, improved documentation, added HTML5 compliance when supported by the theme, updated plugin framework, added TODO.md file, updated a few URLs to be HTTPS, expanded unit testing, updated compatibility to be WP 4.9 through 5.4+, and minor behind-the-scenes tweaks.
