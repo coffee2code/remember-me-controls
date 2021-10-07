@@ -8,6 +8,7 @@
         * Change: Move `tests/bootstrap.php` into `tests/phpunit/`
         * Change: Move `tests/test-*.php` into `tests/phpunit/tests/`
     * Change: Remove 'test-' prefix from unit test file
+    * Change: In bootstrap, store path to plugin file constant
 
 ## 1.9.1 _(2021-02-13)_
 * Fix: Add missing textdomain. Props @kittmedia.
