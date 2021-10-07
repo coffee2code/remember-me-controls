@@ -172,6 +172,85 @@ final class c2c_RememberMeControls extends c2c_RememberMeControls_Plugin_051 {
 	}
 
 	/**
+	 * Returns translated strings used by c2c_Plugin parent class.
+	 *
+	 * @since 2.0
+	 *
+	 * @param string $string Optional. The string whose translation should be
+	 *                       returned, or an empty string to return all strings.
+	 *                       Default ''.
+	 * @return string|string[] The translated string, or if a string was provided
+	 *                         but a translation was not found then the original
+	 *                         string, or an array of all strings if $string is ''.
+	 */
+	public function get_c2c_string( $string = '' ) {
+		$strings = array(
+			'%s cannot be cloned.'
+				/* translators: %s: Name of plugin class. */
+				=> __( '%s cannot be cloned.', 'remember-me-controls' ),
+			'%s cannot be unserialized.'
+				/* translators: %s: Name of plugin class. */
+				=> __( '%s cannot be unserialized.', 'remember-me-controls' ),
+			'A value is required for: "%s"'
+				/* translators: %s: Label for setting. */
+				=> __( 'A value is required for: "%s"', 'remember-me-controls' ),
+			'Click for more help on this plugin'
+				=> __( 'Click for more help on this plugin', 'remember-me-controls' ),
+			' (especially check out the "Other Notes" tab, if present)'
+				=> __( ' (especially check out the "Other Notes" tab, if present)', 'remember-me-controls' ),
+			'Coffee fuels my coding.'
+				=> __( 'Coffee fuels my coding.', 'remember-me-controls' ),
+			'Donate'
+				=> __( 'Donate', 'remember-me-controls' ),
+			'Expected integer value for: %s'
+				=> __( 'Expected integer value for: %s', 'remember-me-controls' ),
+			'If this plugin has been useful to you, please consider a donation'
+				=> __( 'If this plugin has been useful to you, please consider a donation', 'remember-me-controls' ),
+			'Invalid file specified for C2C_Plugin: %s'
+				/* translators: %s: Path to the plugin file. */
+				=> __( 'Invalid file specified for C2C_Plugin: %s', 'remember-me-controls' ),
+			'More information about %1$s %2$s'
+				/* translators: 1: plugin name 2: plugin version */
+				=> __( 'More information about %1$s %2$s', 'remember-me-controls' ),
+			'More Help'
+				=> __( 'More Help', 'remember-me-controls' ),
+			'More Plugin Help'
+				=> __( 'More Plugin Help', 'remember-me-controls' ),
+			'Reset Settings'
+				=> __( 'Reset Settings', 'remember-me-controls' ),
+			'Save Changes'
+				=> __( 'Save Changes', 'remember-me-controls' ),
+			'See the "Help" link to the top-right of the page for more help.'
+				=> __( 'See the "Help" link to the top-right of the page for more help.', 'remember-me-controls' ),
+			'Settings'
+				=> __( 'Settings', 'remember-me-controls' ),
+			'Settings reset.'
+				=> __( 'Settings reset.', 'remember-me-controls' ),
+			'Something went wrong.'
+				=> __( 'Something went wrong.', 'remember-me-controls' ),
+			"Thanks for the consideration; it's much appreciated."
+				=> __( "Thanks for the consideration; it's much appreciated.", 'remember-me-controls' ),
+			'The method %1$s should not be called until after the %2$s action.'
+				/* translators: 1: The name of a code function, 2: The name of a WordPress action. */
+				=> __( 'The method %1$s should not be called until after the %2$s action.', 'remember-me-controls' ),
+			'The plugin author homepage.'
+				=> __( 'The plugin author homepage.', 'remember-me-controls' ),
+			"The plugin configuration option '%s' must be supplied."
+				/* translators: %s: The setting configuration key name. */
+				=>__( "The plugin configuration option '%s' must be supplied.", 'remember-me-controls' ),
+			'This plugin brought to you by %s.'
+				/* translators: %s: Link to plugin author's homepage. */
+				=> __( 'This plugin brought to you by %s.', 'remember-me-controls' ),
+		);
+
+		if ( ! $string ) {
+			return array_values( $strings );
+		}
+
+		return ! empty( $strings[ $string ] ) ? $strings[ $string ] : $string;
+	}
+
+	/**
 	 * Outputs the text above the setting form.
 	 *
 	 * @param string $localized_heading_text Optional. Localized page heading text.
