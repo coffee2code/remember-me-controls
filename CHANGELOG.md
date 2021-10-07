@@ -2,6 +2,11 @@
 
 ## _(in-progress)_
 * Change: Note compatibility through WP 5.8+
+* Unit tests:
+    * Change: Restructure unit test directories
+        * CHange: Move `bin/` into `tests/`
+        * Change: Move `tests/bootstrap.php` into `tests/phpunit/`
+        * Change: Move `tests/test-*.php` into `tests/phpunit/tests/`
 
 ## 1.9.1 _(2021-02-13)_
 * Fix: Add missing textdomain. Props @kittmedia.
