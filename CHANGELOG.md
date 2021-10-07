@@ -9,6 +9,7 @@
         * Change: Move `tests/test-*.php` into `tests/phpunit/tests/`
     * Change: Remove 'test-' prefix from unit test file
     * Change: In bootstrap, store path to plugin file constant
+    * Change: In bootstrap, add backcompat for PHPUnit pre-v6.0
 
 ## 1.9.1 _(2021-02-13)_
 * Fix: Add missing textdomain. Props @kittmedia.
