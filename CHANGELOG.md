@@ -40,7 +40,7 @@
     * Note compatibility through WP 5.7+
     * Update copyright date (2021)
 * Change: Move translation of all parent class strings into main plugin file
-* Change: Note compatibility through WP 5.8+
+* Change: Note compatibility through WP 6.1+
 * Change: Update copyright date (2023)
 * Change: Tweak installation instruction
 * Unit tests:
