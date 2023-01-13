@@ -1,6 +1,7 @@
 # Changelog
 
 ## _(in-progress)_
+* Change: Omit `type` attribute to `script` and `style` tags
 * Change: Update plugin framework to 064
     * 064:
     * New: For checkbox settings, support a 'more_help' config option for defining help text to appear below checkbox and its label
