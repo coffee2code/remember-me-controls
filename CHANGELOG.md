@@ -1,6 +1,7 @@
 # Changelog
 
 ## _(in-progress)_
+* Change: Display notable helptext for settings as inline notices
 * Change: Omit `type` attribute to `script` and `style` tags
 * Change: Update plugin framework to 064
     * 064:

@@ -127,7 +127,10 @@ final class c2c_RememberMeControls extends c2c_Plugin_064 {
 				),
 				'help'     => __( 'Should user be remembered forever if "Remember Me" is checked? If so, then the "Remember Me duration" value below is ignored.', 'remember-me-controls' )
 					. sprintf( '<br><em><sup style="color:red;font-weight:bold;">*</sup>%s</em>', __( 'Not quite forever; technically it\'s 100 years.', 'remember-me-controls' ) )
-					. sprintf( '<br><em>%s</em>', __( 'NOTE: A change of this value only takes effect on subsequent logins.', 'remember-me-controls' ) ),
+					. sprintf(
+						'<p class="notice notice-info">%s</p>' . "\n",
+						__( 'NOTE: A change of this value only takes effect on subsequent logins.', 'remember-me-controls' )
+					),
 			),
 			'remember_me_duration' => array(
 				'input'    => 'shorttext',
@@ -135,14 +138,20 @@ final class c2c_RememberMeControls extends c2c_Plugin_064 {
 				'datatype' => 'int',
 				'label'    => __( 'Remember Me duration', 'remember-me-controls' ),
 				'help'     => __( 'The number of <strong>hours</strong> a login with "Remember Me" checked will last. If not provided, then the WordPress default of 336 (i.e. two weeks) will be used. This value is ignored if "Remember forever?" is checked above.', 'remember-me-controls' )
-					. sprintf( '<br><em>%s</em>', __( 'NOTE: A change of this value only takes effect on subsequent logins.', 'remember-me-controls' ) ),
+					. sprintf(
+						'<p class="notice notice-info">%s</p>' . "\n",
+						__( 'NOTE: A change of this value only takes effect on subsequent logins.', 'remember-me-controls' )
+					),
 			),
 			'disable_remember_me' => array(
 				'input'    => 'checkbox',
 				'default'  => false,
 				'label'    => __( 'Disable the "Remember Me" feature?', 'remember-me-controls' ),
 				'help'     => __( 'If checked, then the "Remember Me" checkbox will not appear on the login form and the login session will last no longer than 24 hours.', 'remember-me-controls' )
-					. sprintf( '<br><em>%s</em>', __( 'NOTE: A change of this value only affects the duration of existing login sessions on subsequent logins.', 'remember-me-controls' ) ),
+					. sprintf(
+						'<p class="notice notice-info">%s</p> ' . "\n",
+						__( 'NOTE: A change of this value only takes effect on subsequent logins.', 'remember-me-controls' )
+					),
 			),
 		);
 	}
