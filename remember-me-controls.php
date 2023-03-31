@@ -129,7 +129,7 @@ final class c2c_RememberMeControls extends c2c_Plugin_064 {
 					. sprintf( '<br><em><sup style="color:red;font-weight:bold;">*</sup>%s</em>', __( 'Not quite forever; technically it\'s 100 years.', 'remember-me-controls' ) )
 					. sprintf(
 						'<p class="notice notice-info">%s</p>' . "\n",
-						__( 'NOTE: A change of this value only takes effect on subsequent logins.', 'remember-me-controls' )
+						__( 'NOTE: A change of this value only affects current login sessions on subsequent logins.', 'remember-me-controls' )
 					),
 			),
 			'remember_me_duration' => array(
@@ -140,7 +140,7 @@ final class c2c_RememberMeControls extends c2c_Plugin_064 {
 				'help'     => __( 'The number of <strong>hours</strong> a login with "Remember Me" checked will last. If not provided, then the WordPress default of 336 (i.e. two weeks) will be used. This value is ignored if "Remember forever?" is checked above.', 'remember-me-controls' )
 					. sprintf(
 						'<p class="notice notice-info">%s</p>' . "\n",
-						__( 'NOTE: A change of this value only takes effect on subsequent logins.', 'remember-me-controls' )
+						__( 'NOTE: A change of this value only affects current login sessions on subsequent logins.', 'remember-me-controls' )
 					),
 			),
 			'disable_remember_me' => array(
@@ -150,7 +150,7 @@ final class c2c_RememberMeControls extends c2c_Plugin_064 {
 				'help'     => __( 'If checked, then the "Remember Me" checkbox will not appear on the login form and the login session will last no longer than 24 hours.', 'remember-me-controls' )
 					. sprintf(
 						'<p class="notice notice-info">%s</p> ' . "\n",
-						__( 'NOTE: A change of this value only takes effect on subsequent logins.', 'remember-me-controls' )
+						__( 'NOTE: A change of this value only affects current login sessions on subsequent logins.', 'remember-me-controls' )
 					),
 			),
 		);
