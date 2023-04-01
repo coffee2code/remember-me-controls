@@ -675,6 +675,8 @@ abstract class c2c_Plugin_064 {
 		.c2c-textarea, .c2c-inline_textarea {width:98%;font-family:"Courier New", Courier, mono; display: block; white-space: pre; word-wrap: normal; overflow-x: scroll;}
 		.see-help {font-size:x-small;font-style:italic;}
 		.more-help {display:block;margin-top:8px;}
+		.wrap .c2c-notice-inline {margin-bottom: 0;width: fit-content;}
+		input:disabled.c2c-short_text, input:disabled.c2c-long_text, input:disabled.c2c-text {border: 2px solid #ddd;box-shadow: none;}
 		</style>
 
 HTML;
