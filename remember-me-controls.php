@@ -133,11 +133,11 @@ final class c2c_RememberMeControls extends c2c_Plugin_064 {
 					),
 			),
 			'remember_me_duration' => array(
-				'input'    => 'shorttext',
+				'input'    => 'number',
 				'default'  => '',
 				'datatype' => 'int',
 				'label'    => __( 'Remember Me duration', 'remember-me-controls' ),
-				'help'     => __( 'The number of <strong>hours</strong> a login with "Remember Me" checked will last. If not provided, then the WordPress default of 336 (i.e. two weeks) will be used. This value is ignored if "Remember forever?" is checked above.', 'remember-me-controls' )
+				'help'     => __( 'The number of <strong>hours</strong> a login with "Remember Me" checked will last. If not provided or 0, then the WordPress default of 336 (i.e. two weeks) will be used. This value is ignored if "Remember forever?" is checked above.', 'remember-me-controls' )
 					. sprintf(
 						'<p class="notice notice-info">%s</p>' . "\n",
 						__( 'NOTE: This change will not immediately affect existing login sessions. It will only take effect the next time they log in.', 'remember-me-controls' )

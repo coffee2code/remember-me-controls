@@ -3,6 +3,7 @@
 ## _(in-progress)_
 * Change: Display notable helptext for settings as inline notices
 * Change: Omit `type` attribute to `script` and `style` tags
+* Change: Use a number field as the duration input field
 * Change: Update plugin framework to 064
     * _(in-progress)_:
     * Change: Add an 'id' attribute to settings form
