@@ -45,6 +45,7 @@ abstract class c2c_Plugin_064 {
 		'datatype'         => '',
 		'default'          => '',
 		'help'             => '',
+		'inline_help'      => '',
 		'input'            => '',
 		'input_attributes' => '',
 		'label'            => '',
@@ -1042,6 +1043,9 @@ HTML;
 			}
 		} else { // Only 'text' and 'password' should fall through to here.
 			echo "<input type='{$input}' {$attribs} value='" . esc_attr( $value ) . "' />\n";
+		}
+		if ( $help = apply_filters( $this->get_hook( 'option_help'), $this->config[ $opt ]['inline_help'], $opt, 'inline_help' ) ) {
+			echo "<p class='description inline-description'>{$help}</p>\n";
 		}
 		if ( $help = apply_filters( $this->get_hook( 'option_help'), $this->config[ $opt ]['help'], $opt, 'help' ) ) {
 			echo "<p class='description'>{$help}</p>\n";
