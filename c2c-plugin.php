@@ -1063,7 +1063,11 @@ HTML;
 
 		do_action( $this->get_hook( 'before_settings_form' ), $this );
 
-		echo "<form action='" . admin_url( 'options.php' ) . "' method='post' class='c2c-form'>\n";
+		printf(
+			'<form action="%s" method="post" id="%s" class="c2c-form">' . "\n",
+			esc_url( admin_url( 'options.php' ) ),
+			esc_attr( 'settings-' . $this->id_base )
+		);
 
 		settings_fields( $this->admin_options_name );
 		do_settings_sections( $this->plugin_file );

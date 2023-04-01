@@ -4,6 +4,8 @@
 * Change: Display notable helptext for settings as inline notices
 * Change: Omit `type` attribute to `script` and `style` tags
 * Change: Update plugin framework to 064
+    * _(in-progress)_:
+    * Change: Add an 'id' attribute to settings form
     * 064:
     * New: For checkbox settings, support a 'more_help' config option for defining help text to appear below checkbox and its label
     * Fix: Fix URL for plugin listing donate link
