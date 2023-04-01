@@ -7,6 +7,7 @@
     * _(in-progress)_:
     * Change: Add an 'id' attribute to settings form
     * Change: Add styles for disabled input text fields and inline setting help notices
+    * Change: Support 'number' input by assigning 'small-text' class
     * Change: Note compatibility through WP 6.2+
     * Change: Update copyright date (2023)
     * 064:

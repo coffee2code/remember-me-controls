@@ -1000,6 +1000,9 @@ HTML;
 			}
 			$input = 'text';
 		}
+		elseif ( 'number' === $input ) {
+			$this->config[ $opt ]['class'][] = 'small-text';
+		}
 		$class = implode( ' ', $this->config[ $opt ]['class'] );
 		$attribs = "name='{$popt}' id='{$opt}' class='{$class}' {$attributes}";
 		if ( $input == '' ) {
