@@ -647,10 +647,10 @@ abstract class c2c_Plugin_064 {
 		.long-text {width:98% !important;}
 		#c2c {
 			text-align:center;
-			color:#888;
+			color:#777;
 			background-color:#ffffef;
-			padding:5px 0 0;
-			margin-top:12px;
+			padding:1rem 0;
+			margin-top:4rem;
 			border-style:solid;
 			border-color:#dadada;
 			border-width:1px 0;
@@ -661,11 +661,13 @@ abstract class c2c_Plugin_064 {
 			padding:5px 40px 0 0;
 			width:45%;
 			min-height:40px;
-			background:url('$logo') no-repeat top right;
+			background:url('$logo') no-repeat center right;
+			font-size:larger;
 		}
 		#c2c span {
 			display:block;
-			font-size:x-small;
+			font-size:smaller;
+			margin-top:0.5rem;
 		}
 		.form-table {margin-bottom:20px;}
 		.c2c-plugin-list {margin-left:2em;}
