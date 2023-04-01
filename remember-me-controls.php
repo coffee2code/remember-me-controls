@@ -128,7 +128,7 @@ final class c2c_RememberMeControls extends c2c_Plugin_064 {
 				'help'     => __( 'Should user be remembered forever if "Remember Me" is checked? If so, then the "Remember Me duration" value below is ignored.', 'remember-me-controls' )
 					. sprintf( '<br><em><sup style="color:red;font-weight:bold;">*</sup>%s</em>', __( 'Not quite forever; technically it\'s 100 years.', 'remember-me-controls' ) )
 					. sprintf(
-						'<p class="notice notice-info">%s</p>' . "\n",
+						'<p class="c2c-notice-inline notice notice-info">%s</p>' . "\n",
 						__( 'NOTE: This change will not immediately affect existing login sessions. It will only take effect the next time they log in.', 'remember-me-controls' )
 					),
 			),
@@ -139,7 +139,7 @@ final class c2c_RememberMeControls extends c2c_Plugin_064 {
 				'label'    => __( 'Remember Me duration', 'remember-me-controls' ),
 				'help'     => __( 'The number of <strong>hours</strong> a login with "Remember Me" checked will last. If not provided or 0, then the WordPress default of 336 (i.e. two weeks) will be used. This value is ignored if "Remember forever?" is checked above.', 'remember-me-controls' )
 					. sprintf(
-						'<p class="notice notice-info">%s</p>' . "\n",
+						'<p class="c2c-notice-inline notice notice-info">%s</p>' . "\n",
 						__( 'NOTE: This change will not immediately affect existing login sessions. It will only take effect the next time they log in.', 'remember-me-controls' )
 					),
 			),
@@ -149,7 +149,7 @@ final class c2c_RememberMeControls extends c2c_Plugin_064 {
 				'label'    => __( 'Disable the "Remember Me" feature?', 'remember-me-controls' ),
 				'help'     => __( 'If checked, then the "Remember Me" checkbox will not appear on the login form and the login session will last no longer than 24 hours.', 'remember-me-controls' )
 					. sprintf(
-						'<p class="notice notice-info">%s</p> ' . "\n",
+						'<p class="c2c-notice-inline notice notice-info">%s</p> ' . "\n",
 						__( 'NOTE: This change will not immediately affect existing login sessions. It will only take effect the next time they log in.', 'remember-me-controls' )
 					),
 			),
