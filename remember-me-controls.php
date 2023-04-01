@@ -162,6 +162,7 @@ final class c2c_RememberMeControls extends c2c_Plugin_064 {
 	 */
 	public function register_filters() {
 		add_action( 'auth_cookie_expiration',                 array( $this, 'auth_cookie_expiration' ), 10, 3 );
+		add_action( 'admin_head',                             array( $this, 'add_admin_js' ) );
 		add_action( 'login_head',                             array( $this, 'add_css' ) );
 		add_filter( 'login_footer',                           array( $this, 'add_js' ) );
 		add_action( $this->get_hook( 'post_display_option' ), array( $this, 'maybe_add_hr' ) );
@@ -323,6 +324,40 @@ final class c2c_RememberMeControls extends c2c_Plugin_064 {
 
 HTML;
 		}
+	}
+
+	/**
+	 * Outputs admin JavaScript within script tags.
+	 */
+	public function add_admin_js() {
+		// Bail if not on plugin settings page.
+		if ( ! $this->is_plugin_admin_page() ) {
+			return;
+		}
+
+		echo <<<HTML
+		<script>
+			document.addEventListener("DOMContentLoaded", function(){
+				const remember_forever_checkbox = document.getElementById('remember_me_forever');
+				const remember_me_duration      = document.getElementById('remember_me_duration');
+
+				if ( null === remember_forever_checkbox ) {
+					return;
+				}
+
+				// Disable duration field if remember forever is checked.
+				if ( remember_forever_checkbox.checked ) {
+					remember_me_duration.disabled = true;
+				}
+
+				// Toggle duration field state based on remember forever checkbox.
+				remember_forever_checkbox.addEventListener('click', function(){
+					remember_me_duration.disabled = remember_forever_checkbox.checked;
+				});
+			});
+		</script>
+
+HTML;
 	}
 
 	/**

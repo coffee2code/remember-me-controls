@@ -28,6 +28,21 @@ class Remember_Me_Controls_Test extends WP_UnitTestCase {
 
 	//
 	//
+	// HELPER FUNCTIONS
+	//
+	//
+
+
+	protected function set_current_screen( $screen = '' ) {
+		if ( ! $screen ) {
+			$screen = 'options-general.php?page=remember-me-controls%2Fremember-me-controls.php';
+		}
+
+		set_current_screen( $screen );
+	}
+
+	//
+	//
 	// DATA PROVIDERS
 	//
 	//
@@ -36,6 +51,7 @@ class Remember_Me_Controls_Test extends WP_UnitTestCase {
 	public static function get_default_hooks() {
 		return array(
 			array( 'action', 'auth_cookie_expiration',               'auth_cookie_expiration' ),
+			array( 'action', 'admin_head',                           'add_admin_js' ),
 			array( 'action', 'login_head',                           'add_css' ),
 			array( 'filter', 'login_footer',                         'add_js' ),
 			array( 'action', 'remember_me_controls__post_display_option', 'maybe_add_hr' ),
@@ -162,7 +178,7 @@ JS;
 
 	// Note that this does not test the full text content of the tab, just the start.
 	public function test_help_tabs_content() {
-		set_current_screen( 'edit' );
+		$this->set_current_screen( 'edit' );
 		$screen = get_current_screen();
 		$tab = 'remember-me-controls-about';
 		// Must match the start of the content at the very least.
@@ -421,6 +437,43 @@ JS;
 		c2c_RememberMeControls::uninstall();
 
 		$this->assertFalse( get_option( $option_name ) );
+	}
+
+	/*
+	 * add_admin_js()
+	 */
+
+	/**
+	 * @expectedIncorrectUsage c2c_Plugin_065::is_plugin_admin_page
+	 */
+	public function test_add_admin_js_does_not_add_js_generally() {
+		$this->expectOutputRegex( '~^$~', $this->obj->add_admin_js() );
+	}
+
+	public function test_add_admin_js_does_not_add_js_on_non_plugin_settings_admin_page() {
+		global $wp_actions;
+		// Mock the fact that the plugin's setting page is currently loaded.
+		if ( ! defined( 'WP_ADMIN' ) ) {
+			define( 'WP_ADMIN', true );
+		}
+		$wp_actions['admin_init'] = 1;
+		$this->set_current_screen( 'edit' );
+		$this->obj->options_page = 'edit';
+
+		$this->expectOutputRegex( '~^$~', $this->obj->add_admin_js() );
+	}
+
+	public function test_add_admin_js_adds_js_to_plugin_settings_page() {
+		global $wp_actions;
+		// Mock the fact that the plugin's setting page is currently loaded.
+		if ( ! defined( 'WP_ADMIN' ) ) {
+			define( 'WP_ADMIN', true );
+		}
+		$wp_actions['admin_init'] = 1;
+		$this->set_current_screen();
+		$this->obj->options_page = 'options-generalphppageremember-me-controls2fremember-me-controls';
+
+		$this->expectOutputRegex( '~<script>.+</script>~s', $this->obj->add_admin_js() );
 	}
 
 }

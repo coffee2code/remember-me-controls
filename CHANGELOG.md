@@ -1,6 +1,7 @@
 # Changelog
 
 ## _(in-progress)_
+* Change: Disable duration field via JS on page load and on setting toggle if remember me forever is enabled
 * Change: Display notable helptext for settings as inline notices
 * Change: Omit `type` attribute to `script` and `style` tags
 * Change: Use a number field as the duration input field
