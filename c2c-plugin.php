@@ -12,7 +12,7 @@ Compatible with WordPress 4.9 through 5.7+.
 */
 
 /*
-	Copyright (c) 2010-2021 by Scott Reilly (aka coffee2code)
+	Copyright (c) 2010-2023 by Scott Reilly (aka coffee2code)
 
 	This program is free software; you can redistribute it and/or
 	modify it under the terms of the GNU General Public License

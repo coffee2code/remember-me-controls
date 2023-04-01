@@ -6,6 +6,7 @@
 * Change: Update plugin framework to 064
     * _(in-progress)_:
     * Change: Add an 'id' attribute to settings form
+    * Change: Update copyright date (2023)
     * 064:
     * New: For checkbox settings, support a 'more_help' config option for defining help text to appear below checkbox and its label
     * Fix: Fix URL for plugin listing donate link
