@@ -1,6 +1,10 @@
 # Changelog
 
 ## _(in-progress)_
+* Change: Improve plugin's settings page
+    * Change: Reword labels and help text for clarity and brevity
+    * Change: Add additional help text to clarify how settings are related
+    * Change: Improve style and layout of help text
 * Change: Disable duration field via JS on page load and on setting toggle if remember me forever is enabled
 * Change: Display notable helptext for settings as inline notices
 * Change: Omit `type` attribute to `script` and `style` tags
