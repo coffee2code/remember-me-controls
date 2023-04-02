@@ -8,6 +8,7 @@
     * Change: Improve style and layout of help text
 * Change: Disable duration field via JS on page load and on setting toggle if remember me forever is enabled
 * Change: Display notable helptext for settings as inline notices
+* Change: Clarify that disabling the "Remember Me" feature will causes sessions to last 2 days, not 1
 * Change: Omit `type` attribute to `script` and `style` tags
 * Change: Use a number field as the duration input field
 * Change: Improve formatting of text in Help panel

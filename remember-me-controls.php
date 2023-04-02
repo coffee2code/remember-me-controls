@@ -163,7 +163,7 @@ final class c2c_RememberMeControls extends c2c_Plugin_064 {
 				'input'    => 'checkbox',
 				'default'  => false,
 				'label'    => __( 'Never remember?', 'remember-me-controls' ),
-				'help'     => __( 'Remove the "Remember Me" checkbox from the login form and limit login sessions to no longer than 24 hours.', 'remember-me-controls' ),
+				'help'     => __( 'Remove the "Remember Me" checkbox from the login form and limit login sessions to no longer than 2 days (48 hours).', 'remember-me-controls' ),
 				'raw_help' => '<ul class="description"><li>'
 					. __( 'If checked, then all other settings are disabled and ignored.', 'remember-me-controls' )
 					. '</li></ul>'
@@ -309,7 +309,7 @@ final class c2c_RememberMeControls extends c2c_Plugin_064 {
 				'<ul class="c2c-plugin-list">' . "\n" .
 				'<li><strong>' . __( 'Automatically check "Remember Me"', 'remember-me-controls' ) . '</strong><br>' . __( 'Have the "Remember Me" checkbox automatically checked when the login form is loaded (it isn\'t checked by default).', 'remember-me-controls' ) . "</li>\n" .
 				'<li><strong>' . __( 'Customize the duration of the "Remember Me"', 'remember-me-controls' ) . '</strong><br>' . __( 'Customize how long WordPress will remember a login session when "Remember Me" is checked, either forever or a customizable number of hours.', 'remember-me-controls' ) . "</li>\n" .
-				'<li><strong>' . __( 'Disable "Remember Me"', 'remember-me-controls' ) . '</strong><br>' . __( 'Completely disable the feature, preventing the checkbox from appearing and restricting all login sessions to one day.', 'remember-me-controls' ) . "</li>\n" .
+				'<li><strong>' . __( 'Disable "Remember Me"', 'remember-me-controls' ) . '</strong><br>' . __( 'Completely disable the feature, preventing the checkbox from appearing and restricting all login sessions to two days.', 'remember-me-controls' ) . "</li>\n" .
 				"</ul>\n",
 		) );
 
