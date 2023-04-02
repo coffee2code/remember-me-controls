@@ -11,6 +11,7 @@
 * Change: Omit `type` attribute to `script` and `style` tags
 * Change: Use a number field as the duration input field
 * Change: Improve formatting of text in Help panel
+* Change: Add FAQ item to address how to make login session duration changes take effect immediately
 * Change: Update plugin framework to 064
     * _(in-progress)_:
     * New: Add support for 'inline_help' setting configuration option

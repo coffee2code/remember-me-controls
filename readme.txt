@@ -64,9 +64,20 @@ You can't (and probably shouldn't). With a session length of less than an hour y
 
 = Do changes to the remember me duration take effect for all current login sessions? =
 
-No. The duration for which a login cookie is valid is defined within the cookie when it gets created (which is when you log in). Changing the setting for the remember me duration will only affect cookies created thereafter. You can log out and then log back in if you want the newly configured remember me duration to apply to your session.
+No. The duration for which a login cookie is valid is defined within the cookie when it gets created (which is when you log in). Changing the setting for the remember me duration will only affect cookies created thereafter. You can log out and then log back in if you want the newly configured remember me duration to apply to your session. More precisely, the changes take effect for all *new* logins, which can happen after a preexisting login session expires, the user logs out, or the user's cookies are cleared in their browser (manually or automatically).
 
-= What plugins is this plugin compatible with? =
+= How can I make the plugin configuration changes I've made take effect immediately? =
+
+As explained in the previous FAQ entry, changes to the plugin's settings only take effect the next time a user logs in. Existing login sessions will abide by the remember me duration configured at the time they logged into their current session.
+
+The login cookies for a user session can become invalidated by the visitor by logging out or clearing their cookies.
+
+Here are some options to force all active login sessions to abide by the current login session duration:
+* [Manually refresh](https://developer.wordpress.org/reference/functions/wp_salt/) your site's authentication keys and salts.
+* Use WP-CLI to [regenerate salts](https://developer.wordpress.org/cli/commands/config/shuffle-salts/).
+* Use the plugin [WPForce Logout](https://wordpress.org/plugins/wp-force-logout/) (to force session logouts) or [Salt Shaker](https://wordpress.org/plugins/salt-shaker/) (to regenerate salts). _Note: Plugins are merely suggestions and not necessarily recommendations._
+
+= What plugins are this plugin compatible with? =
 
 Special handling has been added to provide compatibility with the following plugins:
 
