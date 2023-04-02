@@ -307,9 +307,9 @@ final class c2c_RememberMeControls extends c2c_Plugin_064 {
 				'<p>' . __( 'For those unfamiliar, "Remember Me" is a checkbox present when logging into WordPress. If checked, by default WordPress will remember the login session for 14 days. If unchecked, the login session will be remembered for only 2 days. Once a login session expires, WordPress will require you to log in again if you wish to continue using the admin section of the site.', 'remember-me-controls' ) . "</p>\n" .
 				'<p>' . __( 'This plugin provides three primary controls over the behavior of the "Remember Me" feature:', 'remember-me-controls' ) . "</p>\n" .
 				'<ul class="c2c-plugin-list">' . "\n" .
-				'<li>' . __( 'Automatically check "Remember Me" : Have the "Remember Me" checkbox automatically checked when the login form is loaded (it isn\'t checked by default).', 'remember-me-controls' ) . "</li>\n" .
-				'<li>' . __( 'Customize the duration of the "Remember Me" : Customize how long WordPress will remember a login session when "Remember Me" is checked, either forever or a customizable number of hours.', 'remember-me-controls' ) . "</li>\n" .
-				'<li>' . __( 'Disable "Remember Me" : Completely disable the feature, preventing the checkbox from appearing and restricting all login sessions to one day.', 'remember-me-controls' ) . "</li>\n" .
+				'<li><strong>' . __( 'Automatically check "Remember Me"', 'remember-me-controls' ) . '</strong><br>' . __( 'Have the "Remember Me" checkbox automatically checked when the login form is loaded (it isn\'t checked by default).', 'remember-me-controls' ) . "</li>\n" .
+				'<li><strong>' . __( 'Customize the duration of the "Remember Me"', 'remember-me-controls' ) . '</strong><br>' . __( 'Customize how long WordPress will remember a login session when "Remember Me" is checked, either forever or a customizable number of hours.', 'remember-me-controls' ) . "</li>\n" .
+				'<li><strong>' . __( 'Disable "Remember Me"', 'remember-me-controls' ) . '</strong><br>' . __( 'Completely disable the feature, preventing the checkbox from appearing and restricting all login sessions to one day.', 'remember-me-controls' ) . "</li>\n" .
 				"</ul>\n",
 		) );
 

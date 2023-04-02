@@ -9,6 +9,7 @@
 * Change: Display notable helptext for settings as inline notices
 * Change: Omit `type` attribute to `script` and `style` tags
 * Change: Use a number field as the duration input field
+* Change: Improve formatting of text in Help panel
 * Change: Update plugin framework to 064
     * _(in-progress)_:
     * New: Add support for 'inline_help' setting configuration option
