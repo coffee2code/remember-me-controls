@@ -417,6 +417,7 @@ HTML;
 	public function auth_cookie_expiration( $expiration, $user_id, $remember ) {
 		$options = $this->get_options();
 		$max_expiration = 100 * YEAR_IN_SECONDS; // 100 years
+		$min_expiration = HOUR_IN_SECONDS;
 
 		if ( $options['disable_remember_me'] ) { // Regardless of checkbutton state, if 'remember me' is disabled, use the non-remember-me duration
 			$expiration = 2 * DAY_IN_SECONDS;
@@ -429,6 +430,9 @@ HTML;
 		// In reality, we just need to prevent the user from specifying an expiration that would
 		// exceed the year 9999. But a fixed max expiration is simpler and quite reasonable.
 		$expiration = min( $expiration, $max_expiration );
+
+		// Ensure an expiration of less than an hour is not used.
+		$expiration = max( $expiration, $min_expiration );
 
 		return $expiration;
 	}

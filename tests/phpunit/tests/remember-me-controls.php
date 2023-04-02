@@ -4,6 +4,7 @@ defined( 'ABSPATH' ) or die();
 
 class Remember_Me_Controls_Test extends WP_UnitTestCase {
 
+	public $default_duration = 3 * DAY_IN_SECONDS;
 	protected $obj;
 
 	public static function setUpBeforeClass() {
@@ -255,52 +256,60 @@ JS;
 	 */
 
 	public function test_auth_cookie_expiration_is_unaffected_if_plugin_not_configured() {
-		$this->assertEquals( 456, $this->obj->auth_cookie_expiration( 456, 1, false ) );
+		$this->assertEquals( $this->default_duration, $this->obj->auth_cookie_expiration( $this->default_duration, 1, false ) );
+	}
+
+	public function test_auth_cookie_expiration_by_default_result_in_minimum_expiration() {
+		$this->assertEquals( 1 * HOUR_IN_SECONDS, $this->obj->auth_cookie_expiration( 0.5, 1, true ) );
+	}
+
+	public function test_auth_cookie_expiration_one_hour_is_valid() {
+		$this->assertEquals( 1 * HOUR_IN_SECONDS, $this->obj->auth_cookie_expiration( 1, 1, true ) );
 	}
 
 	public function test_auth_cookie_expiration_is_unaffected_if_remember_me_not_checked() {
 		$this->set_option( array( 'remember_me_forever' => true, 'remember_me_duration' => 27 ) );
-		$this->assertEquals( 456, $this->obj->auth_cookie_expiration( 456, 1, false ) );
+		$this->assertEquals( $this->default_duration, $this->obj->auth_cookie_expiration( $this->default_duration, 1, false ) );
 	}
 
 	public function test_auth_cookie_expiration_if_remember_me_forever() {
 		$this->set_option( array( 'remember_me_forever' => true ) );
-		$this->assertEquals( 100 * YEAR_IN_SECONDS, $this->obj->auth_cookie_expiration( 456, 1, true ) );
+		$this->assertEquals( 100 * YEAR_IN_SECONDS, $this->obj->auth_cookie_expiration( $this->default_duration, 1, true ) );
 	}
 
 	public function test_auth_cookie_expiration_remember_me_forever_has_priority_over_remember_me_duration() {
 		$this->set_option( array( 'remember_me_forever' => true, 'remember_me_duration' => 200 ) );
-		$this->assertEquals( 100 * YEAR_IN_SECONDS, $this->obj->auth_cookie_expiration( 456, 1, true ) );
+		$this->assertEquals( 100 * YEAR_IN_SECONDS, $this->obj->auth_cookie_expiration( $this->default_duration, 1, true ) );
 	}
 
 	public function test_auth_cookie_expiration_if_remember_me_duration() {
 		$this->set_option( array( 'remember_me_duration' => 24 * 21 ) );
-		$this->assertEquals( 24 * 21 * HOUR_IN_SECONDS, $this->obj->auth_cookie_expiration( 456, 1, true ) );
+		$this->assertEquals( 24 * 21 * HOUR_IN_SECONDS, $this->obj->auth_cookie_expiration( $this->default_duration, 1, true ) );
 	}
 
 	public function test_auth_cookie_expiration_remember_me_duration_does_not_exceed_max() {
 		$this->set_option( array( 'remember_me_duration' => 24 * 365 * 101 ) ); // 101 years
-		$this->assertEquals( 100 * YEAR_IN_SECONDS, $this->obj->auth_cookie_expiration( 456, 1, true ) );
+		$this->assertEquals( 100 * YEAR_IN_SECONDS, $this->obj->auth_cookie_expiration( $this->default_duration, 1, true ) );
 	}
 
 	public function test_auth_cookie_expiration_remember_me_duration_of_0_result_in_default_expiration() {
 		$this->set_option( array( 'remember_me_duration' => 0 ) );
-		$this->assertEquals( 456, $this->obj->auth_cookie_expiration( 456, 1, true ) );
+		$this->assertEquals( $this->default_duration, $this->obj->auth_cookie_expiration( $this->default_duration, 1, true ) );
 	}
 
 	public function test_auth_cookie_expiration_if_remember_unchecked_and_disable_remember_me() {
 		$this->set_option( array( 'disable_remember_me' => true ) );
-		$this->assertEquals( 2 * DAY_IN_SECONDS, $this->obj->auth_cookie_expiration( 456, 1, false ) );
+		$this->assertEquals( 2 * DAY_IN_SECONDS, $this->obj->auth_cookie_expiration( $this->default_duration, 1, false ) );
 	}
 
 	public function test_auth_cookie_expiration_if_remember_checked_and_disable_remember_me() {
 		$this->set_option( array( 'disable_remember_me' => true ) );
-		$this->assertEquals( 2 * DAY_IN_SECONDS, $this->obj->auth_cookie_expiration( 456, 1, true ) );
+		$this->assertEquals( 2 * DAY_IN_SECONDS, $this->obj->auth_cookie_expiration( $this->default_duration, 1, true ) );
 	}
 
 	public function test_auth_cookie_expiration_if_remember_checked_that_disable_remember_me_has_top_priority() {
 		$this->set_option( array( 'disable_remember_me' => true, 'remember_me_forever' => true, 'remember_me_duration' => 33 ) );
-		$this->assertEquals( 2 * DAY_IN_SECONDS, $this->obj->auth_cookie_expiration( 456, 1, true ) );
+		$this->assertEquals( 2 * DAY_IN_SECONDS, $this->obj->auth_cookie_expiration( $this->default_duration, 1, true ) );
 	}
 
 	/*

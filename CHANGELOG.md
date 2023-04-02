@@ -1,6 +1,7 @@
 # Changelog
 
 ## _(in-progress)_
+* Change: Enforce a minimum of one hour for login session duration
 * Change: Dynamically disable settings input fields if their functionality is disabled by another setting's value
 * Change: Improve plugin's settings page
     * Change: Reword labels and help text for clarity and brevity
