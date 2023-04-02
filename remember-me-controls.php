@@ -418,13 +418,16 @@ HTML;
 		$options = $this->get_options();
 		$max_expiration = 100 * YEAR_IN_SECONDS; // 100 years
 		$min_expiration = HOUR_IN_SECONDS;
+		$default_expiration = 2 * DAY_IN_SECONDS;
 
 		if ( $options['disable_remember_me'] ) { // Regardless of checkbutton state, if 'remember me' is disabled, use the non-remember-me duration
-			$expiration = 2 * DAY_IN_SECONDS;
+			$expiration = $default_expiration;
 		} elseif ( $remember && $options['remember_me_forever'] ) {
 			$expiration = $max_expiration;
 		} elseif ( $remember && ( (int) $options['remember_me_duration'] >= 1 ) ) {
 			$expiration = (int) $options['remember_me_duration'] * HOUR_IN_SECONDS;
+		} elseif ( ! $expiration ) {
+			$expiration = $default_expiration;
 		}
 
 		// In reality, we just need to prevent the user from specifying an expiration that would

@@ -2,6 +2,7 @@
 
 ## _(in-progress)_
 * Change: Enforce a minimum of one hour for login session duration
+* Change: Return default login session duration (2 days) if for some reason a 0 duration is encountered
 * Change: Dynamically disable settings input fields if their functionality is disabled by another setting's value
 * Change: Improve plugin's settings page
     * Change: Reword labels and help text for clarity and brevity

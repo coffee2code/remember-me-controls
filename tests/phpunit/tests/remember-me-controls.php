@@ -259,6 +259,10 @@ JS;
 		$this->assertEquals( $this->default_duration, $this->obj->auth_cookie_expiration( $this->default_duration, 1, false ) );
 	}
 
+	public function test_auth_cookie_expiration_by_default_result_in_default_expiration() {
+		$this->assertEquals( 2 * DAY_IN_SECONDS, $this->obj->auth_cookie_expiration( 0, 1, true ) );
+	}
+
 	public function test_auth_cookie_expiration_by_default_result_in_minimum_expiration() {
 		$this->assertEquals( 1 * HOUR_IN_SECONDS, $this->obj->auth_cookie_expiration( 0.5, 1, true ) );
 	}
