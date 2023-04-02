@@ -54,6 +54,7 @@ abstract class c2c_Plugin_064 {
 		'numbered'         => false,
 		'options'          => '',
 		'output'           => '', // likely deprecated
+		'raw_help'         => '',
 		'required'         => false
 	);
 	protected $donation_url       = 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6ARCFJ9TX3522';
@@ -1049,14 +1050,21 @@ HTML;
 		} else { // Only 'text' and 'password' should fall through to here.
 			echo "<input type='{$input}' {$attribs} value='" . esc_attr( $value ) . "' />\n";
 		}
+		// Help intended to be inline (usually with a text field; checkboxes naturally have their help inline)
 		if ( $help = apply_filters( $this->get_hook( 'option_help'), $this->config[ $opt ]['inline_help'], $opt, 'inline_help' ) ) {
 			echo "<p class='description inline-description'>{$help}</p>\n";
 		}
+		// Help intended to be shown below an input field.
 		if ( $help = apply_filters( $this->get_hook( 'option_help'), $this->config[ $opt ]['help'], $opt, 'help' ) ) {
 			echo "<p class='description'>{$help}</p>\n";
 		}
+		// Additional paragraph of help intended to follow the main 'help'.
 		if ( $help = apply_filters( $this->get_hook( 'option_help'), $this->config[ $opt ]['more_help'], $opt, 'more_help' ) ) {
 			echo "<p class='description'>{$help}</p>\n";
+		}
+		// Additional help of custom markup (block elements that wouldn't fit into the default help paragraph markup).
+		if ( $help = apply_filters( $this->get_hook( 'option_help'), $this->config[ $opt ]['raw_help'], $opt, 'raw_help' ) ) {
+			echo $help . "\n";
 		}
 
 		do_action( $this->get_hook( 'post_display_option' ), $opt );

@@ -14,6 +14,7 @@
 * Change: Update plugin framework to 064
     * _(in-progress)_:
     * New: Add support for 'inline_help' setting configuration option
+    * New: Add support for 'raw_help' setting configuration option
     * New: Add support for use of lists within settings descriptions
     * Change: Add an 'id' attribute to settings form
     * Change: Add styles for disabled input text fields and inline setting help notices
