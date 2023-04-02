@@ -360,19 +360,41 @@ HTML;
 			document.addEventListener("DOMContentLoaded", function(){
 				const remember_forever_checkbox = document.getElementById('remember_me_forever');
 				const remember_me_duration      = document.getElementById('remember_me_duration');
+				const never_remember_checkbox   = document.getElementById('disable_remember_me');
+				const auto_remember_me_checkbox = document.getElementById('auto_remember_me');
 
 				if ( null === remember_forever_checkbox ) {
 					return;
 				}
 
-				// Disable duration field if remember forever is checked.
-				if ( remember_forever_checkbox.checked ) {
-					remember_me_duration.disabled = true;
+				function disableBasedOnRememberForever() {
+					// Disable duration field if remember forever is checked.
+					remember_me_duration.disabled = remember_forever_checkbox.checked;
 				}
 
-				// Toggle duration field state based on remember forever checkbox.
+				disableBasedOnRememberForever();
+
+				// Update disabling of fields based on remember forever checkbox.
 				remember_forever_checkbox.addEventListener('click', function(){
-					remember_me_duration.disabled = remember_forever_checkbox.checked;
+					disableBasedOnRememberForever();
+				});
+
+				if ( null === never_remember_checkbox ) {
+					return;
+				}
+
+				function disableBasedOnNeverRemember() {
+					// Disable all other fields if never remember is checked.
+					auto_remember_me_checkbox.disabled = never_remember_checkbox.checked;
+					remember_forever_checkbox.disabled = never_remember_checkbox.checked;
+					remember_me_duration.disabled = never_remember_checkbox.checked || remember_forever_checkbox.checked;
+				}
+
+				disableBasedOnNeverRemember();
+
+				// Update disabling of fields based on remember forever checkbox.
+				never_remember_checkbox.addEventListener('click', function(){
+					disableBasedOnNeverRemember();
 				});
 			});
 		</script>

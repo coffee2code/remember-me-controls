@@ -1,6 +1,7 @@
 # Changelog
 
 ## _(in-progress)_
+* Change: Dynamically disable settings input fields if their functionality is disabled by another setting's value
 * Change: Improve plugin's settings page
     * Change: Reword labels and help text for clarity and brevity
     * Change: Add additional help text to clarify how settings are related
