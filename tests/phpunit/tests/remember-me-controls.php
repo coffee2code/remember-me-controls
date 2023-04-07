@@ -174,6 +174,30 @@ JS;
 	}
 
 	/*
+	 * get_max_login_duration()
+	 */
+
+	public function test_get_max_login_duration() {
+		$this->assertEquals( 100 * YEAR_IN_SECONDS, $this->obj->get_max_login_duration() );
+	}
+
+	/*
+	 * get_min_login_duration()
+	 */
+
+	public function test_get_min_login_duration() {
+		$this->assertEquals( HOUR_IN_SECONDS, $this->obj->get_min_login_duration() );
+	}
+
+	/*
+	 * get_default_login_duration()
+	 */
+
+	public function test_get_default_login_duration() {
+		$this->assertEquals( 2 * DAY_IN_SECONDS, $this->obj->get_default_login_duration() );
+	}
+
+	/*
 	 * help_tabs_content()
 	 */
 

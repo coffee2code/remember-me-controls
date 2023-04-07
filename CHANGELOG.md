@@ -1,6 +1,7 @@
 # Changelog
 
 ## _(in-progress)_
+* New: Add getters for the acceptable maximum, minimum, and default non-remembered login duration values
 * Change: Enforce a minimum of one hour for login session duration
 * Change: Return default login session duration (2 days) if for some reason a 0 duration is encountered
 * Change: Dynamically disable settings input fields if their functionality is disabled by another setting's value

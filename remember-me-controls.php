@@ -403,6 +403,33 @@ HTML;
 	}
 
 	/**
+	 * Returns the maximum login duration.
+	 *
+	 * @return int Duration in seconds.
+	 */
+	public function get_max_login_duration() {
+		return 100 * YEAR_IN_SECONDS; // 100 years
+	}
+
+	/**
+	 * Returns the minimum login duration.
+	 *
+	 * @return int Duration in seconds.
+	 */
+	public function get_min_login_duration() {
+		return HOUR_IN_SECONDS;
+	}
+
+	/**
+	 * Returns the default login duration when not being remembered.
+	 *
+	 * @return int Duration in seconds.
+	 */
+	public function get_default_login_duration() {
+		return 2 * DAY_IN_SECONDS;
+	}
+
+	/**
 	 * Possibly modifies the authorization cookie expiration duration based on
 	 * plugin configuration.
 	 *
@@ -411,14 +438,13 @@ HTML;
 	 * @param int  $expiration The time interval, in seconds, before auth_cookie expiration.
 	 * @param int  $user_id    User ID.
 	 * @param bool $remember   If the remember_me_duration should be used instead of the default.
-	 *
 	 * @return int
 	 */
 	public function auth_cookie_expiration( $expiration, $user_id, $remember ) {
 		$options = $this->get_options();
-		$max_expiration = 100 * YEAR_IN_SECONDS; // 100 years
-		$min_expiration = HOUR_IN_SECONDS;
-		$default_expiration = 2 * DAY_IN_SECONDS;
+		$max_expiration = $this->get_max_login_duration();
+		$min_expiration = $this->get_min_login_duration();
+		$default_expiration = $this->get_default_login_duration();
 
 		if ( $options['disable_remember_me'] ) { // Regardless of checkbutton state, if 'remember me' is disabled, use the non-remember-me duration
 			$expiration = $default_expiration;
