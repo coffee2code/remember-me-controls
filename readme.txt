@@ -66,6 +66,10 @@ You can't (and probably shouldn't). With a session length of less than an hour y
 
 No. The duration for which a login cookie is valid is defined within the cookie when it gets created (which is when you log in). Changing the setting for the remember me duration will only affect cookies created thereafter. You can log out and then log back in if you want the newly configured remember me duration to apply to your session. More precisely, the changes take effect for all *new* logins, which can happen after a preexisting login session expires, the user logs out, or the user's cookies are cleared in their browser (manually or automatically).
 
+= Why are some of the plugin settings disabled? =
+
+Certain settings being enabled may disable other settings that get superceded by the enabled setting. For instance, if the "Never remember?" setting is enabled, then all other settings are disabled since they wouldn't apply. The onscreen help text for each setting indicates what other settings are relatedly affected.
+
 = How can I make the plugin configuration changes I've made take effect immediately? =
 
 As explained in the previous FAQ entry, changes to the plugin's settings only take effect the next time a user logs in. Existing login sessions will abide by the remember me duration configured at the time they logged into their current session.
