@@ -16,8 +16,8 @@
 * Change: Use a number field as the duration input field
 * Change: Improve formatting of text in Help panel
 * Change: Add FAQ item to address how to make login session duration changes take effect immediately
-* Change: Update plugin framework to 064
-    * _(in-progress)_:
+* Change: Update plugin framework to 065
+    * 065:
     * New: Add support for 'inline_help' setting configuration option
     * New: Add support for 'raw_help' setting configuration option
     * New: Add support for use of lists within settings descriptions
