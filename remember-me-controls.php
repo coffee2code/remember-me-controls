@@ -291,6 +291,130 @@ final class c2c_RememberMeControls extends c2c_Plugin_065 {
 		echo '<p>' . __( 'For those unfamiliar, "Remember Me" is a checkbox present when logging into WordPress. If checked, by default WordPress will remember the login session for 14 days. If unchecked, the login session will be remembered for only 2 days. Once a login session expires, WordPress will require you to log in again if you wish to continue using the admin section of the site.', 'remember-me-controls' ) . "</p>\n";
 		echo '<p>' . __( 'NOTE: WordPress remembers who you are based on cookies stored in your web browser. If you use a different web browser, clear your cookies, use a browser on a different machine, the site owner invalidates all existing login sessions, or you uninstall/reinstall (and possibly even just restart) your browser then you will have to log in again since WordPress will not be able to locate the cookies needed to identify you.', 'remember-me-controls' ) . "</p>\n";
 		echo '<p>' . __( 'NOTE: Any changes to the duration of a login session only take effect on subsequent logins and will not affect currently active sessions.', 'remember-me-controls' ) . "</p>\n";
+
+		$this->display_current_login_duration();
+	}
+
+	/**
+	 * Converts seconds to a human-friendly expression of the length of time,
+	 * in years, months, days, and/or hours.
+	 *
+	 * @param int $seconds The number of seconds.
+	 * @return string
+	 */
+	public function humanize_seconds( $seconds ) {
+		$year_string = $month_string = $day_string = $hour_string = '';
+
+		if ( ! is_int( $seconds ) ) {
+			return '';
+		}
+
+		// Determine years.
+		$years = floor( $seconds / YEAR_IN_SECONDS);
+		if ( $years ) {
+			$year_string = sprintf(
+				_n( '%d year', '%d years', $years, 'remember-me-controls' ),
+				$years
+			);
+		}
+		$seconds -= $years * YEAR_IN_SECONDS;
+
+		// Determine months.
+		$monthSeconds = $seconds % YEAR_IN_SECONDS;
+		$months = floor( $monthSeconds / MONTH_IN_SECONDS );
+		if ( $months ) {
+			$month_string = sprintf(
+				_n( '%d month', '%d months', $months, 'remember-me-controls' ),
+				$months
+			);
+		}
+		$seconds -= $months * MONTH_IN_SECONDS;
+
+		// Determine days.
+		$daySeconds = $seconds % MONTH_IN_SECONDS;
+		$days = floor( $daySeconds / DAY_IN_SECONDS );
+		if ( $days ) {
+			$day_string = sprintf(
+				_n( '%d day', '%d days', $days, 'remember-me-controls' ),
+				$days
+			);
+		}
+		$seconds -= $days * DAY_IN_SECONDS;
+
+		// Determine hours.
+		$hourSeconds = $seconds % DAY_IN_SECONDS;
+		$hours = floor( $hourSeconds / HOUR_IN_SECONDS );
+		if ( $hours ) {
+			$hour_string = sprintf(
+				_n( '%d hour', '%d hours', $hours, 'remember-me-controls' ),
+				$hours
+			);
+		}
+
+		// Merge the time segments that have values into a single string.
+		$time_string = sprintf(
+			/* translators: 1: Written out number of years, 2: Written out number of months, 3: Written out number of days, 4: Written out number of hours. */
+			__( '%1$s, %2$s, %3$s, %4$s', 'remember-me-controls' ),
+			$year_string,
+			$month_string,
+			$day_string,
+			$hour_string
+		);
+
+		// Remove blank entries.
+		return trim( str_replace( ', , ', ', ', $time_string ), ', ' );
+	}
+
+	/**
+	 * Returns a potentially formatted representation of the login session duraction.
+	 *
+	 * @return string
+	 */
+	public function get_login_session_duration() {
+		$duration_in_sec = $this->auth_cookie_expiration( 0, 0, true );
+		$duration = $duration_in_sec / HOUR_IN_SECONDS;
+
+		if ( $this->get_max_login_duration() === $duration_in_sec ) {
+			$max = floor( $duration_in_sec / YEAR_IN_SECONDS );
+			$human_duration = sprintf(
+				_n( '%d year', '%d years', $max, 'remember-me-controls' ),
+				$max
+			);
+		} else {
+			$human_duration = $this->humanize_seconds( $duration_in_sec );
+		}
+
+		$seconds = $duration;
+
+		return $human_duration;
+	}
+
+	/**
+	 * Display the current login session duration.
+	 */
+	public function display_current_login_duration() {
+		$hours = $this->get_login_session_duration();
+
+		if ( ! $hours ) {
+			return;
+		}
+
+		echo <<<HTML
+		<style>
+		.c2c-remember-me-duration-banner {
+			background-color: beige;
+			margin:1rem 0;
+			padding:1rem;
+		}
+		</style>
+HTML;
+
+		echo '<div class="c2c-remember-me-duration-banner">';
+		printf(
+			__( 'Currently, a remembered user login session will last up to <strong>%s</strong>.', 'remember-me-controls' ),
+			$hours
+		);
+		echo '</div>' . "\n";
 	}
 
 	/**

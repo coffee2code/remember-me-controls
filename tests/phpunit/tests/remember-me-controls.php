@@ -66,6 +66,26 @@ class Remember_Me_Controls_Test extends WP_UnitTestCase {
 		);
 	}
 
+	public static function get_seconds_to_human_string() {
+		return array(
+			array( 1 * YEAR_IN_SECONDS, '1 year' ),
+			array( 2 * YEAR_IN_SECONDS, '2 years' ),
+			array( 5 * YEAR_IN_SECONDS, '5 years' ),
+			array( 1 * MONTH_IN_SECONDS, '1 month' ),
+			array( 5 * MONTH_IN_SECONDS, '5 months' ),
+			array( 1 * DAY_IN_SECONDS, '1 day' ),
+			array( 7 * DAY_IN_SECONDS, '7 days' ),
+			array( 1 * HOUR_IN_SECONDS, '1 hour' ),
+			array( 7 * HOUR_IN_SECONDS, '7 hours' ),
+			array( 4 * YEAR_IN_SECONDS + 5 * MONTH_IN_SECONDS + 14 * DAY_IN_SECONDS, '4 years, 5 months, 14 days' ),
+			array( 1 * YEAR_IN_SECONDS + 15 * DAY_IN_SECONDS, '1 year, 15 days' ),
+			array( 5 * MONTH_IN_SECONDS + 24 * DAY_IN_SECONDS, '5 months, 24 days' ),
+			array( 2 * DAY_IN_SECONDS + 5 * HOUR_IN_SECONDS, '2 days, 5 hours' ),
+			array( 0, '' ),
+			array( '', '' ),
+			array( false, '' ),
+		);
+	}
 
 	//
 	//
@@ -171,6 +191,13 @@ JS;
 		$expected .= '<p>Take control of the "Remember Me" login feature for WordPress';
 
 		$this->expectOutputRegex( '~^' . preg_quote( $expected ) . '~', $this->obj->options_page_description() );
+	}
+
+	public function test_options_page_description_includes_duration_banner() {
+		$this->set_option( array( 'remember_me_duration' => 2 * YEAR_IN_SECONDS / 3600 ) );
+		$expected = '<div class="c2c-remember-me-duration-banner">Currently, a remembered user login session will last up to <strong>2 years</strong>.</div>' . "\n";
+
+		$this->expectOutputRegex( '~' . preg_quote( $expected ) . '$~', $this->obj->options_page_description() );
 	}
 
 	/*
@@ -407,6 +434,67 @@ JS;
 
 		$this->assertFalse( $new_defaults['remember'] );
 		$this->assertFalse( $new_defaults['value_remember'] );
+	}
+
+	/*
+	 * humanize_seconds()
+	 */
+
+	/**
+	 * @dataProvider get_seconds_to_human_string
+	 */
+	public function test_humanize_seconds( $seconds, $human_string ) {
+		$this->assertEquals(
+			$human_string,
+			$this->obj->humanize_seconds( $seconds )
+		);
+
+	}
+
+	/*
+	 * get_login_session_duration()
+	 */
+
+	public function test_get_login_session_duration() {
+		$this->set_option( array( 'remember_me_forever' => true ) );
+		$this->assertEquals( '100 years', $this->obj->get_login_session_duration() );
+	}
+
+	/**
+	 * @dataProvider get_seconds_to_human_string
+	 */
+	public function test_get_login_session_duration_with_duration( $seconds, $time_string ) {
+		if ( ! $seconds ) {
+			$time_string = '2 days';
+			$seconds = 0;
+		}
+		$hours = $seconds / 60 / 60;
+		$this->set_option( array( 'remember_me_duration' => $hours ) );
+
+		$this->assertEquals( $time_string, $this->obj->get_login_session_duration() );
+	}
+
+	/*
+	 * display_current_login_duration()
+	 */
+
+	/**
+	 * @dataProvider get_seconds_to_human_string
+	 */
+	public function test_display_current_login_duration( $seconds, $time_string ) {
+		// Invalid seconds will default to the default time.
+		if ( ! $seconds ) {
+			$seconds = 2 * DAY_IN_SECONDS;
+			$time_string = '2 days';
+		}
+
+		$this->set_option( array( 'remember_me_duration' => $seconds / 3600 ) );
+		$expected = sprintf(
+			'<div class="c2c-remember-me-duration-banner">Currently, a remembered user login session will last up to <strong>%s</strong>.</div>' . "\n",
+			$time_string
+		);
+
+		$this->expectOutputRegex( '~' . preg_quote( $expected ) . '$~', $this->obj->display_current_login_duration() );
 	}
 
 	/*
