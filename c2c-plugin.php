@@ -675,9 +675,12 @@ abstract class c2c_Plugin_064 {
 		.c2c-fieldset {border:1px solid #ccc; padding:2px 8px;}
 		.c2c-textarea, .c2c-inline_textarea {width:98%;font-family:"Courier New", Courier, mono; display: block; white-space: pre; word-wrap: normal; overflow-x: scroll;}
 		.see-help {font-size:x-small;font-style:italic;}
+		.inline-description {display:inline-block;}
 		.more-help {display:block;margin-top:8px;}
-		.wrap .c2c-notice-inline {margin-bottom: 0;width: fit-content;}
+		.wrap .c2c-notice-inline {margin-bottom:0;margin-top:1rem;width:fit-content;}
 		input:disabled.c2c-short_text, input:disabled.c2c-long_text, input:disabled.c2c-text {border: 2px solid #ddd;box-shadow: none;}
+		ul.description, ol.description {color:#646970;margin:10px 0;list-style:disc;}
+		ul.description li, ol.description li {margin-left:1rem;}
 		</style>
 
 HTML;
