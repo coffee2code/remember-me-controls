@@ -6,7 +6,7 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 4.9
 Tested up to: 6.2
-Stable tag: 1.9.1
+Stable tag: 2.0
 
 Have "Remember Me" checked by default on the login page and configure how long a login is remembered. Or disable the feature altogether.
 
@@ -107,6 +107,93 @@ Yes.
 
 == Changelog ==
 
+= 2.0 (2023-06-14) =
+
+Highlights:
+
+This is a recommended and notable release that improves the labeling, help text, data display, and functionality of the plugin's settings page; restructures the unit tests; verifies compatibility through WordPress 6.2+; and other minor behind-the-scenes tweaks.
+
+Details:
+
+* New: Add a notice banner to settings page to provide human-friendly summary of current login session duration
+* New: Add getters for the acceptable maximum, minimum, and default non-remembered login duration values
+* Change: Enforce a minimum of one hour for login session duration
+* Change: Return default login session duration (2 days) if for some reason a 0 duration is encountered
+* Change: Improve plugin's settings page
+    * Change: Dynamically disable settings input fields if their functionality is disabled by another setting's value
+    * Change: Display notable helptext for settings as inline notices
+    * Change: Clarify that disabling the "Remember Me" feature will causes sessions to last 2 days, not 1
+    * Change: Use a number field as the duration input field
+    * Change: Reword labels and help text for clarity and brevity
+    * Change: Add additional help text to clarify how settings are related
+    * Change: Improve style and layout of help text
+    * Change: Output newlines after block-level tags in settings page
+* Change: Omit `type` attribute to `script` and `style` tags
+* Change: Improve formatting of text in Help panel
+* Change: Add FAQ item to address how to make login session duration changes take effect immediately
+* Change: Update plugin framework to 065
+    * 065:
+    * New: Add support for 'inline_help' setting configuration option
+    * New: Add support for 'raw_help' setting configuration option
+    * New: Add support for use of lists within settings descriptions
+    * Change: Add an 'id' attribute to settings form
+    * Change: Add styles for disabled input text fields and inline setting help notices
+    * Change: Support 'number' input by assigning 'small-text' class
+    * Change: Tweak styling for settings page footer
+    * Change: Note compatibility through WP 6.2+
+    * Change: Update copyright date (2023)
+    * 064:
+    * New: For checkbox settings, support a 'more_help' config option for defining help text to appear below checkbox and its label
+    * Fix: Fix URL for plugin listing donate link
+    * Change: Store donation URL as object variable
+    * Change: Update strings used for settings page donation link
+    * 063:
+    * Fix: Simplify settings initialization to prevent conflicts with other plugins
+    * Change: Remove ability to detect plugin settings page before current screen is set, as it is no longer needed
+    * Change: Enqueue thickbox during `'admin_enqueue_scripts'` action instead of during `'init'`
+    * Change: Use `is_plugin_admin_page()` in `help_tabs()` instead of reproducing its functionality
+    * Change: Trigger a debugging warning if `is_plugin_admin_page()` is used before `'admin_init'` action is fired
+    * 062:
+    * Change: Update `is_plugin_admin_page()` to use `get_current_screen()` when available
+    * Change: Actually prevent object cloning and unserialization by throwing an error
+    * Change: Check that there is a current screen before attempting to access its property
+    * Change: Remove 'type' attribute from `style` tag
+    * Change: Incorporate commonly defined styling for inline_textarea
+    * 061:
+    * Fix bug preventing settings from getting saved
+    * 060:
+    * Rename class from `c2c_{PluginName}_Plugin_051` to `c2c_Plugin_060`
+    * Move string translation handling into inheriting class making the plugin framework code plugin-agnostic
+        * Add abstract function `get_c2c_string()` as a getter for translated strings
+        * Replace all existing string usage with calls to `get_c2c_string()`
+    * Handle WordPress's deprecation of the use of the term "whitelist"
+        * Change: Rename `whitelist_options()` to `allowed_options()`
+        * Change: Use `add_allowed_options()` instead of deprecated `add_option_whitelist()` for WP 5.5+
+        * Change: Hook `allowed_options` filter instead of deprecated `whitelist_options` for WP 5.5+
+    * New: Add initial unit tests (currently just covering `is_wp_version_cmp()` and `get_c2c_string()`)
+    * Add `is_wp_version_cmp()` as a utility to compare current WP version against a given WP version
+    * Refactor `contextual_help()` to be easier to read, and correct function docblocks
+    * Don't translate urlencoded donation email body text
+    * Add inline comments for translators to clarify purpose of placeholders
+    * Change PHP package name (make it singular)
+    * Tweak inline function description
+    * Note compatibility through WP 5.7+
+    * Update copyright date (2021)
+* Change: Move translation of all parent class strings into main plugin file
+* Change: Note compatibility through WP 6.2+
+* Change: Update copyright date (2023)
+* Change: Tweak installation instruction
+* Unit tests:
+    * New: Add unit tests specific to plugin framework
+    * Change: Restructure unit test directories
+        * Change: Move `bin/` into `tests/`
+        * Change: Move `tests/bootstrap.php` into `tests/phpunit/`
+        * Change: Move `tests/test-*.php` into `tests/phpunit/tests/`
+    * Change: Remove 'test-' prefix from unit test file
+    * Change: Rename `phpunit.xml` to `phpunit.xml.dist` per best practices
+    * Change: In bootstrap, store path to plugin file constant
+    * Change: In bootstrap, add backcompat for PHPUnit pre-v6.0
+
 = 1.9.1 (2021-02-13) =
 * Fix: Add missing textdomain. Props @kittmedia.
 * Change: Enhance a FAQ answer to make clear that an existing login session will not be affected by an update to the remember me duration (must log in again)
@@ -159,15 +246,13 @@ Details:
     * Change: Use HTTPS for link to WP SVN repository in bin script for configuring unit tests
 * Change: Updated screenshot
 
-= 1.8.1 (2020-01-01) =
-* Change: Note compatibility through WP 5.3+
-* Change: Update copyright date (2020)
-* Change: Tweak changelog formatting for v1.8 release
-
 _Full changelog is available in [CHANGELOG.md](https://github.com/coffee2code/remember-me-controls/blob/master/CHANGELOG.md)._
 
 
 == Upgrade Notice ==
+
+= 2.0 =
+Recommended update: improved labeling, help text, and functionality of settings page; updated plugin framework to version 065; noted compatibility through WP 6.2+; updated copyright date (2023).
 
 = 1.9.1 =
 Trivial update: added missing translation textdomain, noted compatibility through WP 5.6+, and updated copyright date (2021)

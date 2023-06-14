@@ -133,7 +133,7 @@ JS;
 	}
 
 	public function test_get_version() {
-		$this->assertEquals( '1.9.1', $this->obj->version() );
+		$this->assertEquals( '2.0', $this->obj->version() );
 	}
 
 	public function test_instance_object_is_returned() {

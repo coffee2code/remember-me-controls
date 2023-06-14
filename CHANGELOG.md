@@ -1,20 +1,27 @@
 # Changelog
 
-## _(in-progress)_
+## 2.0 _(2023-06-14)_
+
+### Highlights:
+
+This is a recommended and notable release that improves the labeling, help text, data display, and functionality of the plugin's settings page; restructures the unit tests; verifies compatibility through WordPress 6.2+; and other minor behind-the-scenes tweaks.
+
+### Details:
+
 * New: Add a notice banner to settings page to provide human-friendly summary of current login session duration
 * New: Add getters for the acceptable maximum, minimum, and default non-remembered login duration values
 * Change: Enforce a minimum of one hour for login session duration
 * Change: Return default login session duration (2 days) if for some reason a 0 duration is encountered
-* Change: Dynamically disable settings input fields if their functionality is disabled by another setting's value
 * Change: Improve plugin's settings page
+    * Change: Dynamically disable settings input fields if their functionality is disabled by another setting's value
+    * Change: Display notable helptext for settings as inline notices
+    * Change: Clarify that disabling the "Remember Me" feature will causes sessions to last 2 days, not 1
+    * Change: Use a number field as the duration input field
     * Change: Reword labels and help text for clarity and brevity
     * Change: Add additional help text to clarify how settings are related
     * Change: Improve style and layout of help text
-* Change: Disable duration field via JS on page load and on setting toggle if remember me forever is enabled
-* Change: Display notable helptext for settings as inline notices
-* Change: Clarify that disabling the "Remember Me" feature will causes sessions to last 2 days, not 1
+    * Change: Output newlines after block-level tags in settings page
 * Change: Omit `type` attribute to `script` and `style` tags
-* Change: Use a number field as the duration input field
 * Change: Improve formatting of text in Help panel
 * Change: Add FAQ item to address how to make login session duration changes take effect immediately
 * Change: Update plugin framework to 065
@@ -66,13 +73,13 @@
     * Note compatibility through WP 5.7+
     * Update copyright date (2021)
 * Change: Move translation of all parent class strings into main plugin file
-* Change: Output newlines after block-level tags in settings page
 * Change: Note compatibility through WP 6.2+
 * Change: Update copyright date (2023)
 * Change: Tweak installation instruction
 * Unit tests:
+    * New: Add unit tests specific to plugin framework
     * Change: Restructure unit test directories
-        * CHange: Move `bin/` into `tests/`
+        * Change: Move `bin/` into `tests/`
         * Change: Move `tests/bootstrap.php` into `tests/phpunit/`
         * Change: Move `tests/test-*.php` into `tests/phpunit/tests/`
     * Change: Remove 'test-' prefix from unit test file
