@@ -516,7 +516,7 @@ HTML;
 
 				disableBasedOnNeverRemember();
 
-				// Update disabling of fields based on remember forever checkbox.
+				// Update disabling of fields based on never remember checkbox.
 				never_remember_checkbox.addEventListener('click', function(){
 					disableBasedOnNeverRemember();
 				});
