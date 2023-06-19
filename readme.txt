@@ -6,7 +6,7 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 4.9
 Tested up to: 6.2
-Stable tag: 2.0
+Stable tag: 2.0.1
 
 Have "Remember Me" checked by default on the login page and configure how long a login is remembered. Or disable the feature altogether.
 
@@ -107,6 +107,19 @@ Yes.
 
 == Changelog ==
 
+= 2.0.1 (2023-06-19) =
+
+Highlights:
+
+This is minor bugfix release fixes the plugin settings page's info banner that reports the current remembered session duration. When the WordPress default remembered session duration (of "14 days") is applicable, that value is now shown instead of stating an incorrect value ("2 days"). Actual session durations and plugin functionality were not affected.
+
+Details:
+
+- Fix: Fix info banner reporting the wrong remembered duration (of "2 days") when the default WordPress remembered duration applies (which is "14 days")
+- New: Add `get_default_remembered_login_duration()`
+- Change: Add optional argument to `get_login_session_duration()` to indicate if the default duration should be the default remembered duration or not
+- Change: Updated screenshot
+
 = 2.0 (2023-06-14) =
 
 Highlights:
@@ -200,56 +213,13 @@ Details:
 * Change: Note compatibility through WP 5.6+
 * Change: Update copyright date (2021)
 
-= 1.9 (2020-07-20) =
-
-Highlights:
-
-* This minor release adds support for using commas when setting the remember me duration, adds HTML5 compliance when supported by the theme, improves settings help text and other documentation, updates its plugin framework, adds a TODO.md file, updates a few URLs to be HTTPS, expands unit testing, updates compatibility to be WP 4.9 through 5.4+, and other minor behind-the-scenes tweaks.
-
-Details:
-
-* New: Add HTML5 compliance by omitting `type` attribute to 'script' and 'style' tags when the theme supports 'html5'
-* New: Add help text to settings whose value change won't take effect until subsequent logins regarding as much
-* New: Add TODO.md and move existing TODO list from top of main plugin file into it (and add items to it)
-* Change: Allow use of commas in user-submitted value for `remember_me_duration` setting
-* Change: Update JavaScript coding syntax
-* Change; Add help text to the top of the settings page
-* Change: Use a superscript for footnote asterisk and extract markup from translatable string
-* Change: Update plugin framework to 051
-    * 051:
-    * Allow setting integer input value to include commas
-    * Use `number_format_i18n()` to format integer value within input field
-    * Update link to coffee2code.com to be HTTPS
-    * Update `readme_url()` to refer to plugin's readme.txt on plugins.svn.wordpress.org
-    * Remove defunct line of code
-    * 050:
-    * Allow a hash entry to literally have '0' as a value without being entirely omitted when saved
-    * Output donation markup using `printf()` rather than using string concatenation
-    * Update copyright date (2020)
-    * Note compatibility through WP 5.4+
-    * Drop compatibility with version of WP older than 4.9
-* Change: Tweak text on help tab
-* Change: Add a few new FAQ entries and amend another
-* Change: Include another example scenario in which login cookies could be invalidated
-* Change: Tweak verbiage of various documentation
-* Change: Note compatibility through WP 5.4+
-* Change: Drop compatibility with versions of WP older than 4.9
-* Change: Update links to coffee2code.com to be HTTPS
-* Unit tests:
-    * New: Add `get_default_hooks()` as a helper method for getting the default hooks
-    * New: Add tests for `add_css()`, `add_js()`, `help_tabs_content()`, `maybe_add_hr()`, `options_page_description()`
-    * New: Add test for setting name
-    * New: Add test for hook registering
-    * Change: Store plugin instance in test object to simplify referencing it
-    * Change: Remove unnecessary unregistering of hooks in `tearDown()`
-    * Change: Remove duplicative `reset_options()` call
-    * Change: Use HTTPS for link to WP SVN repository in bin script for configuring unit tests
-* Change: Updated screenshot
-
 _Full changelog is available in [CHANGELOG.md](https://github.com/coffee2code/remember-me-controls/blob/master/CHANGELOG.md)._
 
 
 == Upgrade Notice ==
+
+= 2.0.1 =
+Minor bugfix: fixed the plugin setting's page info banner from reporting the wrong remembered session duration (of "2 days") when the default WordPress remembered session duration applied (of "14 days").
 
 = 2.0 =
 Recommended update: improved labeling, help text, and functionality of settings page; updated plugin framework to version 065; noted compatibility through WP 6.2+; updated copyright date (2023).

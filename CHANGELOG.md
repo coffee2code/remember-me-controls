@@ -1,8 +1,17 @@
 # Changelog
 
-## _(in-progress)_
+## 2.0.1 _(2023-06-19)_
+
+### Highlights:
+
+This is minor bugfix release fixes the plugin settings page's info banner that reports the current remembered session duration. When the WordPress default remembered session duration (of "14 days") is applicable, that value is now shown instead of stating an incorrect value ("2 days"). Actual session durations and plugin functionality were not affected.
+
+### Details:
+
+- Fix: Fix info banner reporting the wrong remembered duration (of "2 days") when the default WordPress remembered duration applies (which is "14 days")
 - New: Add `get_default_remembered_login_duration()`
 - Change: Add optional argument to `get_login_session_duration()` to indicate if the default duration should be the default remembered duration or not
+- Change: Updated screenshot
 
 ## 2.0 _(2023-06-14)_
 
