@@ -1,5 +1,8 @@
 # Changelog
 
+## _(in-progress)_
+- New: Add `get_default_remembered_login_duration()`
+
 ## 2.0 _(2023-06-14)_
 
 ### Highlights:

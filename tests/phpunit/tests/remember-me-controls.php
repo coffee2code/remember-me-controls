@@ -225,6 +225,14 @@ JS;
 	}
 
 	/*
+	 * get_default_remembered_login_duration()
+	 */
+
+	 public function get_default_remembered_login_duration() {
+		$this->assertEquals( 14 * DAY_IN_SECONDS, $this->obj->get_default_remembered_login_duration() );
+	}
+
+	/*
 	 * help_tabs_content()
 	 */
 

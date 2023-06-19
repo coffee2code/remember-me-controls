@@ -554,6 +554,15 @@ HTML;
 	}
 
 	/**
+	 * Returns the default login duration when not being remembered.
+	 *
+	 * @return int Duration in seconds.
+	 */
+	public function get_default_remembered_login_duration() {
+		return 14 * DAY_IN_SECONDS;
+	}
+
+	/**
 	 * Possibly modifies the authorization cookie expiration duration based on
 	 * plugin configuration.
 	 *
