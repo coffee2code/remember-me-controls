@@ -370,8 +370,12 @@ final class c2c_RememberMeControls extends c2c_Plugin_065 {
 	 *
 	 * @return string
 	 */
-	public function get_login_session_duration() {
-		$duration_in_sec = $this->auth_cookie_expiration( 0, 0, true );
+	public function get_login_session_duration( $remembered = false ) {
+		$default_duration = $remembered
+			? self::get_default_remembered_login_duration()
+			: self::get_default_login_duration();
+
+		$duration_in_sec = $this->auth_cookie_expiration( $default_duration, 0, true );
 		$duration = $duration_in_sec / HOUR_IN_SECONDS;
 
 		if ( $this->get_max_login_duration() === $duration_in_sec ) {
@@ -393,7 +397,7 @@ final class c2c_RememberMeControls extends c2c_Plugin_065 {
 	 * Display the current login session duration.
 	 */
 	public function display_current_login_duration() {
-		$hours = $this->get_login_session_duration();
+		$hours = $this->get_login_session_duration( true );
 
 		if ( ! $hours ) {
 			return;

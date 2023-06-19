@@ -334,6 +334,11 @@ JS;
 		$this->assertEquals( 1 * HOUR_IN_SECONDS, $this->obj->auth_cookie_expiration( 1, 1, true ) );
 	}
 
+	public function test_auth_cookie_expiration_by_default() {
+		$remembered_duration = 14 * DAY_IN_SECONDS;
+		$this->assertEquals( $remembered_duration, $this->obj->auth_cookie_expiration( $remembered_duration, 1, true ) );
+	}
+
 	public function test_auth_cookie_expiration_is_unaffected_if_remember_me_not_checked() {
 		$this->set_option( array( 'remember_me_forever' => true, 'remember_me_duration' => 27 ) );
 		$this->assertEquals( $this->default_duration, $this->obj->auth_cookie_expiration( $this->default_duration, 1, false ) );
@@ -467,6 +472,14 @@ JS;
 	 * get_login_session_duration()
 	 */
 
+	public function test_get_login_session_duration_default() {
+		$this->assertEquals( '2 days', $this->obj->get_login_session_duration( false ) );
+	}
+
+	public function test_get_login_session_duration_remembered_default() {
+		$this->assertEquals( '14 days', $this->obj->get_login_session_duration( true ) );
+	}
+
 	public function test_get_login_session_duration() {
 		$this->set_option( array( 'remember_me_forever' => true ) );
 		$this->assertEquals( '100 years', $this->obj->get_login_session_duration() );
@@ -484,6 +497,20 @@ JS;
 		$this->set_option( array( 'remember_me_duration' => $hours ) );
 
 		$this->assertEquals( $time_string, $this->obj->get_login_session_duration() );
+	}
+
+	/**
+	 * @dataProvider get_seconds_to_human_string
+	 */
+	public function test_get_login_session_duration_with_duration_and_remembered( $seconds, $time_string ) {
+		if ( ! $seconds ) {
+			$time_string = '14 days';
+			$seconds = 0;
+		}
+		$hours = $seconds / 60 / 60;
+		$this->set_option( array( 'remember_me_duration' => $hours ) );
+
+		$this->assertEquals( $time_string, $this->obj->get_login_session_duration( true ) );
 	}
 
 	/*

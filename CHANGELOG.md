@@ -2,6 +2,7 @@
 
 ## _(in-progress)_
 - New: Add `get_default_remembered_login_duration()`
+- Change: Add optional argument to `get_login_session_duration()` to indicate if the default duration should be the default remembered duration or not
 
 ## 2.0 _(2023-06-14)_
 
