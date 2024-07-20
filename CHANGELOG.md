@@ -3,6 +3,10 @@
 ## _(in-progress)_
 * Change: Note compatibility through WP 6.6+
 * Change: Update copyright date (2024)
+* Unit tests:
+    * Allow tests to run against current versions of WordPress
+    * New: Add `composer.json` for PHPUnit Polyfill dependency
+    * Change: Prevent PHP warnings due to missing core-related generated files
 
 ## 2.0.1 _(2023-06-19)_
 
