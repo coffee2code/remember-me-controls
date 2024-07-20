@@ -5,6 +5,7 @@
 * Change: Update copyright date (2024)
 * New: Add `.gitignore` file
 * Change: Remove development and testing-related files from release packaging
+* Change: Reduce number of 'Tags' from `readme.txt`
 * Unit tests:
     * Hardening: Prevent direct web access to `bootstrap.php`
     * Allow tests to run against current versions of WordPress
