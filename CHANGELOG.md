@@ -1,5 +1,8 @@
 # Changelog
 
+## _(in-progress)_
+* Change: Note compatibility through WP 6.6+
+
 ## 2.0.1 _(2023-06-19)_
 
 ### Highlights:
