@@ -5,6 +5,9 @@
  * @package Remember_Me_Controls
  */
 
+// Prevent web access.
+( php_sapi_name() !== 'cli' ) && die();
+
 define( 'REMEMBER_ME_CONTROLS_PLUGIN_DIR',  dirname( __FILE__, 3 ) );
 define( 'REMEMBER_ME_CONTROLS_PLUGIN_FILE', REMEMBER_ME_CONTROLS_PLUGIN_DIR . '/remember-me-controls.php' );
 

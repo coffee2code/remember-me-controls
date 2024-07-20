@@ -4,6 +4,7 @@
 * Change: Note compatibility through WP 6.6+
 * Change: Update copyright date (2024)
 * Unit tests:
+    * Hardening: Prevent direct web access to `bootstrap.php`
     * Allow tests to run against current versions of WordPress
     * New: Add `composer.json` for PHPUnit Polyfill dependency
     * Change: Prevent PHP warnings due to missing core-related generated files
