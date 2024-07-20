@@ -5,7 +5,10 @@
  * @package Remember_Me_Controls
  */
 
-$polyfill_path = dirname( __FILE__, 3 ) . '/vendor/yoast/phpunit-polyfills/phpunitpolyfills-autoload.php';
+define( 'REMEMBER_ME_CONTROLS_PLUGIN_DIR',  dirname( __FILE__, 3 ) );
+define( 'REMEMBER_ME_CONTROLS_PLUGIN_FILE', REMEMBER_ME_CONTROLS_PLUGIN_DIR . '/remember-me-controls.php' );
+
+$polyfill_path = REMEMBER_ME_CONTROLS_PLUGIN_DIR . '/vendor/yoast/phpunit-polyfills/phpunitpolyfills-autoload.php';
 if ( file_exists( $polyfill_path ) ) {
 	require $polyfill_path;
 } else {
@@ -13,8 +16,6 @@ if ( file_exists( $polyfill_path ) ) {
 	echo "Run: composer require --dev yoast/phpunit-polyfills:\"^2.0\"\n";
 	exit;
 }
-
-define( 'REMEMBER_ME_CONTROLS_PLUGIN_FILE', dirname( __FILE__, 3 ) . '/remember-me-controls.php' );
 
 ! defined( 'WP_RUN_CORE_TESTS' ) && define( 'WP_RUN_CORE_TESTS', false );
 

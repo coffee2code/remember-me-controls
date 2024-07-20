@@ -7,6 +7,7 @@
     * Allow tests to run against current versions of WordPress
     * New: Add `composer.json` for PHPUnit Polyfill dependency
     * Change: Prevent PHP warnings due to missing core-related generated files
+    * Change: In bootstrap, store path to plugin directory in a constant
 
 ## 2.0.1 _(2023-06-19)_
 
