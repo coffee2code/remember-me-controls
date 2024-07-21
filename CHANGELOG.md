@@ -1,6 +1,25 @@
 # Changelog
 
 ## _(in-progress)_
+* Change: Update plugin framework to 067
+    * 067:
+    * Change: Simplify `form_action_url()` to avoid using a server global
+    * Change: Use `form_action_url()` in `plugin_action_links()` rather than duplicating its functionality
+    * Change: Escape output of all translated strings
+    * Change: Convert `register_filters()` to an abstract declaration
+    * Change: Improve function documentation
+    * Change: Adjust function documentation formatting to align with WP core
+    * Change: Note compatibility through WP 6.5+
+    * Change: Drop compatibility with version of WP older than 5.5
+    * 066:
+    * New: Add customization of capability needed to manage plugin settings (via new filter {plugin_prefix}_manage_options_capability)
+    * Change: Make `get_hook()` public rather than protected
+    * Change: Add styles for nested lists within settings descriptions
+    * Change: Simplify `form_action_url()`
+    * Change: Use `form_action_url()` in `plugin_action_links()` rather than duplicating its functionality
+    * Change: Explicitly declare object variables rather than doing so dynamically. Fixes #1.
+    * Change: Note compatibility through WP 6.4+
+    * Change: Update copyright date (2024)
 * Change: Ensure translations don't contain unintended markup
 * Change: Add missing inline comments to translators
 * Change: Note compatibility through WP 6.6+

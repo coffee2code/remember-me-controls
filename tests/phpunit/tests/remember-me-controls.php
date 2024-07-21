@@ -125,11 +125,11 @@ JS;
 	}
 
 	public function test_plugin_framework_class_name() {
-		$this->assertTrue( class_exists( 'c2c_Plugin_065' ) );
+		$this->assertTrue( class_exists( 'c2c_Plugin_067' ) );
 	}
 
 	public function test_plugin_framework_version() {
-		$this->assertEquals( '065', $this->obj->c2c_plugin_version() );
+		$this->assertEquals( '067', $this->obj->c2c_plugin_version() );
 	}
 
 	public function test_get_version() {
@@ -608,7 +608,7 @@ JS;
 	 */
 
 	/**
-	 * @expectedIncorrectUsage c2c_Plugin_065::is_plugin_admin_page
+	 * @expectedIncorrectUsage c2c_Plugin_067::is_plugin_admin_page
 	 */
 	public function test_add_admin_js_does_not_add_js_generally() {
 		$this->expectOutputRegex( '~^$~', $this->obj->add_admin_js() );
