@@ -23,6 +23,7 @@
 * Change: Ensure translations don't contain unintended markup
 * Change: Add missing inline comments to translators
 * Change: Note compatibility through WP 6.6+
+* Change: Drop compatibility with versions of WP older than 5.5
 * Change: Update copyright date (2024)
 * New: Add `.gitignore` file
 * Change: Remove development and testing-related files from release packaging

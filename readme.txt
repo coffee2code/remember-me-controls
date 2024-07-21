@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: login, remember, remember me, cookie, session
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Requires at least: 4.9
+Requires at least: 5.5
 Tested up to: 6.6
 Stable tag: 2.0.1
 
