@@ -232,6 +232,7 @@ final class c2c_RememberMeControls extends c2c_Plugin_065 {
 			'Donate'
 				=> __( 'Donate', 'remember-me-controls' ),
 			'Expected integer value for: %s'
+				/* translators: %s: Setting name. */
 				=> __( 'Expected integer value for: %s', 'remember-me-controls' ),
 			'If this plugin has been useful to you, please consider a donation'
 				=> __( 'If this plugin has been useful to you, please consider a donation', 'remember-me-controls' ),
@@ -313,6 +314,7 @@ final class c2c_RememberMeControls extends c2c_Plugin_065 {
 		$years = floor( $seconds / YEAR_IN_SECONDS);
 		if ( $years ) {
 			$year_string = sprintf(
+				/* translators: %d: number of years */
 				_n( '%d year', '%d years', $years, 'remember-me-controls' ),
 				$years
 			);
@@ -324,6 +326,7 @@ final class c2c_RememberMeControls extends c2c_Plugin_065 {
 		$months = floor( $monthSeconds / MONTH_IN_SECONDS );
 		if ( $months ) {
 			$month_string = sprintf(
+				/* translators: %d: number of months */
 				_n( '%d month', '%d months', $months, 'remember-me-controls' ),
 				$months
 			);
@@ -335,6 +338,7 @@ final class c2c_RememberMeControls extends c2c_Plugin_065 {
 		$days = floor( $daySeconds / DAY_IN_SECONDS );
 		if ( $days ) {
 			$day_string = sprintf(
+				/* translators: %d: number of days */
 				_n( '%d day', '%d days', $days, 'remember-me-controls' ),
 				$days
 			);
@@ -346,6 +350,7 @@ final class c2c_RememberMeControls extends c2c_Plugin_065 {
 		$hours = floor( $hourSeconds / HOUR_IN_SECONDS );
 		if ( $hours ) {
 			$hour_string = sprintf(
+				/* translators: %d: number of hours */
 				_n( '%d hour', '%d hours', $hours, 'remember-me-controls' ),
 				$hours
 			);
@@ -381,6 +386,7 @@ final class c2c_RememberMeControls extends c2c_Plugin_065 {
 		if ( $this->get_max_login_duration() === $duration_in_sec ) {
 			$max = floor( $duration_in_sec / YEAR_IN_SECONDS );
 			$human_duration = sprintf(
+				/* translators: %d: number of years */
 				_n( '%d year', '%d years', $max, 'remember-me-controls' ),
 				$max
 			);
@@ -415,8 +421,7 @@ HTML;
 
 		echo '<div class="c2c-remember-me-duration-banner">';
 		printf(
-			__( 'Currently, a remembered user login session will last up to <strong>%s</strong>.', 'remember-me-controls' ),
-			$hours
+			/* translators: %s: Already translated string using words to express the duration of a remember login session. */
 		);
 		echo '</div>' . "\n";
 	}
