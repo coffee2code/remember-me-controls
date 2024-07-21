@@ -288,10 +288,10 @@ final class c2c_RememberMeControls extends c2c_Plugin_065 {
 	public function options_page_description( $localized_heading_text = '' ) {
 		parent::options_page_description( __( 'Remember Me Controls Settings', 'remember-me-controls' ) );
 
-		echo '<p>' . __( 'Take control of the "Remember Me" login feature for WordPress by customizing its behavior or disabling it altogether.', 'remember-me-controls' ) . "</p>\n";
-		echo '<p>' . __( 'For those unfamiliar, "Remember Me" is a checkbox present when logging into WordPress. If checked, by default WordPress will remember the login session for 14 days. If unchecked, the login session will be remembered for only 2 days. Once a login session expires, WordPress will require you to log in again if you wish to continue using the admin section of the site.', 'remember-me-controls' ) . "</p>\n";
-		echo '<p>' . __( 'NOTE: WordPress remembers who you are based on cookies stored in your web browser. If you use a different web browser, clear your cookies, use a browser on a different machine, the site owner invalidates all existing login sessions, or you uninstall/reinstall (and possibly even just restart) your browser then you will have to log in again since WordPress will not be able to locate the cookies needed to identify you.', 'remember-me-controls' ) . "</p>\n";
-		echo '<p>' . __( 'NOTE: Any changes to the duration of a login session only take effect on subsequent logins and will not affect currently active sessions.', 'remember-me-controls' ) . "</p>\n";
+		echo '<p>' . esc_html__( 'Take control of the "Remember Me" login feature for WordPress by customizing its behavior or disabling it altogether.', 'remember-me-controls' ) . "</p>\n";
+		echo '<p>' . esc_html__( 'For those unfamiliar, "Remember Me" is a checkbox present when logging into WordPress. If checked, by default WordPress will remember the login session for 14 days. If unchecked, the login session will be remembered for only 2 days. Once a login session expires, WordPress will require you to log in again if you wish to continue using the admin section of the site.', 'remember-me-controls' ) . "</p>\n";
+		echo '<p>' . esc_html__( 'NOTE: WordPress remembers who you are based on cookies stored in your web browser. If you use a different web browser, clear your cookies, use a browser on a different machine, the site owner invalidates all existing login sessions, or you uninstall/reinstall (and possibly even just restart) your browser then you will have to log in again since WordPress will not be able to locate the cookies needed to identify you.', 'remember-me-controls' ) . "</p>\n";
+		echo '<p>' . esc_html__( 'NOTE: Any changes to the duration of a login session only take effect on subsequent logins and will not affect currently active sessions.', 'remember-me-controls' ) . "</p>\n";
 
 		$this->display_current_login_duration();
 	}
@@ -421,7 +421,12 @@ HTML;
 
 		echo '<div class="c2c-remember-me-duration-banner">';
 		printf(
-			/* translators: %s: Already translated string using words to express the duration of a remember login session. */
+			wp_kses(
+				/* translators: %s: Already translated string using words to express the duration of a remember login session. */
+				__( 'Currently, a remembered user login session will last up to <strong>%s</strong>.', 'remember-me-controls' ),
+				[ 'strong' => array() ]
+			),
+			esc_html( $hours )
 		);
 		echo '</div>' . "\n";
 	}

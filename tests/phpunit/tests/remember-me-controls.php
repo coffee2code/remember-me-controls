@@ -187,7 +187,7 @@ JS;
 	public function test_options_page_description() {
 		// Must match the start of the content at the very least.
 		$expected = '<h1>Remember Me Controls Settings</h1>' . "\n";
-		$expected .= '<p class="see-help">See the "Help" link to the top-right of the page for more help.</p>' . "\n";
+		$expected .= '<p class="see-help">See the &quot;Help&quot; link to the top-right of the page for more help.</p>' . "\n";
 		$expected .= '<p>Take control of the "Remember Me" login feature for WordPress';
 
 		$this->expectOutputRegex( '~^' . preg_quote( $expected ) . '~', $this->obj->options_page_description() );
