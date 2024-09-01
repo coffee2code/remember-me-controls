@@ -6,7 +6,7 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 5.5
 Tested up to: 6.6
-Stable tag: 2.0.1
+Stable tag: 2.1
 
 Have "Remember Me" checked by default on the login page and configure how long a login is remembered. Or disable the feature altogether.
 
@@ -106,6 +106,48 @@ Yes. The tests are not packaged in the release .zip file or included in plugins.
 
 
 == Changelog ==
+
+= 2.1 (2024-09-01) =
+Highlights:
+
+This minor release primarily updates the plugin framework to the most current version (for security hardening and miscellaneous improvements), prevents translations from containing unintended markup, notes compatibility through WP 6.6+, drops compatibility with versions of WP older than 5.5, and removes unit tests from release packaging.
+
+Details:
+
+* Change: Update plugin framework to 067
+    * 067:
+    * Change: Simplify `form_action_url()` to avoid using a server global
+    * Change: Use `form_action_url()` in `plugin_action_links()` rather than duplicating its functionality
+    * Change: Escape output of all translated strings
+    * Change: Convert `register_filters()` to an abstract declaration
+    * Change: Improve function documentation
+    * Change: Adjust function documentation formatting to align with WP core
+    * Change: Note compatibility through WP 6.5+
+    * Change: Drop compatibility with version of WP older than 5.5
+    * 066:
+    * New: Add customization of capability needed to manage plugin settings (via new filter {plugin_prefix}_manage_options_capability)
+    * Change: Make `get_hook()` public rather than protected
+    * Change: Add styles for nested lists within settings descriptions
+    * Change: Simplify `form_action_url()`
+    * Change: Use `form_action_url()` in `plugin_action_links()` rather than duplicating its functionality
+    * Change: Explicitly declare object variables rather than doing so dynamically. Fixes #1.
+    * Change: Note compatibility through WP 6.4+
+    * Change: Update copyright date (2024)
+* Change: Ensure translations don't contain unintended markup
+* Change: Add missing inline comments to translators
+* Change: Note compatibility through WP 6.6+
+* Change: Drop compatibility with versions of WP older than 5.5
+* Change: Update copyright date (2024)
+* New: Add `.gitignore` file
+* Change: Remove development and testing-related files from release packaging
+* Change: Reduce number of 'Tags' from `readme.txt`
+* Change: Tweak text formatting in `README.md`
+* Unit tests:
+    * Hardening: Prevent direct web access to `bootstrap.php`
+    * Allow tests to run against current versions of WordPress
+    * New: Add `composer.json` for PHPUnit Polyfill dependency
+    * Change: Prevent PHP warnings due to missing core-related generated files
+    * Change: In bootstrap, store path to plugin directory in a constant
 
 = 2.0.1 (2023-06-19) =
 
@@ -207,16 +249,13 @@ Details:
     * Change: In bootstrap, store path to plugin file constant
     * Change: In bootstrap, add backcompat for PHPUnit pre-v6.0
 
-= 1.9.1 (2021-02-13) =
-* Fix: Add missing textdomain. Props @kittmedia.
-* Change: Enhance a FAQ answer to make clear that an existing login session will not be affected by an update to the remember me duration (must log in again)
-* Change: Note compatibility through WP 5.6+
-* Change: Update copyright date (2021)
-
 _Full changelog is available in [CHANGELOG.md](https://github.com/coffee2code/remember-me-controls/blob/master/CHANGELOG.md)._
 
 
 == Upgrade Notice ==
+
+= 2.1 =
+Minor update: updated plugin framework, prevented translations from containing unintended markup, noted compatibility through WP 6.6+, dropped compatibility with versions of WP older than 5.5, removed unit tests from release packaging, and updated copyright date (2024)
 
 = 2.0.1 =
 Minor bugfix: fixed the plugin setting's page info banner from reporting the wrong remembered session duration (of "2 days") when the default WordPress remembered session duration applied (of "14 days").

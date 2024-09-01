@@ -1,6 +1,13 @@
 # Changelog
 
-## _(in-progress)_
+## 2.1 _(2024-09-01)_
+
+### Highlights:
+
+This minor release primarily updates the plugin framework to the most current version (for security hardening and miscellaneous improvements), prevents translations from containing unintended markup, notes compatibility through WP 6.6+, drops compatibility with versions of WP older than 5.5, and removes unit tests from release packaging.
+
+### Details:
+
 * Change: Update plugin framework to 067
     * 067:
     * Change: Simplify `form_action_url()` to avoid using a server global
@@ -30,7 +37,7 @@
 * Change: Reduce number of 'Tags' from `readme.txt`
 * Change: Tweak text formatting in `README.md`
 * Unit tests:
-    * Hardening: Prevent direct web access to `bootstrap.php`
+    * Hardening: Prevent direct web access to `bootstrap.php`. Props stealthcopter.
     * Allow tests to run against current versions of WordPress
     * New: Add `composer.json` for PHPUnit Polyfill dependency
     * Change: Prevent PHP warnings due to missing core-related generated files

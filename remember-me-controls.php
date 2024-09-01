@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Remember Me Controls
- * Version:     2.0.1
+ * Version:     2.1
  * Plugin URI:  https://coffee2code.com/wp-plugins/remember-me-controls/
  * Author:      Scott Reilly
  * Author URI:  https://coffee2code.com/
@@ -18,7 +18,7 @@
  *
  * @package Remember_Me_Controls
  * @author  Scott Reilly
- * @version 2.0.1
+ * @version 2.1
  */
 
 /*
@@ -79,7 +79,7 @@ final class c2c_RememberMeControls extends c2c_Plugin_067 {
 	 * Constructor.
 	 */
 	protected function __construct() {
-		parent::__construct( '2.0.1', 'remember-me-controls', 'c2c', __FILE__, array() );
+		parent::__construct( '2.1', 'remember-me-controls', 'c2c', __FILE__, array() );
 		register_activation_hook( __FILE__, array( __CLASS__, 'activation' ) );
 
 		return self::$instance = $this;
