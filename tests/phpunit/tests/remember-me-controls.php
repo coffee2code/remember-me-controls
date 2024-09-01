@@ -188,7 +188,7 @@ JS;
 		// Must match the start of the content at the very least.
 		$expected = '<h1>Remember Me Controls Settings</h1>' . "\n";
 		$expected .= '<p class="see-help">See the &quot;Help&quot; link to the top-right of the page for more help.</p>' . "\n";
-		$expected .= '<p>Take control of the "Remember Me" login feature for WordPress';
+		$expected .= '<p>Take control of the &quot;Remember Me&quot; login feature for WordPress';
 
 		$this->expectOutputRegex( '~^' . preg_quote( $expected ) . '~', $this->obj->options_page_description() );
 	}
@@ -607,10 +607,19 @@ JS;
 	 * add_admin_js()
 	 */
 
+	public function test_add_admin_js_does_not_add_js_generally() {
+		$this->expectOutputRegex( '~^$~', $this->obj->add_admin_js() );
+	}
+
 	/**
 	 * @expectedIncorrectUsage c2c_Plugin_067::is_plugin_admin_page
 	 */
-	public function test_add_admin_js_does_not_add_js_generally() {
+	public function test_add_admin_js_does_not_add_js_in_admin_before_admin_init() {
+		// Mock the fact that the admin is currently loaded.
+		if ( ! defined( 'WP_ADMIN' ) ) {
+			define( 'WP_ADMIN', true );
+		}
+
 		$this->expectOutputRegex( '~^$~', $this->obj->add_admin_js() );
 	}
 
